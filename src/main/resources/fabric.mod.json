@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "infernummod",
+	"version": "${version}",
+	"name": "Infernum Mod",
+	"description": "This mod is purposed to add into your Minecraft world more tools and entities to get and see, so go on and enjoy the adventure!",
+	"authors": [
+		"Ronm19!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/infernummod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.ronm19.infernummod.InfernumMod"
+		],
+      "client": [
+            "net.ronm19.infernummod.InfernumModClient"
+      ],
+		"fabric-datagen": [
+			"net.ronm19.infernummod.InfernumModDataGenerator"
+		]
+	},
+	"mixins": [
+		"infernummod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

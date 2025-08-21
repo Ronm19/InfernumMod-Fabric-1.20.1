@@ -1,0 +1,43 @@
+{
+  "item.infernummod.nether_ruby": "Nether Ruby",
+  "item.infernummod.raw_nether_ruby": "Raw Nether Ruby",
+
+  "item.infernummod.firerite": "Firerite",
+  "item.infernummod.raw_firerite": "Raw Firerite",
+
+  "item.infernummod.infernium": "Infernium",
+  "item.infernummod.pyroclast": "Pyroclast",
+  "item.infernummod.raw_pyroclast": "Raw Pyroclast",
+  "item.infernummod.raw_cinderstone": "Raw Cinderstone",
+  "item.infernummod.cinderstone": "Cinderstone",
+  "item.infernummod.raw_emberstone": "Raw Emberstone",
+  "item.infernummod.emberstone": "Emberstone",
+
+
+  "block.infernummod.nether_ruby_block": "Nether Ruby Block",
+  "block.infernummod.raw_nether_ruby_block": "Raw Nether Ruby Block",
+  "block.infernummod.nether_ruby_ore": "Nether Ruby Ore",
+  "block.infernummod.deepslate_nether_ruby_ore": "Deepslate Nether Ruby Ore",
+
+  "block.infernummod.blaze_block": "Blaze Block",
+  "block.infernummod.blaze_stone_block": "Blaze Stone Block",
+  "block.infernummod.emberstone_block": "Emberstone Block",
+  "block.infernummod.raw_emberstone_block": "Raw Emberstone Block",
+  "block.infernummod.infernal_bricks_stone_block": "Infernal Bricks Stone Block",
+  "block.infernummod.infernal_stone_block": "Infernal Stone Block",
+  "block.infernummod.molten_bricks_block": "Molten Bricks Block",
+  "block.infernummod.molten_granite_block": "Molten Granite Block",
+  "block.infernummod.molten_stone_block": "Molten Stone Block",
+
+  "block.infernummod.emberstone_ore": "Emberstone Ore",
+  "block.infernummod.nether_pyroclast_ore": "Nether Pyroclast Ore",
+  "block.infernummod.stone_infernium_ore": "Stone Infernium Ore",
+  "block.infernummod.deepslate_cinderstone_ore": "Deepslate Cinderstone Ore",
+
+  "block.infernummod.firerite_block": "Firerite Block",
+  "block.infernummod.raw_firerite_block": "Raw Firerite Block",
+  "block.infernummod.firerite_ore": "Firerite Ore",
+  "block.infernummod.deepslate_firerite_ore": "Deepslate Firerite Block",
+
+  "itemgroup.nether_ruby": "Infernum Mod"
+}

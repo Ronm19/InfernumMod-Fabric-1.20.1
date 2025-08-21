@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "infernummod:firerite_block",
+    "infernummod:nether_ruby_block",
+    "infernummod:raw_firerite_block",
+    "infernummod:raw_nether_ruby_block",
+    "infernummod:deepslate_nether_ruby_ore",
+    "infernummod:nether_ruby_ore",
+    "infernummod:firerite_ore",
+    "infernummod:deepslate_firerite_ore",
+    "infernummod:emberstone_block",
+    "infernummod:raw_emberstone_block",
+    "infernummod:blaze_stone_block",
+    "infernummod:blaze_block",
+    "infernummod:infernal_stone_block",
+    "infernummod:infernal_bricks_stone_block",
+    "infernummod:molten_bricks_block",
+    "infernummod:molten_granite_block",
+    "infernummod:molten_stone_block",
+    "infernummod:emberstone_ore",
+    "infernummod:deepslate_cinderstone_ore",
+    "infernummod:stone_infernium_ore",
+    "infernummod:nether_pyroclast_ore"
+  ]
+}

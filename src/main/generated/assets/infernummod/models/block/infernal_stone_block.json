@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "infernummod:block/infernal_stone_block"
+  }
+}

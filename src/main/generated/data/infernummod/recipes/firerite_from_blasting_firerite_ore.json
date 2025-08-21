@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.7,
+  "group": "firerite",
+  "ingredient": {
+    "item": "infernummod:firerite_ore"
+  },
+  "result": "infernummod:firerite"
+}

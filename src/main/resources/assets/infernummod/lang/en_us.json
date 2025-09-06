@@ -6,6 +6,7 @@
   "item.infernummod.raw_firerite": "Raw Firerite",
 
   "item.infernummod.infernium": "Infernium",
+  "item.infernummod.raw_infernium": "Raw Infernium",
   "item.infernummod.pyroclast": "Pyroclast",
   "item.infernummod.raw_pyroclast": "Raw Pyroclast",
   "item.infernummod.raw_cinderstone": "Raw Cinderstone",
@@ -13,11 +14,160 @@
   "item.infernummod.raw_emberstone": "Raw Emberstone",
   "item.infernummod.emberstone": "Emberstone",
 
+  "item.infernummod.nether_ruby_pickaxe": "Nether Ruby Pickaxe",
+  "item.infernummod.nether_ruby_axe": "Nether Ruby Axe",
+  "item.infernummod.nether_ruby_shovel": "Nether Ruby Shovel",
+  "item.infernummod.nether_ruby_sword": "Nether Ruby Sword",
+  "item.infernummod.nether_ruby_hoe": "Nether Ruby Hoe",
+
+  "item.infernummod.emberstone_pickaxe": "Emberstone Pickaxe",
+  "item.infernummod.emberstone_axe": "Emberstone Axe",
+  "item.infernummod.emberstone_shovel": "Emberstone Shovel",
+  "item.infernummod.emberstone_sword": "Emberstone Sword",
+  "item.infernummod.emberstone_hoe": "Emberstone Hoe",
+
+  "item.infernummod.cinderstone_pickaxe": "Cinderstone Pickaxe",
+  "item.infernummod.cinderstone_axe": "Cinderstone Axe",
+  "item.infernummod.cinderstone_shovel": "Cinderstone Shovel",
+  "item.infernummod.cinderstone_sword": "Cinderstone Sword",
+  "item.infernummod.cinderstone_hoe": "Cinderstone Hoe",
+
+  "item.infernummod.infernium_pickaxe": "Infernium Pickaxe",
+  "item.infernummod.infernium_axe": "Infernium Axe",
+  "item.infernummod.infernium_shovel": "Infernium Shovel",
+  "item.infernummod.infernium_sword": "Infernium Sword",
+  "item.infernummod.infernium_hoe": "Infernium Hoe",
+
+  "item.infernummod.pyroclast_pickaxe": "Pyroclast Pickaxe",
+  "item.infernummod.pyroclast_axe": "Pyroclast Axe",
+  "item.infernummod.pyroclast_shovel": "Pyroclast Shovel",
+  "item.infernummod.pyroclast_sword": "Pyroclast Sword",
+  "item.infernummod.pyroclast_hoe": "Pyroclast Hoe",
+
+  "item.infernummod.firerite_pickaxe": "Firerite Pickaxe",
+  "item.infernummod.firerite_axe": "Firerite Axe",
+  "item.infernummod.firerite_shovel": "Firerite Shovel",
+  "item.infernummod.firerite_sword": "Firerite Sword",
+  "item.infernummod.firerite_hoe": "Firerite Hoe",
+
+  "item.infernummod.nether_ruby_helmet": "Nether Ruby Helmet",
+  "item.infernummod.nether_ruby_chestplate": "Nether Ruby Chestplate",
+  "item.infernummod.nether_ruby_leggings": "Nether Ruby Leggings",
+  "item.infernummod.nether_ruby_boots": "Nether Ruby Boots",
+
+  "item.infernummod.cinderstone_helmet": "Cinderstone Helmet",
+  "item.infernummod.cinderstone_chestplate": "Cinderstone Chestplate",
+  "item.infernummod.cinderstone_leggings": "Cinderstone Leggings",
+  "item.infernummod.cinderstone_boots": "Cinderstone Boots",
+
+  "item.infernummod.emberstone_helmet": "Emberstone Helmet",
+  "item.infernummod.emberstone_chestplate": "Emberstone Chestplate",
+  "item.infernummod.emberstone_leggings": "Emberstone Leggings",
+  "item.infernummod.emberstone_boots": "Emberstone Boots",
+
+  "item.infernummod.infernium_helmet": "Infernium Helmet",
+  "item.infernummod.infernium_chestplate": "Infernium Chestplate",
+  "item.infernummod.infernium_leggings": "Infernium Leggings",
+  "item.infernummod.infernium_boots": "Infernium Boots",
+
+  "item.infernummod.firerite_helmet": "Firerite Helmet",
+  "item.infernummod.firerite_chestplate": "Firerite Chestplate",
+  "item.infernummod.firerite_leggings": "Firerite Leggings",
+  "item.infernummod.firerite_boots": "Firerite Boots",
+
+  "item.infernummod.pyroclast_helmet": "Pyroclast Helmet",
+  "item.infernummod.pyroclast_chestplate": "Pyroclast Chestplate",
+  "item.infernummod.pyroclast_leggings": "Pyroclast Leggings",
+  "item.infernummod.pyroclast_boots": "Pyroclast Boots",
+
+  "item.infernummod.demon_spawn_egg": "Demon Spawn Egg",
 
   "block.infernummod.nether_ruby_block": "Nether Ruby Block",
   "block.infernummod.raw_nether_ruby_block": "Raw Nether Ruby Block",
   "block.infernummod.nether_ruby_ore": "Nether Ruby Ore",
   "block.infernummod.deepslate_nether_ruby_ore": "Deepslate Nether Ruby Ore",
+
+
+  "block.infernummod.nether_ruby_stairs": "Nether Ruby Stairs",
+  "block.infernummod.nether_ruby_slab": "Nether Ruby Slab",
+  "block.infernummod.nether_ruby_button": "Nether Ruby Button",
+  "block.infernummod.nether_ruby_pressure_plate": "Nether Ruby Pressure Plate",
+  "block.infernummod.nether_ruby_fence": "Nether Ruby Fence",
+  "block.infernummod.nether_ruby_fence_gate": "Nether Ruby Fence Gate",
+  "block.infernummod.nether_ruby_wall": "Nether Ruby Wall",
+  "block.infernummod.nether_ruby_door": "Nether Ruby Door",
+  "block.infernummod.nether_ruby_trapdoor": "Nether Ruby Trapdoor",
+
+  "block.infernummod.firerite_stairs": "Firerite Stairs",
+  "block.infernummod.firerite_slab": "Firerite Slab",
+  "block.infernummod.firerite_button": "Firerite Button",
+  "block.infernummod.firerite_pressure_plate": "Firerite Pressure Plate",
+  "block.infernummod.firerite_fence": "Firerite Fence",
+  "block.infernummod.firerite_fence_gate": "Firerite Fence Gate",
+  "block.infernummod.firerite_wall": "Firerite Wall",
+  "block.infernummod.firerite_door": "Firerite Door",
+  "block.infernummod.firerite_trapdoor": "Firerite Trapdoor",
+
+  "block.infernummod.blaze_stairs": "Blaze Stairs",
+  "block.infernummod.blaze_slab": "Blaze Slab",
+  "block.infernummod.blaze_button": "Blaze Button",
+  "block.infernummod.blaze_pressure_plate": "Blaze Pressure Plate",
+  "block.infernummod.blaze_fence": "Blaze Fence",
+  "block.infernummod.blaze_fence_gate": "Blaze Fence Gate",
+  "block.infernummod.blaze_wall": "Blaze Wall",
+  "block.infernummod.blaze_door": "Blaze Door",
+  "block.infernummod.blaze_trapdoor": "Blaze Trapdoor",
+
+  "block.infernummod.emberstone_stairs": "Emberstone Stairs",
+  "block.infernummod.emberstone_slab": "Emberstone Slab",
+  "block.infernummod.emberstone_button": "Emberstone Button",
+  "block.infernummod.emberstone_pressure_plate": "Emberstone Pressure Plate",
+  "block.infernummod.emberstone_fence": "Emberstone Fence",
+  "block.infernummod.emberstone_fence_gate": "Emberstone Fence Gate",
+  "block.infernummod.emberstone_wall": "Emberstone Wall",
+  "block.infernummod.emberstone_door": "Emberstone Door",
+  "block.infernummod.emberstone_trapdoor": "Emberstone Trapdoor",
+
+  "block.infernummod.infernal_bricks_stone_stairs": "Infernal Stone Block Stairs",
+  "block.infernummod.infernal_bricks_stone_slab": "Infernal Stone Block Slab",
+  "block.infernummod.infernal_bricks_stone_button": "Infernal Stone Block Button",
+  "block.infernummod.infernal_bricks_stone_pressure_plate": "Infernal Stone Block Pressure Plate",
+  "block.infernummod.infernal_bricks_stone_fence": "Infernal Stone Block Fence",
+  "block.infernummod.infernal_bricks_stone_fence_gate": "Infernal Stone Block Fence Gate",
+  "block.infernummod.infernal_bricks_stone_wall": "Infernal Stone Block Wall",
+  "block.infernummod.infernal_bricks_stone_door": "Infernal Stone Block Door",
+  "block.infernummod.infernal_bricks_stone_trapdoor": "Infernal Stone Block Trapdoor",
+
+  "block.infernummod.molten_bricks_stairs": "Molten Bricks Stairs",
+  "block.infernummod.molten_bricks_slab": "Molten Bricks Slab",
+  "block.infernummod.molten_bricks_button": "Molten Bricks Button",
+  "block.infernummod.molten_bricks_pressure_plate": "Molten Bricks Pressure Plate",
+  "block.infernummod.molten_bricks_fence": "Molten Bricks Fence",
+  "block.infernummod.molten_bricks_fence_gate": "Molten Bricks Fence Gate",
+  "block.infernummod.molten_bricks_wall": "Molten Bricks Wall",
+  "block.infernummod.molten_bricks_door": "Molten Bricks Door",
+  "block.infernummod.molten_bricks_trapdoor": "Molten Bricks Trapdoor",
+
+  "block.infernummod.infernal_stone_stairs": "Infernal Stone Stairs",
+  "block.infernummod.infernal_stone_slab": "Infernal Stone Slab",
+  "block.infernummod.infernal_stone_button": "Infernal Stone Button",
+  "block.infernummod.infernal_stone_pressure_plate": "Infernal Stone Pressure Plate",
+  "block.infernummod.infernal_stone_fence": "Infernal Stone Fence",
+  "block.infernummod.infernal_stone_fence_gate": "Infernal Stone Fence Gate",
+  "block.infernummod.infernal_stone_wall": "Infernal Stone Wall",
+  "block.infernummod.infernal_stone_door": "Infernal Stone Door",
+  "block.infernummod.infernal_stone_trapdoor": "Infernal Stone Trapdoor",
+
+  "block.infernummod.molten_stone_stairs": "Molten Stone Stairs",
+  "block.infernummod.molten_stone_slab": "Molten Stone Slab",
+  "block.infernummod.molten_stone_button": "Molten Stone Button",
+  "block.infernummod.molten_stone_pressure_plate": "Molten Stone Pressure Plate",
+  "block.infernummod.molten_stone_fence": "Molten Stone Fence",
+  "block.infernummod.molten_stone_fence_gate": "Molten Stone Fence Gate",
+  "block.infernummod.molten_stone_wall": "Molten Stone Wall",
+  "block.infernummod.molten_stone_door": "Molten Stone Door",
+  "block.infernummod.molten_stone_trapdoor": "Molten Stone Trapdoor",
+
 
   "block.infernummod.blaze_block": "Blaze Block",
   "block.infernummod.blaze_stone_block": "Blaze Stone Block",
@@ -28,6 +178,7 @@
   "block.infernummod.molten_bricks_block": "Molten Bricks Block",
   "block.infernummod.molten_granite_block": "Molten Granite Block",
   "block.infernummod.molten_stone_block": "Molten Stone Block",
+  "block.infernummod.ash_block": "Ash Block",
 
   "block.infernummod.emberstone_ore": "Emberstone Ore",
   "block.infernummod.nether_pyroclast_ore": "Nether Pyroclast Ore",
@@ -39,5 +190,9 @@
   "block.infernummod.firerite_ore": "Firerite Ore",
   "block.infernummod.deepslate_firerite_ore": "Deepslate Firerite Block",
 
-  "itemgroup.nether_ruby": "Infernum Mod"
+  "block.infernummod.blazebloom": "Blaze Bloom",
+
+  "itemgroup.nether_ruby": "Infernum Mod",
+
+  "entity.infernummod.demon": "Demon"
 }

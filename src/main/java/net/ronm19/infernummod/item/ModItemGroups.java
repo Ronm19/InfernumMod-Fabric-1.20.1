@@ -30,10 +30,163 @@ public class ModItemGroups {
                         entries.add(ModItems.RAW_EMBERSTONE);
                         entries.add(ModItems.EMBERSTONE);
 
+                        entries.add(ModItems.NETHER_RUBY_PICKAXE);
+                        entries.add(ModItems.NETHER_RUBY_AXE);
+                        entries.add(ModItems.NETHER_RUBY_SHOVEL);
+                        entries.add(ModItems.NETHER_RUBY_SWORD);
+                        entries.add(ModItems.NETHER_RUBY_HOE);
+
+                        entries.add(ModItems.EMBERSTONE_PICKAXE);
+                        entries.add(ModItems.EMBERSTONE_AXE);
+                        entries.add(ModItems.EMBERSTONE_SHOVEL);
+                        entries.add(ModItems.EMBERSTONE_SWORD);
+                        entries.add(ModItems.EMBERSTONE_HOE);
+
+                        entries.add(ModItems.CINDERSTONE_PICKAXE);
+                        entries.add(ModItems.CINDERSTONE_AXE);
+                        entries.add(ModItems.CINDERSTONE_SHOVEL);
+                        entries.add(ModItems.CINDERSTONE_SWORD);
+                        entries.add(ModItems.CINDERSTONE_HOE);
+
+                        entries.add(ModItems.INFERNIUM_PICKAXE);
+                        entries.add(ModItems.INFERNIUM_AXE);
+                        entries.add(ModItems.INFERNIUM_SHOVEL);
+                        entries.add(ModItems.INFERNIUM_SWORD);
+                        entries.add(ModItems.INFERNIUM_HOE);
+
+                        entries.add(ModItems.PYROCLAST_PICKAXE);
+                        entries.add(ModItems.PYROCLAST_AXE);
+                        entries.add(ModItems.PYROCLAST_SHOVEL);
+                        entries.add(ModItems.PYROCLAST_SWORD);
+                        entries.add(ModItems.PYROCLAST_HOE);
+
+                        entries.add(ModItems.FIRERITE_PICKAXE);
+                        entries.add(ModItems.FIRERITE_AXE);
+                        entries.add(ModItems.FIRERITE_SHOVEL);
+                        entries.add(ModItems.FIRERITE_SWORD);
+                        entries.add(ModItems.FIRERITE_HOE);
+
+                        entries.add(ModItems.NETHER_RUBY_HELMET);
+                        entries.add(ModItems.NETHER_RUBY_CHESTPLATE);
+                        entries.add(ModItems.NETHER_RUBY_LEGGINGS);
+                        entries.add(ModItems.NETHER_RUBY_BOOTS);
+
+                        entries.add(ModItems.CINDERSTONE_HELMET);
+                        entries.add(ModItems.CINDERSTONE_CHESTPLATE);
+                        entries.add(ModItems.CINDERSTONE_LEGGINGS);
+                        entries.add(ModItems.CINDERSTONE_BOOTS);
+
+
+                        entries.add(ModItems.EMBERSTONE_HELMET);
+                        entries.add(ModItems.EMBERSTONE_CHESTPLATE);
+                        entries.add(ModItems.EMBERSTONE_LEGGINGS);
+                        entries.add(ModItems.EMBERSTONE_BOOTS);
+
+                        entries.add(ModItems.INFERNIUM_HELMET);
+                        entries.add(ModItems.INFERNIUM_CHESTPLATE);
+                        entries.add(ModItems.INFERNIUM_LEGGINGS);
+                        entries.add(ModItems.INFERNIUM_BOOTS);
+
+                        entries.add(ModItems.FIRERITE_HELMET);
+                        entries.add(ModItems.FIRERITE_CHESTPLATE);
+                        entries.add(ModItems.FIRERITE_LEGGINGS);
+                        entries.add(ModItems.FIRERITE_BOOTS);
+
+
+                        entries.add(ModItems.PYROCLAST_HELMET);
+                        entries.add(ModItems.PYROCLAST_CHESTPLATE);
+                        entries.add(ModItems.PYROCLAST_LEGGINGS);
+                        entries.add(ModItems.PYROCLAST_BOOTS);
+
+                        entries.add(ModItems.DEMON_SPAWN_EGG);
+                        entries.add(ModItems.MALFURYX_SPAWN_EGG);
+
+
                         entries.add(ModBlocks.NETHER_RUBY_BLOCK);
                         entries.add(ModBlocks.RAW_NETHER_RUBY_BLOCK);
                         entries.add(ModBlocks.NETHER_RUBY_ORE);
                         entries.add(ModBlocks.DEEPSLATE_NETHER_RUBY_ORE);
+
+
+                        entries.add(ModBlocks.NETHER_RUBY_BUTTON);
+                        entries.add(ModBlocks.NETHER_RUBY_SLAB);
+                        entries.add(ModBlocks.NETHER_RUBY_DOOR);
+                        entries.add(ModBlocks.NETHER_RUBY_TRAPDOOR);
+                        entries.add(ModBlocks.NETHER_RUBY_WALL);
+                        entries.add(ModBlocks.NETHER_RUBY_PRESSURE_PLATE);
+                        entries.add(ModBlocks.NETHER_RUBY_FENCE);
+                        entries.add(ModBlocks.NETHER_RUBY_FENCE_GATE);
+                        entries.add(ModBlocks.NETHER_RUBY_STAIRS);
+
+                        entries.add(ModBlocks.FIRERITE_BUTTON);
+                        entries.add(ModBlocks.FIRERITE_SLAB);
+                        entries.add(ModBlocks.FIRERITE_DOOR);
+                        entries.add(ModBlocks.FIRERITE_TRAPDOOR);
+                        entries.add(ModBlocks.FIRERITE_WALL);
+                        entries.add(ModBlocks.FIRERITE_PRESSURE_PLATE);
+                        entries.add(ModBlocks.FIRERITE_FENCE);
+                        entries.add(ModBlocks.FIRERITE_FENCE_GATE);
+                        entries.add(ModBlocks.FIRERITE_STAIRS);
+
+                        entries.add(ModBlocks.BLAZE_BUTTON);
+                        entries.add(ModBlocks.BLAZE_SLAB);
+                        entries.add(ModBlocks.BLAZE_DOOR);
+                        entries.add(ModBlocks.BLAZE_TRAPDOOR);
+                        entries.add(ModBlocks.BLAZE_WALL);
+                        entries.add(ModBlocks.BLAZE_PRESSURE_PLATE);
+                        entries.add(ModBlocks.BLAZE_FENCE);
+                        entries.add(ModBlocks.BLAZE_FENCE_GATE);
+                        entries.add(ModBlocks.BLAZE_STAIRS);
+
+                        entries.add(ModBlocks.EMBERSTONE_BUTTON);
+                        entries.add(ModBlocks.EMBERSTONE_SLAB);
+                        entries.add(ModBlocks.EMBERSTONE_DOOR);
+                        entries.add(ModBlocks.EMBERSTONE_TRAPDOOR);
+                        entries.add(ModBlocks.EMBERSTONE_WALL);
+                        entries.add(ModBlocks.EMBERSTONE_PRESSURE_PLATE);
+                        entries.add(ModBlocks.EMBERSTONE_FENCE);
+                        entries.add(ModBlocks.EMBERSTONE_FENCE_GATE);
+                        entries.add(ModBlocks.EMBERSTONE_STAIRS);
+
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_BUTTON);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_SLAB);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_DOOR);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_TRAPDOOR);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_WALL);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_PRESSURE_PLATE);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_FENCE);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_FENCE_GATE);
+                        entries.add(ModBlocks.INFERNAL_BRICKS_STONE_STAIRS);
+
+                        entries.add(ModBlocks.MOLTEN_BRICKS_BUTTON);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_SLAB);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_DOOR);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_TRAPDOOR);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_WALL);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_PRESSURE_PLATE);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_FENCE);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_FENCE_GATE);
+                        entries.add(ModBlocks.MOLTEN_BRICKS_STAIRS);
+
+                        entries.add(ModBlocks.MOLTEN_STONE_BUTTON);
+                        entries.add(ModBlocks.MOLTEN_STONE_SLAB);
+                        entries.add(ModBlocks.MOLTEN_STONE_DOOR);
+                        entries.add(ModBlocks.MOLTEN_STONE_TRAPDOOR);
+                        entries.add(ModBlocks.MOLTEN_STONE_WALL);
+                        entries.add(ModBlocks.MOLTEN_STONE_PRESSURE_PLATE);
+                        entries.add(ModBlocks.MOLTEN_STONE_FENCE);
+                        entries.add(ModBlocks.MOLTEN_STONE_FENCE_GATE);
+                        entries.add(ModBlocks.MOLTEN_STONE_STAIRS);
+
+                        entries.add(ModBlocks.INFERNAL_STONE_BUTTON);
+                        entries.add(ModBlocks.INFERNAL_STONE_SLAB);
+                        entries.add(ModBlocks.INFERNAL_STONE_DOOR);
+                        entries.add(ModBlocks.INFERNAL_STONE_TRAPDOOR);
+                        entries.add(ModBlocks.INFERNAL_STONE_WALL);
+                        entries.add(ModBlocks.INFERNAL_STONE_PRESSURE_PLATE);
+                        entries.add(ModBlocks.INFERNAL_STONE_FENCE);
+                        entries.add(ModBlocks.INFERNAL_STONE_FENCE_GATE);
+                        entries.add(ModBlocks.INFERNAL_STONE_STAIRS);
 
                         entries.add(ModBlocks.RAW_FIRERITE_BLOCK);
                         entries.add(ModBlocks.FIRERITE_BLOCK);
@@ -53,6 +206,10 @@ public class ModItemGroups {
                         entries.add(ModBlocks.INFERNAL_STONE_BLOCK);
                         entries.add(ModBlocks.EMBERSTONE_ORE);
                         entries.add(ModBlocks.NETHER_PYROCLAST_ORE);
+
+                        entries.add(ModBlocks.ASH_BLOCK);
+
+                        entries.add(ModBlocks.BLAZEBLOOM);
 
                     }).build());
 

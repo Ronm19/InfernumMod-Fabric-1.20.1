@@ -10,7 +10,7 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
-import net.ronm19.infernummod.entity.animation.ModAnimations;
+import net.ronm19.infernummod.entity.animation.DemonAnimations;
 import net.ronm19.infernummod.entity.custom.DemonEntity;
 
 public class DemonModel<T extends DemonEntity> extends SinglePartEntityModel<T> {
@@ -53,9 +53,9 @@ public class DemonModel<T extends DemonEntity> extends SinglePartEntityModel<T> 
         this.getPart().traverse().forEach(ModelPart :: resetTransform);
         this.setHeadAngles(headYaw, headPitch);
 
-        this.animateMovement(ModAnimations.DEMON_WALKING, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.updateAnimation(entity.idleAnimationState, ModAnimations.DEMON_IDLE, ageInTicks, 1f);
-        this.updateAnimation(entity.attackAnimationState, ModAnimations.DEMON_ATTACK, ageInTicks, 1f);
+        this.animateMovement(DemonAnimations.DEMON_WALKING, limbSwing, limbSwingAmount, 2f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, DemonAnimations.DEMON_IDLE, ageInTicks, 1f);
+        this.updateAnimation(entity.attackAnimationState, DemonAnimations.DEMON_ATTACK, ageInTicks, 1f);
 
     }
 

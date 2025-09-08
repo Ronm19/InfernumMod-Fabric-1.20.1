@@ -9,7 +9,8 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
-import net.ronm19.infernummod.entity.animation.ModAnimations;
+import net.ronm19.infernummod.entity.animation.DemonAnimations;
+import net.ronm19.infernummod.entity.animation.MalfuryxAnimations;
 import net.ronm19.infernummod.entity.custom.MalfuryxEntity;
 
 public class MalfuryxModel<T extends MalfuryxEntity> extends SinglePartEntityModel<T> {
@@ -20,6 +21,7 @@ public class MalfuryxModel<T extends MalfuryxEntity> extends SinglePartEntityMod
 	private final ModelPart right_arm;
 	private final ModelPart left_leg;
 	private final ModelPart right_leg;
+
 	public MalfuryxModel(ModelPart root) {
         this.root = root;
 		this.head = root.getChild("head");
@@ -47,12 +49,11 @@ public class MalfuryxModel<T extends MalfuryxEntity> extends SinglePartEntityMod
 	}
 	@Override
 	public void setAngles(MalfuryxEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch) {
-        this.getPart().traverse().forEach(ModelPart :: resetTransform);
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
         this.setHeadAngles(headYaw, headPitch);
 
-        this.animateMovement(ModAnimations.MALFURYX_WALKING, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.updateAnimation(entity.idleAnimationState, ModAnimations.MALFURYX_IDLE, ageInTicks, 1f);
-	}
+        this.animateMovement(MalfuryxAnimations.MALFURYX_WALKING, limbSwing, limbSwingAmount, 1.75f, 2.5f);
+        this.updateAnimation(entity.idleAnimationState, MalfuryxAnimations.MALFURYX_IDLE, ageInTicks, 1f);}
 
     private void setHeadAngles( float headYaw, float headPitch ) {
         headYaw = MathHelper.clamp(headYaw, -30.0F, 30.0F);

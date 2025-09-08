@@ -14,6 +14,11 @@
   "item.infernummod.raw_emberstone": "Raw Emberstone",
   "item.infernummod.emberstone": "Emberstone",
 
+  "item.infernummod.ash_dust": "Ash Dust",
+
+  "item.infernummod.inferno_boat": "Inferno Boat",
+  "item.infernummod.inferno_chest_boat": "Inferno Chest Boat",
+
   "item.infernummod.nether_ruby_pickaxe": "Nether Ruby Pickaxe",
   "item.infernummod.nether_ruby_axe": "Nether Ruby Axe",
   "item.infernummod.nether_ruby_shovel": "Nether Ruby Shovel",
@@ -81,12 +86,20 @@
   "item.infernummod.pyroclast_boots": "Pyroclast Boots",
 
   "item.infernummod.demon_spawn_egg": "Demon Spawn Egg",
+  "item.infernummod.malfuryx_spawn_egg": "Malfuryx Spawn Egg",
 
   "block.infernummod.nether_ruby_block": "Nether Ruby Block",
   "block.infernummod.raw_nether_ruby_block": "Raw Nether Ruby Block",
   "block.infernummod.nether_ruby_ore": "Nether Ruby Ore",
   "block.infernummod.deepslate_nether_ruby_ore": "Deepslate Nether Ruby Ore",
 
+  "block.infernummod.inferno_essence_log": "Inferno Essence Log",
+  "block.infernummod.inferno_essence_wood": "Inferno Essence Wood",
+  "block.infernummod.stripped_inferno_essence_log": "Stripped Inferno Essence Log",
+  "block.infernummod.stripped_inferno_essence_wood": "Stripped Inferno Essence Wood",
+  "block.infernummod.inferno_essence_planks": "Inferno Essence Planks",
+  "block.infernummod.inferno_essence_leaves": "Inferno Essence Leaves",
+  "block.infernummod.inferno_essence_sapling": "Inferno Essence Sapling",
 
   "block.infernummod.nether_ruby_stairs": "Nether Ruby Stairs",
   "block.infernummod.nether_ruby_slab": "Nether Ruby Slab",
@@ -188,11 +201,14 @@
   "block.infernummod.firerite_block": "Firerite Block",
   "block.infernummod.raw_firerite_block": "Raw Firerite Block",
   "block.infernummod.firerite_ore": "Firerite Ore",
-  "block.infernummod.deepslate_firerite_ore": "Deepslate Firerite Block",
+  "block.infernummod.deepslate_firerite_ore": "Deepslate Firerite Ore",
 
   "block.infernummod.blazebloom": "Blaze Bloom",
 
   "itemgroup.nether_ruby": "Infernum Mod",
 
-  "entity.infernummod.demon": "Demon"
+  "entity.infernummod.demon": "Demon",
+  "entity.infernummod.malfuryx": "Malfuryx",
+
+  "entity.infernummod.ash_dust": "Ash Dust"
 }

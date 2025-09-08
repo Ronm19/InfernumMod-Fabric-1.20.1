@@ -2,6 +2,7 @@ package net.ronm19.infernummod.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.registry.tag.ItemTags;
 import net.ronm19.infernummod.block.ModBlocks;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -179,5 +180,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.BLAZE_WALL)
                 .add(ModBlocks.FIRERITE_WALL)
                 .add(ModBlocks.NETHER_RUBY_WALL);
+
+
+        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.INFERNO_ESSENCE_LOG)
+                .add(ModBlocks.INFERNO_ESSENCE_WOOD)
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG)
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
     }
 }

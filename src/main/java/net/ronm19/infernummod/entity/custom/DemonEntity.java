@@ -17,6 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.api.interfaces.ItemEquippable;
@@ -84,6 +85,12 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 24.0) // can spot player from mid-range
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.2)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.1);
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        // Prevents despawn in normal conditions, but monsters still despawn on peaceful
+        return this.getType().getSpawnGroup() != SpawnGroup.MONSTER || this.getWorld().getDifficulty() != Difficulty.PEACEFUL;
     }
 
     public void setAttacking(boolean attacking) {

@@ -2,7 +2,11 @@ package net.ronm19.infernummod;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 import net.ronm19.infernummod.datagen.*;
+import net.ronm19.infernummod.world.ModConfiguredFeatures;
+import net.ronm19.infernummod.world.ModPlacedFeatures;
 
 public class InfernumModDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -14,5 +18,12 @@ public class InfernumModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModLootTableProvider::new);
         pack.addProvider(ModModelProvider::new);
         pack.addProvider(ModRecipeProvider::new);
+        pack.addProvider(ModWorldGenerator::new);
 	}
+
+    @Override
+    public void buildRegistry( RegistryBuilder registryBuilder ) {
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::boostrap);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::boostrap);
+    }
 }

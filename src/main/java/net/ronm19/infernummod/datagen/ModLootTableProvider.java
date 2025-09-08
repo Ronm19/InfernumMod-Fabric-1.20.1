@@ -41,7 +41,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MOLTEN_BRICKS_BLOCK);
         addDrop(ModBlocks.MOLTEN_GRANITE_BLOCK);
         addDrop(ModBlocks.MOLTEN_STONE_BLOCK);
-        addDrop(ModBlocks.ASH_BLOCK);
+        addDrop(ModBlocks.ASH_BLOCK, copperLikeOreDrops(ModBlocks.ASH_BLOCK, ModItems.ASH_DUST, UniformLootNumberProvider.create(1.0F, 2.0F)));
 
         addDrop(ModBlocks.EMBERSTONE_ORE, copperLikeOreDrops(ModBlocks.EMBERSTONE_ORE, ModItems.RAW_EMBERSTONE, UniformLootNumberProvider.create(2.0F, 6.0F)));
         addDrop(ModBlocks.DEEPSLATE_CINDERSTONE_ORE, copperLikeOreDrops(ModBlocks.DEEPSLATE_CINDERSTONE_ORE, ModItems.RAW_CINDESTONE, UniformLootNumberProvider.create(3.0F, 7.0F)));
@@ -138,6 +138,15 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.BLAZEBLOOM);
         addPottedPlantDrops(ModBlocks.POTTED_BLAZEBLOOM);
+
+        addDrop(ModBlocks.INFERNO_ESSENCE_LOG);
+        addDrop(ModBlocks.INFERNO_ESSENCE_WOOD);
+        addDrop(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG);
+        addDrop(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
+        addDrop(ModBlocks.INFERNO_ESSENCE_PLANKS);
+        addDrop(ModBlocks.INFERNO_ESSENCE_SAPLING);
+
+        addDrop(ModBlocks.INFERNO_ESSENCE_LEAVES, leavesDrops(ModBlocks.INFERNO_ESSENCE_LEAVES, ModBlocks.INFERNO_ESSENCE_SAPLING, 0.0035f));
     }
 
     public LootTable.Builder copperLikeOreDrops( Block drop, Item item, UniformLootNumberProvider uniformLootNumberProvider ) {

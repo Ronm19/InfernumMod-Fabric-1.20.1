@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,6 +25,17 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.INFERNIUM_HELMET, ModItems.INFERNIUM_CHESTPLATE, ModItems.INFERNIUM_LEGGINGS, ModItems.INFERNIUM_BOOTS)
                 .add(ModItems.PYROCLAST_HELMET, ModItems.PYROCLAST_CHESTPLATE, ModItems.PYROCLAST_LEGGINGS, ModItems.PYROCLAST_BOOTS)
                 .add(ModItems.FIRERITE_HELMET, ModItems.FIRERITE_CHESTPLATE, ModItems.FIRERITE_LEGGINGS, ModItems.FIRERITE_BOOTS);
+
+        getOrCreateTagBuilder(ItemTags.PLANKS)
+                .add(ModBlocks.INFERNO_ESSENCE_PLANKS.asItem());
+
+        getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.INFERNO_ESSENCE_LOG.asItem())
+                .add(ModBlocks.INFERNO_ESSENCE_WOOD.asItem())
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG.asItem())
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD.asItem());
+
+
 
     }
 }

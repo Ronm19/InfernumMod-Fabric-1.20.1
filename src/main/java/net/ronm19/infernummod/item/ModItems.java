@@ -1,5 +1,6 @@
 package net.ronm19.infernummod.item;
 
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -8,7 +9,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
+import net.ronm19.infernummod.block.ModBlocks;
+import net.ronm19.infernummod.entity.ModBoats;
 import net.ronm19.infernummod.entity.ModEntities;
+import net.ronm19.infernummod.item.custom.AshDustItem;
 import net.ronm19.infernummod.item.custom.EmberstoneSwordItem;
 import net.ronm19.infernummod.item.custom.ModArmorItem;
 import net.ronm19.infernummod.item.custom.NetherRubyItem;
@@ -28,6 +32,9 @@ public class ModItems {
     public static final Item CINDERTSONE = registerItem("cinderstone", new Item(new FabricItemSettings().fireproof()));
     public static final Item RAW_EMBERSTONE = registerItem("raw_emberstone", new Item(new FabricItemSettings().fireproof()));
     public static final Item EMBERSTONE = registerItem("emberstone", new Item(new FabricItemSettings().fireproof()));
+
+
+    public static final Item ASH_DUST = registerItem("ash_dust", new AshDustItem(new FabricItemSettings().fireproof()));
 
     public static final Item NETHER_RUBY_PICKAXE = registerItem("nether_ruby_pickaxe",
             new PickaxeItem(ModToolMaterial.NETHER_RUBY, 3, 2.0f, new FabricItemSettings().fireproof()));
@@ -156,8 +163,8 @@ public class ModItems {
     public static final Item MALFURYX_SPAWN_EGG = registerItem("malfuryx_spawn_egg",
             new SpawnEggItem(ModEntities.MALFURYX, 0x0A0A0A, 0x1F1F1F, new FabricItemSettings()));
 
-
-
+    public static final Item INFERNO_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.INFERNO_BOAT_ID, ModBoats.INFERNO_BOAT_KEY, false);
+    public static final Item INFERNO_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.INFERNO_CHEST_BOAT_ID, ModBoats.INFERNO_BOAT_KEY, true);
 
 
     private static Item registerItem(String name, Item item) {

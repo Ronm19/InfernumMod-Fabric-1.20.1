@@ -21,6 +21,8 @@ public class ModItemGroups {
                         entries.add(ModItems.FIRERITE);
                         entries.add(ModItems.RAW_FIRERITE);
 
+                        entries.add(ModItems.ASH_DUST);
+
                         entries.add(ModItems.CINDERTSONE);
                         entries.add(ModItems.RAW_CINDESTONE);
                         entries.add(ModItems.RAW_INFERNIUM);
@@ -98,6 +100,9 @@ public class ModItemGroups {
                         entries.add(ModItems.PYROCLAST_LEGGINGS);
                         entries.add(ModItems.PYROCLAST_BOOTS);
 
+                        entries.add(ModItems.INFERNO_CHEST_BOAT);
+                        entries.add(ModItems.INFERNO_BOAT);
+
                         entries.add(ModItems.DEMON_SPAWN_EGG);
                         entries.add(ModItems.MALFURYX_SPAWN_EGG);
 
@@ -107,6 +112,13 @@ public class ModItemGroups {
                         entries.add(ModBlocks.NETHER_RUBY_ORE);
                         entries.add(ModBlocks.DEEPSLATE_NETHER_RUBY_ORE);
 
+                        entries.add(ModBlocks.INFERNO_ESSENCE_LOG);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_WOOD);
+                        entries.add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG);
+                        entries.add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_PLANKS);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_LEAVES);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_SAPLING);
 
                         entries.add(ModBlocks.NETHER_RUBY_BUTTON);
                         entries.add(ModBlocks.NETHER_RUBY_SLAB);

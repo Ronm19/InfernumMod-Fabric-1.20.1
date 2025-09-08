@@ -4,13 +4,18 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.ronm19.infernummod.block.ModBlocks;
+import net.ronm19.infernummod.entity.ModBoats;
 import net.ronm19.infernummod.entity.ModEntities;
 import net.ronm19.infernummod.entity.client.DemonRenderer;
 import net.ronm19.infernummod.entity.client.MalfuryxRenderer;
 import net.ronm19.infernummod.entity.custom.DemonEntity;
+import net.ronm19.infernummod.entity.custom.MalfuryxEntity;
 import net.ronm19.infernummod.item.ModItemGroups;
 import net.ronm19.infernummod.item.ModItems;
+import net.ronm19.infernummod.world.gen.ModWorldGeneration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +31,26 @@ public class InfernumMod implements ModInitializer {
         ModItems.registerModItems();
         ModBlocks.registerModBlock();
 
+        ModBoats.registerBoats();
+
         EntityRendererRegistry.register(ModEntities.DEMON, DemonRenderer::new);
         EntityRendererRegistry.register(ModEntities.MALFURYX, MalfuryxRenderer::new);
 
         FabricDefaultAttributeRegistry.register(ModEntities.DEMON, DemonEntity.createDemonAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.MALFURYX, MalfuryxEntity.createMalfuryxAttributes());
 
+        StrippableBlockRegistry.register(ModBlocks.INFERNO_ESSENCE_LOG, ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG);
+        StrippableBlockRegistry.register(ModBlocks.INFERNO_ESSENCE_WOOD, ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
+
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.INFERNO_ESSENCE_LOG, 5, 5);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.INFERNO_ESSENCE_WOOD, 5, 5);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG, 5, 5);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD, 5, 5);
+
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.INFERNO_ESSENCE_PLANKS, 5, 20);
+        FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.INFERNO_ESSENCE_LEAVES, 30, 5);
+
+        ModWorldGeneration.generateModWorldGen();
     }
 
 

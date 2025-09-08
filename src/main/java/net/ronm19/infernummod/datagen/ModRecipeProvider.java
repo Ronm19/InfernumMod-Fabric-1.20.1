@@ -1,22 +1,24 @@
 package net.ronm19.infernummod.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
+import net.ronm19.infernummod.api.interfaces.RecipeGenerator;
 import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.item.ModItems;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
-public class ModRecipeProvider extends FabricRecipeProvider {
+public class ModRecipeProvider extends RecipeProvider implements RecipeGenerator {
     private final static List<ItemConvertible> NETHER_RUBY_SMELTABLES = List.of(ModItems.RAW_NETHER_RUBY,
             ModBlocks.NETHER_RUBY_ORE, ModBlocks.DEEPSLATE_NETHER_RUBY_ORE);
     private final static List<ItemConvertible> FIRERITE_SMELTABLES = List.of(ModItems.RAW_FIRERITE,
@@ -30,7 +32,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     private final static List<ItemConvertible> INFERNIUM_SMELTABLES = List.of(ModItems.RAW_INFERNIUM,
             ModBlocks.STONE_INFERNIUM_ORE);
 
-    public ModRecipeProvider( FabricDataOutput output ) {
+    public ModRecipeProvider( FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture ) {
         super(output);
     }
 
@@ -78,6 +80,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, Items.BLAZE_ROD, RecipeCategory.DECORATIONS,
                 ModBlocks.BLAZE_BLOCK);
 
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ASH_DUST, RecipeCategory.DECORATIONS,
+                ModBlocks.ASH_BLOCK);
+
         // Raw Nether Ruby (surrounded by stone)
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.RAW_NETHER_RUBY, 1)
                 .pattern("SSS")
@@ -88,17 +93,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.STONE), conditionsFromItem(Items.STONE))
                 .criterion(hasItem(ModItems.NETHER_RUBY), conditionsFromItem(ModItems.NETHER_RUBY))
                 .offerTo(exporter, new Identifier(getRecipeName(ModItems.RAW_NETHER_RUBY)));
-
-        // Ash Block (surrounded by stone)
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ASH_BLOCK, 1)
-                .pattern("CCC")
-                .pattern("CDC")
-                .pattern("CCC")
-                .input('C', Items.COAL)
-                .input('D', Items.DIRT)
-                .criterion(hasItem(Items.COAL), conditionsFromItem(Items.COAL))
-                .criterion(hasItem(Items.DIRT), conditionsFromItem(Items.DIRT))
-                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.ASH_BLOCK)));
 
 // Nether Ruby Stairs (4 stairs, vanilla pattern)
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.NETHER_RUBY_STAIRS, 4)
@@ -1180,8 +1174,15 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, new Identifier(getRecipeName(ModItems.FIRERITE_BOOTS)));
 
 
+        // Inferno Essence Planks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,  ModBlocks.INFERNO_ESSENCE_PLANKS, 4)
+                .pattern("  ")
+                .pattern("I ")
+                .input('I', ModBlocks.INFERNO_ESSENCE_LOG)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_LOG), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_LOG))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_PLANKS)));
+
     }
 }
-
 
 

@@ -1,8 +1,14 @@
 package net.ronm19.infernummod.block;
 
+import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
+import net.minecraft.data.family.BlockFamilies;
+import net.minecraft.data.family.BlockFamily;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -15,6 +21,7 @@ import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.block.custom.AshBlock;
 import net.ronm19.infernummod.block.custom.BlazebloomBlock;
 import net.ronm19.infernummod.block.custom.RawFireriteBlock;
+import net.ronm19.infernummod.world.tree.InfernoEssenceSaplingGenerator;
 
 import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings.copyOf;
 
@@ -261,8 +268,25 @@ public class ModBlocks {
     public static final Block POTTED_BLAZEBLOOM = Registry.register(Registries.BLOCK, new Identifier(InfernumMod.MOD_ID, "potted_blazebloom"),
         new FlowerPotBlock(BLAZEBLOOM, FabricBlockSettings.copyOf(Blocks.POTTED_WITHER_ROSE).nonOpaque()));
 
+    public static final Block INFERNO_ESSENCE_LOG = registerBlock("inferno_essence_log",
+            new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_LOG).strength(3f)));
+    public static final Block INFERNO_ESSENCE_WOOD = registerBlock("inferno_essence_wood",
+            new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).strength(3f)));
+    public static final Block STRIPPED_INFERNO_ESSENCE_LOG = registerBlock("stripped_inferno_essence_log",
+            new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_LOG).strength(3f)));
+    public static final Block STRIPPED_INFERNO_ESSENCE_WOOD = registerBlock("stripped_inferno_essence_wood",
+            new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(3f)));
 
+    public static final Block INFERNO_ESSENCE_PLANKS = registerBlock("inferno_essence_planks",
+            new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).strength(3f)));
+    public static final Block INFERNO_ESSENCE_LEAVES = registerBlock("inferno_essence_leaves",
+            new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).strength(3f).nonOpaque()));
 
+    public static final Block INFERNO_ESSENCE_SAPLING = registerBlock("inferno_essence_sapling",
+            new SaplingBlock(new InfernoEssenceSaplingGenerator(),FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+
+    public static final Block POTTED_INFERNO_ESSENCE_SAPLING = Registry.register(Registries.BLOCK, new Identifier(InfernumMod.MOD_ID, "potted_inferno_essence_sapling"),
+            new FlowerPotBlock(INFERNO_ESSENCE_SAPLING, FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).nonOpaque()));
 
 
     private static Block registerBlock(String name, Block block) {

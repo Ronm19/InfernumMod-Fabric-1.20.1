@@ -6,11 +6,10 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.placementmodifier.*;
 import net.ronm19.infernummod.InfernumMod;
+import net.ronm19.infernummod.block.ModBlocks;
 
 import java.util.List;
 
@@ -29,8 +28,20 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> FIRERITE_ORE_PLACED_KEY = registerKey("firerite_ore_placed");
     public static final RegistryKey<PlacedFeature> DEEPSLATE_FIRERITE_ORE_PLACED_KEY = registerKey("deepslate_firerite_ore_placed");
 
+
+    // Trees
+
+    public static final RegistryKey<PlacedFeature> INFERNO_ESSENCE_PLACED_KEY = registerKey("inferno_essence_placed");
+
+
+    // Flowers
+
+    public static final RegistryKey<PlacedFeature> BLAZEBLOOM_PLACED_KEY = registerKey("blazebloom_placed");
+
     public static void boostrap(Registerable<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+
+
 
         // Nether Ores
         register(context, NETHER_RUBY_ORE_PLACED_KEY,
@@ -74,17 +85,31 @@ public class ModPlacedFeatures {
                 ModOrePlacement.modifiersWithCount(4,
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-32))));
 
+// Trees
+
+        register(context, INFERNO_ESSENCE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.INFERNO_ESSENCE_KEY),
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(3, 0.2f, 3),
+                        ModBlocks.INFERNO_ESSENCE_SAPLING));
+
+// Flowers
+
+        register(context, BLAZEBLOOM_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.BLAZEBLOOM_KEY),
+                RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
     }
 
-    public static RegistryKey<PlacedFeature> registerKey( String name) {
+    public static RegistryKey<PlacedFeature> registerKey(String name) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(InfernumMod.MOD_ID, name));
-
-
     }
 
-    private static void register( Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration,
-                                  List<PlacementModifier> modifiers) {
+    private static void register(Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key, RegistryEntry<ConfiguredFeature<?, ?>> configuration,
+                                 List<PlacementModifier> modifiers) {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
     }
-}
 
+    private static <FC extends FeatureConfig, F extends Feature<FC>> void register( Registerable<PlacedFeature> context, RegistryKey<PlacedFeature> key,
+                                                                                    RegistryEntry<ConfiguredFeature<?, ?>> configuration,
+                                                                                    PlacementModifier... modifiers) {
+        register(context, key, configuration, List.of(modifiers));
+    }
+}

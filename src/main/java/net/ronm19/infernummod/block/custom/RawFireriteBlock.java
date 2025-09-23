@@ -18,13 +18,15 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
+import static net.minecraft.block.Blocks.MAGMA_BLOCK;
+
 public class RawFireriteBlock extends Block {
     private static final int SCHEDULED_TICK_DELAY = 20;
 
-    public RawFireriteBlock( Settings settings ) {
-        super(FabricBlockSettings.copyOf(Blocks.MAGMA_BLOCK)
-                .sounds(BlockSoundGroup.GRAVEL)
+    public RawFireriteBlock(Settings settings ) {
+        super(FabricBlockSettings.copyOf(MAGMA_BLOCK)
                 .luminance(10)
+                .sounds(BlockSoundGroup.GRAVEL)
                 .strength(3.0f, 6.0f)
         );
     }

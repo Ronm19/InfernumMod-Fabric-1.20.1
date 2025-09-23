@@ -20,10 +20,16 @@
 		],
       "client": [
             "net.ronm19.infernummod.InfernumModClient"
-      ],
+        ],
 		"fabric-datagen": [
 			"net.ronm19.infernummod.InfernumModDataGenerator"
-		]
+        ],
+        "terrablender": [
+          "net.ronm19.infernummod.world.biome.ModTerrablenderAPI"
+        ],
+        "jei_client": [
+          "net.ronm19.infernummod.compat.JEIInfernumModClientPlugin"
+        ]
 	},
 	"mixins": [
 		"infernummod.mixins.json"

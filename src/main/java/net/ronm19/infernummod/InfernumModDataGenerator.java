@@ -7,6 +7,8 @@ import net.minecraft.registry.RegistryKeys;
 import net.ronm19.infernummod.datagen.*;
 import net.ronm19.infernummod.world.ModConfiguredFeatures;
 import net.ronm19.infernummod.world.ModPlacedFeatures;
+import net.ronm19.infernummod.world.biome.ModBiomes;
+import net.ronm19.infernummod.world.dimension.ModDimensions;
 
 public class InfernumModDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -19,11 +21,14 @@ public class InfernumModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModModelProvider::new);
         pack.addProvider(ModRecipeProvider::new);
         pack.addProvider(ModWorldGenerator::new);
+        pack.addProvider(ModAdvancementProvider::new);
 	}
 
     @Override
     public void buildRegistry( RegistryBuilder registryBuilder ) {
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::boostrap);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::boostrap);
+        registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::boostrap);
+        registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, ModDimensions::bootstrapType);
     }
 }

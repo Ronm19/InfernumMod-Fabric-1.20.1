@@ -12,10 +12,7 @@ import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.entity.ModBoats;
 import net.ronm19.infernummod.entity.ModEntities;
-import net.ronm19.infernummod.item.custom.AshDustItem;
-import net.ronm19.infernummod.item.custom.EmberstoneSwordItem;
-import net.ronm19.infernummod.item.custom.ModArmorItem;
-import net.ronm19.infernummod.item.custom.NetherRubyItem;
+import net.ronm19.infernummod.item.custom.*;
 
 public class ModItems {
     public static final Item NETHER_RUBY = registerItem("nether_ruby", new NetherRubyItem(new FabricItemSettings().fireproof()));
@@ -35,6 +32,19 @@ public class ModItems {
 
 
     public static final Item ASH_DUST = registerItem("ash_dust", new AshDustItem(new FabricItemSettings().fireproof()));
+    public static final Item FLAME_STAFF = registerItem("flame_staff", new Item(new FabricItemSettings().fireproof()));
+    public static final Item INFERNUM_STAFF = registerItem("infernum_staff", new CommandStaffItem(new FabricItemSettings().fireproof()));
+
+    public static final Item INFERNUM_PAXEL = registerItem("infernum_paxel",
+            new InfernumPaxelItem(ModToolMaterial.FIRERITE, 8, 2.3f, new FabricItemSettings().fireproof()));
+    public static final Item INFERNUM_DAGGER = registerItem("infernum_dagger",
+            new ModInfernumWeaknessSwordItem(ModToolMaterial.NETHER_RUBY, 9, 2.2f, new FabricItemSettings().fireproof()));
+
+    public static final Item INFERNO_FANG = registerItem("inferno_fang",
+            new FireballStrikerSwordItem(ModToolMaterial.FIRERITE, 7, 2.2f, new FabricItemSettings().fireproof()));
+    public static final Item INFERNO_SHIELD = registerItem("inferno_shield",
+            new ShieldItem(new FabricItemSettings().fireproof()));
+
 
     public static final Item NETHER_RUBY_PICKAXE = registerItem("nether_ruby_pickaxe",
             new PickaxeItem(ModToolMaterial.NETHER_RUBY, 3, 2.0f, new FabricItemSettings().fireproof()));
@@ -159,9 +169,15 @@ public class ModItems {
 
     public static final Item DEMON_SPAWN_EGG = registerItem("demon_spawn_egg",
             new SpawnEggItem(ModEntities.DEMON, 0xFF4500, 0x1C1C1C, new FabricItemSettings()));
-
     public static final Item MALFURYX_SPAWN_EGG = registerItem("malfuryx_spawn_egg",
             new SpawnEggItem(ModEntities.MALFURYX, 0x0A0A0A, 0x1F1F1F, new FabricItemSettings()));
+    public static final Item EMBER_HUND_SPAWN_EGG = registerItem("ember_hund_spawn_egg",
+            new SpawnEggItem(ModEntities.EMBER_HUND, 0x1A0F0F, 0x3B1C1C, new FabricItemSettings()));
+    public static final Item PYERLING_WYRN_SPAWN_EGG = registerItem("pyerling_wyrn_spawn_egg",
+            new SpawnEggItem(ModEntities.PYERLING_WYRN, 0xFF4500, 0xFF6B00, new FabricItemSettings()));
+
+
+
 
     public static final Item INFERNO_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.INFERNO_BOAT_ID, ModBoats.INFERNO_BOAT_KEY, false);
     public static final Item INFERNO_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(ModBoats.INFERNO_CHEST_BOAT_ID, ModBoats.INFERNO_BOAT_KEY, true);

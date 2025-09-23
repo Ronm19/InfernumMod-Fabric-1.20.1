@@ -23,7 +23,26 @@ repositories {
         name = 'TerraformersMC'
         url = 'https://maven.terraformersmc.com/'
     }
+    maven { url = 'https://maven.minecraftforge.net/' }
+    maven {url = "https://maven.kyrptonaught.dev"}
+
+    maven {
+        // location of the maven that hosts JEI files before January 2023
+        name = "Progwml6's maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
 }
+
 
 fabricApi {
 	configureDataGeneration {
@@ -42,6 +61,15 @@ dependencies {
 
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.1"
     include "com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.1"
+
+    modCompileOnlyApi("mezz.jei:jei-${"1.20.2"}-fabric-api:${"16.0.0.2"}")
+    // at runtime, use the full JEI jar for Fabric
+    modRuntimeOnly("mezz.jei:jei-${"1.20.2"}-fabric:${"16.0.0.2"}")
+
+    modImplementation 'com.github.glitchfiend:TerraBlender-fabric:1.20.2-3.2.0.14'
+
+    modImplementation 'net.kyrptonaught:customportalapi:0.0.1-beta64-1.20.2'
+    include 'net.kyrptonaught:customportalapi:0.0.1-beta64-1.20.2'
 }
 
 

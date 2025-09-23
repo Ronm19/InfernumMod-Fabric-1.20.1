@@ -1,24 +1,26 @@
 package net.ronm19.infernummod.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
+import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
-import net.minecraft.data.server.recipe.RecipeProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
-import net.ronm19.infernummod.api.interfaces.RecipeGenerator;
+import net.ronm19.infernummod.api.interfaces.ModRecipeProviderGenerator;
 import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.item.ModItems;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
-public class ModRecipeProvider extends RecipeProvider implements RecipeGenerator {
+import static net.minecraft.data.server.recipe.RecipeProvider.*;
+
+public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipeProviderGenerator {
     private final static List<ItemConvertible> NETHER_RUBY_SMELTABLES = List.of(ModItems.RAW_NETHER_RUBY,
             ModBlocks.NETHER_RUBY_ORE, ModBlocks.DEEPSLATE_NETHER_RUBY_ORE);
     private final static List<ItemConvertible> FIRERITE_SMELTABLES = List.of(ModItems.RAW_FIRERITE,
@@ -37,7 +39,7 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeGenerator
     }
 
     @Override
-    public void generate( Consumer<RecipeJsonProvider> exporter ) {
+    public void generate( RecipeExporter exporter ) {
         offerSmelting(exporter, NETHER_RUBY_SMELTABLES, RecipeCategory.MISC, ModItems.NETHER_RUBY,
                 0.7f, 200, "nether_ruby");
         offerBlasting(exporter, NETHER_RUBY_SMELTABLES, RecipeCategory.MISC, ModItems.NETHER_RUBY,
@@ -463,7 +465,7 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeGenerator
 // Molten Bricks Stone Trapdoor (6 rubies = 2 trapdoors, vanilla)
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.MOLTEN_BRICKS_TRAPDOOR, 2)
                 .pattern("MMM")
-                .input('M', ModBlocks.MOLTEN_BRICKS_WALL)
+                .input('M', ModBlocks.MOLTEN_BRICKS_BLOCK)
                 .criterion(hasItem(ModBlocks.MOLTEN_BRICKS_BLOCK), conditionsFromItem(ModBlocks.MOLTEN_BRICKS_BLOCK))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.MOLTEN_BRICKS_TRAPDOOR)));
 
@@ -532,7 +534,7 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeGenerator
 // Molten Stone Trapdoor (6 rubies = 2 trapdoors, vanilla)
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.MOLTEN_STONE_TRAPDOOR, 2)
                 .pattern("MMM")
-                .input('M', ModBlocks.MOLTEN_STONE_WALL)
+                .input('M', ModBlocks.MOLTEN_STONE_BLOCK)
                 .criterion(hasItem(ModBlocks.MOLTEN_STONE_BLOCK), conditionsFromItem(ModBlocks.MOLTEN_STONE_BLOCK))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.MOLTEN_STONE_TRAPDOOR)));
 
@@ -601,7 +603,7 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeGenerator
 // Infernal Stone Trapdoor (6 rubies = 2 trapdoors, vanilla)
         ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.INFERNAL_STONE_TRAPDOOR, 2)
                 .pattern("III")
-                .input('I', ModBlocks.INFERNAL_STONE_WALL)
+                .input('I', ModBlocks.INFERNAL_STONE_BLOCK)
                 .criterion(hasItem(ModBlocks.INFERNAL_STONE_BLOCK), conditionsFromItem(ModBlocks.INFERNAL_STONE_BLOCK))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNAL_STONE_TRAPDOOR)));
 
@@ -1175,13 +1177,176 @@ public class ModRecipeProvider extends RecipeProvider implements RecipeGenerator
 
 
         // Inferno Essence Planks
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS,  ModBlocks.INFERNO_ESSENCE_PLANKS, 4)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNO_ESSENCE_PLANKS, 4)
                 .pattern("  ")
                 .pattern("I ")
                 .input('I', ModBlocks.INFERNO_ESSENCE_LOG)
                 .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_LOG), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_LOG))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_PLANKS)));
 
+        // Inferno Boat
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, ModItems.INFERNO_BOAT, 1)
+                .pattern("I I")
+                .pattern("III")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNO_BOAT)));
+
+        // Inferno Chest Boat
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TRANSPORTATION, ModItems.INFERNO_CHEST_BOAT, 1)
+                .pattern("ICI")
+                .pattern("III")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .input('C', Blocks.CHEST)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNO_CHEST_BOAT)));
+
+
+        // Inferno Essence Stairs (4 stairs, vanilla pattern)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNO_ESSENCE_STAIRS, 4)
+                .pattern("I  ")
+                .pattern("II ")
+                .pattern("III")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_STAIRS)));
+
+// Inferno Essence Trapdoor (6 rubies = 2 trapdoors, vanilla)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.INFERNO_ESSENCE_TRAPDOOR, 2)
+                .pattern("III")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_TRAPDOOR)));
+
+// Inferno Essence Wall (6 rubies = 6 walls, vanilla)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNO_ESSENCE_WALL, 6)
+                .pattern("III")
+                .pattern("III")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_WALL)));
+
+// Inferno Essence Fence (4 rubies + 2 sticks = 3 fences, vanilla)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNO_ESSENCE_FENCE, 3)
+                .pattern("ISI")
+                .pattern("ISI")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_FENCE)));
+
+// Inferno Essence Fence Gate (4 rubies + 2 sticks = 1 gate, vanilla)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.INFERNO_ESSENCE_FENCE_GATE, 1)
+                .pattern("SIS")
+                .pattern("SIS")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_FENCE_GATE)));
+
+// Inferno Essence Button (1 ruby = 1 button, shapeless style → 3x3 with ruby in middle)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.INFERNO_ESSENCE_BUTTON, 1)
+                .pattern("   ")
+                .pattern(" I ")
+                .pattern("   ")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_BUTTON)));
+
+// Inferno Essence Pressure Plate (2 rubies side by side, vanilla)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, ModBlocks.INFERNO_ESSENCE_PRESSURE_PLATE, 1)
+                .pattern("   ")
+                .pattern("II ")
+                .pattern("   ")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_PRESSURE_PLATE)));
+
+// Inferno Essence Door (6 rubies = 3 doors, vanilla)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNO_ESSENCE_DOOR, 3)
+                .pattern("II ")
+                .pattern("II ")
+                .pattern("II ")
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModBlocks.INFERNO_ESSENCE_PLANKS), conditionsFromItem(ModBlocks.INFERNO_ESSENCE_PLANKS))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_DOOR)));
+
+        // Abyssium Stone (7 Obsidians, 1 Ash Block)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ABYSSIUM_STONE, 4)
+                .pattern("OOO")
+                .pattern("OGO")
+                .pattern("OOO")
+                .input('G', Blocks.GRAVEL)
+                .input('O', Blocks.OBSIDIAN)
+                .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.ABYSSIUM_STONE)));
+
+        // Flame Staff
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.FLAME_STAFF, 1)
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" S ")
+                .input('S', Items.STICK)
+                .input('A', ModItems.ASH_DUST)
+                .criterion(hasItem(ModItems.ASH_DUST), conditionsFromItem(ModItems.ASH_DUST))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.FLAME_STAFF)));
+
+        // Infernum Paxel
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.INFERNUM_PAXEL, 1)
+                .pattern("NNN")
+                .pattern("NS ")
+                .pattern(" S ")
+                .input('S', Items.STICK)
+                .input('N', ModItems.NETHER_RUBY)
+                .criterion(hasItem(ModItems.NETHER_RUBY), conditionsFromItem(ModItems.NETHER_RUBY))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNUM_PAXEL)));
+
+        // Infernum Dagger
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.INFERNUM_DAGGER, 1)
+                .pattern(" N ")
+                .pattern(" S ")
+                .pattern(" N ")
+                .input('S', Items.STICK)
+                .input('N', ModItems.NETHER_RUBY)
+                .criterion(hasItem(ModItems.NETHER_RUBY), conditionsFromItem(ModItems.NETHER_RUBY))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNUM_DAGGER)));
+
+        // Inferno Fang
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.INFERNO_FANG, 1)
+                .pattern(" I ")
+                .pattern(" F ")
+                .pattern(" I ")
+                .input('F', ModItems.FIRERITE)
+                .input('I', ModItems.INFERNIUM)
+                .criterion(hasItem(ModItems.INFERNIUM), conditionsFromItem(ModItems.INFERNIUM))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNO_FANG)));
+
+        // Inferno Fang
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.INFERNUM_STAFF, 1)
+                .pattern(" I ")
+                .pattern(" I ")
+                .pattern(" I ")
+                .input('I', ModItems.INFERNIUM)
+                .criterion(hasItem(ModItems.INFERNIUM), conditionsFromItem(ModItems.INFERNIUM))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNUM_STAFF)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.INFERNO_SHIELD, 1)
+                .pattern("IFI")
+                .pattern("III")
+                .pattern(" I ")
+                .input('F', ModItems.FIRERITE)
+                .input('I', ModBlocks.INFERNO_ESSENCE_PLANKS)
+                .criterion(hasItem(ModItems.FIRERITE), conditionsFromItem(ModItems.FIRERITE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNO_SHIELD)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNAL_RUNE_BLOCK, 1)
+                .pattern("III")
+                .pattern("IPI")
+                .pattern("III")
+                .input('P', ModItems.PYROCLAST)
+                .input('I', ModItems.INFERNIUM)
+                .criterion(hasItem(ModItems.PYROCLAST), conditionsFromItem(ModItems.PYROCLAST))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNAL_RUNE_BLOCK)));
     }
 }
 

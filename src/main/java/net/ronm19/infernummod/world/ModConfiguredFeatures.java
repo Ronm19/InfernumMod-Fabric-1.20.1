@@ -15,6 +15,7 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.block.ModBlocks;
+import net.ronm19.infernummod.world.tree.custom.InfernoEssenceTrunkPlacer;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> DEEPSLATE_FIRERITE_ORE_KEY = registerKey("deepslate_firerite_ore");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> INFERNO_ESSENCE_KEY = registerKey("inferno");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> BLAZEBLOOM_KEY = registerKey("blazebloom");
 
     public static void boostrap(Registerable<ConfiguredFeature<?,?>> context) {
         RuleTest stoneReplaceables = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -101,6 +104,9 @@ public class ModConfiguredFeatures {
                 new TwoLayersFeatureSize(2, 0, 3)) // slightly taller foliage layers
                 .build());
 
+
+        register(context, BLAZEBLOOM_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(13, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.BLAZEBLOOM)))));
     }
 
 

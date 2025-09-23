@@ -20,6 +20,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.block.custom.AshBlock;
 import net.ronm19.infernummod.block.custom.BlazebloomBlock;
+import net.ronm19.infernummod.block.custom.InfernalRuneBlock;
 import net.ronm19.infernummod.block.custom.RawFireriteBlock;
 import net.ronm19.infernummod.world.tree.InfernoEssenceSaplingGenerator;
 
@@ -68,6 +69,10 @@ public class ModBlocks {
 
     public static final Block ASH_BLOCK = registerBlock("ash_block",
             new AshBlock(copyOf(Blocks.GRAVEL).sounds(BlockSoundGroup.GRAVEL).strength(1.0F, 3.0F).ticksRandomly().requiresTool()));
+    public static final Block ABYSSIUM_STONE = registerBlock("abyssium_stone",
+            new Block(copyOf(Blocks.OBSIDIAN).sounds(BlockSoundGroup.MANGROVE_ROOTS).strength(5.0F, 4.0F).requiresTool().luminance(10)));
+    public static final Block INFERNAL_RUNE_BLOCK = registerBlock("infernal_rune_block",
+            new InfernalRuneBlock(copyOf(Blocks.SPAWNER).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 4.0F).requiresTool().luminance(10)));
 
     public static final Block EMBERSTONE_ORE = registerBlock("emberstone_ore",
             new ExperienceDroppingBlock(copyOf(Blocks.GOLD_ORE).strength(3f), UniformIntProvider.create(3, 5)));
@@ -278,9 +283,37 @@ public class ModBlocks {
             new PillarBlock(FabricBlockSettings.copyOf(Blocks.STRIPPED_OAK_WOOD).strength(3f)));
 
     public static final Block INFERNO_ESSENCE_PLANKS = registerBlock("inferno_essence_planks",
-            new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).strength(3f)));
+            new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS).strength(3f).sounds(BlockSoundGroup.NETHER_WOOD)));
     public static final Block INFERNO_ESSENCE_LEAVES = registerBlock("inferno_essence_leaves",
             new LeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).strength(3f).nonOpaque()));
+
+    public static final Block INFERNO_ESSENCE_STAIRS = registerBlock("inferno_essence_stairs",
+            new StairsBlock(ModBlocks.MOLTEN_BRICKS_BLOCK.getDefaultState(), copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD)));
+
+    public static final Block INFERNO_ESSENCE_SLAB = registerBlock("inferno_essence_slab",
+            new SlabBlock(copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD)));
+
+    public static final Block INFERNO_ESSENCE_BUTTON = registerBlock("inferno_essence_button",
+            new ButtonBlock(copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD), BlockSetType.OAK, 10, true));
+
+    public static final Block INFERNO_ESSENCE_PRESSURE_PLATE = registerBlock("inferno_essence_pressure_plate",
+            new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING,
+                    FabricBlockSettings.copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD), BlockSetType.OAK));
+
+    public static final Block INFERNO_ESSENCE_FENCE = registerBlock("inferno_essence_fence",
+            new FenceBlock(copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD)));
+
+    public static final Block INFERNO_ESSENCE_FENCE_GATE = registerBlock("inferno_essence_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD), WoodType.OAK));
+
+    public static final Block INFERNO_ESSENCE_WALL = registerBlock("inferno_essence_wall",
+            new WallBlock(copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD)));
+
+    public static final Block INFERNO_ESSENCE_DOOR = registerBlock("inferno_essence_door",
+            new DoorBlock(copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD).nonOpaque(), BlockSetType.OAK));
+
+    public static final Block INFERNO_ESSENCE_TRAPDOOR = registerBlock("inferno_essence_trapdoor",
+            new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD).nonOpaque(), BlockSetType.OAK));
 
     public static final Block INFERNO_ESSENCE_SAPLING = registerBlock("inferno_essence_sapling",
             new SaplingBlock(new InfernoEssenceSaplingGenerator(),FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));

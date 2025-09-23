@@ -5,7 +5,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.*;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -13,9 +13,12 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
@@ -23,6 +26,9 @@ import net.minecraft.world.World;
 import net.ronm19.infernummod.api.interfaces.ItemEquippable;
 import net.ronm19.infernummod.entity.ai.DemonAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
+
 
 import java.util.Random;
 
@@ -38,7 +44,7 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
     public int attackAnimationTimeout = 0;
 
 
-    public DemonEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public DemonEntity( EntityType<? extends HostileEntity> entityType, World world ) {
         super(entityType, world);
     }
 
@@ -57,13 +63,13 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
             --this.attackAnimationTimeout;
         }
 
-        if (!this.isAttacking()){
+        if (!this.isAttacking()) {
             attackAnimationState.stop();
         }
     }
 
     @Override
-    protected void updateLimbs(float posDelta) {
+    protected void updateLimbs( float posDelta ) {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(posDelta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f);
     }
@@ -93,7 +99,7 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
         return this.getType().getSpawnGroup() != SpawnGroup.MONSTER || this.getWorld().getDifficulty() != Difficulty.PEACEFUL;
     }
 
-    public void setAttacking(boolean attacking) {
+    public void setAttacking( boolean attacking ) {
         this.dataTracker.set(ATTACKING, attacking);
     }
 
@@ -143,7 +149,7 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
     }
 
     @Override
-    protected SoundEvent getHurtSound( DamageSource source) {
+    protected SoundEvent getHurtSound( DamageSource source ) {
         return SoundEvents.ENTITY_ZOMBIE_HURT; // guttural hurt sound
     }
 
@@ -153,9 +159,19 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
     }
 
     @Override
-    protected void playStepSound( BlockPos pos, BlockState state) {
+    protected void playStepSound( BlockPos pos, BlockState state ) {
         this.playSound(SoundEvents.ENTITY_PIGLIN_BRUTE_STEP, 0.25F, 1.0F);
         // heavy footsteps, quieter volume
     }
-}
 
+    public static final TagKey<DamageType> FIRE_DAMAGE = TagKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("infernummod", "fire_damage"));
+
+
+    @Override
+    public boolean damage( DamageSource source, float amount ) {
+        if (source.isIn(FIRE_DAMAGE)) {
+            return false;
+        }
+        return super.damage(source, amount);
+    }
+}

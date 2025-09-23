@@ -1,0 +1,60 @@
+{
+  "type": "minecraft:overworld",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "minecraft:overworld",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "infernummod:ashland",
+          "parameters": {
+            "temperature": 2,
+            "humidity": 0.7,
+            "continentalness": 2,
+            "erosion": 1,
+            "weirdness": 2,
+            "depth": 0.5,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "minecraft:forest",
+          "parameters": {
+            "temperature": -2,
+            "humidity": -2,
+            "continentalness": -2,
+            "erosion": -2,
+            "weirdness": -2,
+            "depth": -2,
+            "offset": 1
+          }
+        },
+        {
+          "biome": "minecraft:crimson_forest",
+          "parameters": {
+            "temperature": -2,
+            "humidity": -2,
+            "continentalness": -2,
+            "erosion": -2,
+            "weirdness": -2,
+            "depth": -1,
+            "offset": 1
+          }
+        },
+        {
+          "biome": "minecraft:mangrove_swamp",
+          "parameters": {
+            "temperature": -2,
+            "humidity": -2,
+            "continentalness": 2,
+            "erosion": -2,
+            "weirdness": -2,
+            "depth": -1,
+            "offset": 1
+          }
+        }
+      ]
+    }
+  }
+}

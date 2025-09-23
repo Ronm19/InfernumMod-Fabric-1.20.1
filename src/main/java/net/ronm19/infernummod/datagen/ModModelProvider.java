@@ -32,11 +32,13 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_FIRERITE_ORE);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ASH_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ABYSSIUM_STONE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_RUNE_BLOCK);
 
         BlockStateModelGenerator.BlockTexturePool blazePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.BLAZE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BLAZE_STONE_BLOCK);
         BlockStateModelGenerator.BlockTexturePool infernalStonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.INFERNAL_STONE_BLOCK);
-         BlockStateModelGenerator.BlockTexturePool moltenStonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOLTEN_STONE_BLOCK);
+        BlockStateModelGenerator.BlockTexturePool moltenStonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOLTEN_STONE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MOLTEN_GRANITE_BLOCK);
         BlockStateModelGenerator.BlockTexturePool moltenBricksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.MOLTEN_BRICKS_BLOCK);
         BlockStateModelGenerator.BlockTexturePool emberstonePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.EMBERSTONE_BLOCK);
@@ -47,6 +49,9 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.EMBERSTONE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STONE_INFERNIUM_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHER_PYROCLAST_ORE);
+
+        BlockStateModelGenerator.BlockTexturePool infernoEssencePlanksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.INFERNO_ESSENCE_PLANKS);
+
 
 
         netherRubyPool.stairs(ModBlocks.NETHER_RUBY_STAIRS);
@@ -113,6 +118,14 @@ public class ModModelProvider extends FabricModelProvider {
         infernalStonePool.fenceGate(ModBlocks.INFERNAL_STONE_FENCE_GATE);
         infernalStonePool.wall(ModBlocks.INFERNAL_STONE_WALL);
 
+        infernoEssencePlanksPool.stairs(ModBlocks.INFERNO_ESSENCE_STAIRS);
+        infernoEssencePlanksPool.slab(ModBlocks.INFERNO_ESSENCE_SLAB);
+        infernoEssencePlanksPool.button(ModBlocks.INFERNO_ESSENCE_BUTTON);
+        infernoEssencePlanksPool.pressurePlate(ModBlocks.INFERNO_ESSENCE_PRESSURE_PLATE);
+        infernoEssencePlanksPool.fence(ModBlocks.INFERNO_ESSENCE_FENCE);
+        infernoEssencePlanksPool.fenceGate(ModBlocks.INFERNO_ESSENCE_FENCE_GATE);
+        infernoEssencePlanksPool.wall(ModBlocks.INFERNO_ESSENCE_WALL);
+
 
         blockStateModelGenerator.registerDoor(ModBlocks.NETHER_RUBY_DOOR);
         blockStateModelGenerator.registerTrapdoor(ModBlocks.NETHER_RUBY_TRAPDOOR);
@@ -138,14 +151,15 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerDoor(ModBlocks.INFERNAL_STONE_DOOR);
         blockStateModelGenerator.registerTrapdoor(ModBlocks.INFERNAL_STONE_TRAPDOOR);
 
+        blockStateModelGenerator.registerDoor(ModBlocks.INFERNO_ESSENCE_DOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBlocks.INFERNO_ESSENCE_TRAPDOOR);
+
         blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.BLAZEBLOOM, ModBlocks.POTTED_BLAZEBLOOM, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.INFERNO_ESSENCE_SAPLING, ModBlocks.POTTED_INFERNO_ESSENCE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         blockStateModelGenerator.registerLog(ModBlocks.INFERNO_ESSENCE_LOG).log(ModBlocks.INFERNO_ESSENCE_LOG).wood(ModBlocks.INFERNO_ESSENCE_WOOD);
         blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG).log(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG).wood(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNO_ESSENCE_LEAVES);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNO_ESSENCE_PLANKS);
-
     }
 
     @Override
@@ -201,6 +215,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.FIRERITE_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.FIRERITE_HOE, Models.HANDHELD);
 
+        itemModelGenerator.register(ModItems.INFERNUM_PAXEL, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.INFERNUM_DAGGER, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.INFERNO_FANG, Models.HANDHELD);
+
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_RUBY_HELMET);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_RUBY_CHESTPLATE);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_RUBY_LEGGINGS);
@@ -232,6 +250,9 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.registerArmor((ArmorItem) ModItems.FIRERITE_BOOTS);
 
         itemModelGenerator.register(ModItems.ASH_DUST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FLAME_STAFF, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.INFERNUM_STAFF, Models.HANDHELD);
 
 
         itemModelGenerator.register(ModItems.INFERNO_BOAT, Models.GENERATED);
@@ -240,6 +261,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.DEMON_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.MALFURYX_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.EMBER_HUND_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.PYERLING_WYRN_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
 
     }

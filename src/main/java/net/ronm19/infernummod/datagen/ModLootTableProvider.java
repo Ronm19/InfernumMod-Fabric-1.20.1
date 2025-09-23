@@ -43,6 +43,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MOLTEN_STONE_BLOCK);
         addDrop(ModBlocks.ASH_BLOCK, copperLikeOreDrops(ModBlocks.ASH_BLOCK, ModItems.ASH_DUST, UniformLootNumberProvider.create(1.0F, 2.0F)));
 
+        addDrop(ModBlocks.ABYSSIUM_STONE);
+        addDrop(ModBlocks.INFERNAL_RUNE_BLOCK);
+
         addDrop(ModBlocks.EMBERSTONE_ORE, copperLikeOreDrops(ModBlocks.EMBERSTONE_ORE, ModItems.RAW_EMBERSTONE, UniformLootNumberProvider.create(2.0F, 6.0F)));
         addDrop(ModBlocks.DEEPSLATE_CINDERSTONE_ORE, copperLikeOreDrops(ModBlocks.DEEPSLATE_CINDERSTONE_ORE, ModItems.RAW_CINDESTONE, UniformLootNumberProvider.create(3.0F, 7.0F)));
         addDrop(ModBlocks.NETHER_PYROCLAST_ORE, copperLikeOreDrops(ModBlocks.NETHER_PYROCLAST_ORE, ModItems.RAW_PYROCLAST, UniformLootNumberProvider.create(2.0F, 6.0F)));
@@ -112,6 +115,14 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.INFERNAL_STONE_BUTTON);
         addDrop(ModBlocks.INFERNAL_STONE_PRESSURE_PLATE);
 
+        addDrop(ModBlocks.INFERNO_ESSENCE_STAIRS);
+        addDrop(ModBlocks.INFERNO_ESSENCE_TRAPDOOR);
+        addDrop(ModBlocks.INFERNO_ESSENCE_WALL);
+        addDrop(ModBlocks.INFERNO_ESSENCE_FENCE);
+        addDrop(ModBlocks.INFERNO_ESSENCE_FENCE_GATE);
+        addDrop(ModBlocks.INFERNO_ESSENCE_BUTTON);
+        addDrop(ModBlocks.INFERNO_ESSENCE_PRESSURE_PLATE);
+
         addDrop(ModBlocks.NETHER_RUBY_DOOR, doorDrops(ModBlocks.NETHER_RUBY_DOOR));
         addDrop(ModBlocks.NETHER_RUBY_SLAB, slabDrops(ModBlocks.NETHER_RUBY_SLAB));
 
@@ -135,6 +146,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.MOLTEN_STONE_DOOR, doorDrops(ModBlocks.INFERNAL_STONE_DOOR));
         addDrop(ModBlocks.MOLTEN_STONE_SLAB, slabDrops(ModBlocks.INFERNAL_STONE_SLAB));
+
+        addDrop(ModBlocks.INFERNO_ESSENCE_DOOR, doorDrops(ModBlocks.INFERNO_ESSENCE_DOOR));
+        addDrop(ModBlocks.INFERNO_ESSENCE_SLAB, slabDrops(ModBlocks.INFERNO_ESSENCE_SLAB));
 
         addDrop(ModBlocks.BLAZEBLOOM);
         addPottedPlantDrops(ModBlocks.POTTED_BLAZEBLOOM);

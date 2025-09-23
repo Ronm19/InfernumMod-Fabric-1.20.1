@@ -31,6 +31,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Predicate;
 
+import static net.ronm19.infernummod.entity.custom.DemonEntity.FIRE_DAMAGE;
+
 public class MalfuryxEntity extends HostileEntity implements AttackingEntity {
     // --- TRACKED DATA ---
     private static final TrackedData<Boolean> ATTACKING =
@@ -175,6 +177,14 @@ public class MalfuryxEntity extends HostileEntity implements AttackingEntity {
     }
 
     @Override
+    public boolean damage( DamageSource source, float amount ) {
+        if (source.isIn(FIRE_DAMAGE)) {
+            return false;
+        }
+        return super.damage(source, amount);
+    }
+
+    @Override
     protected void updateLimbs(float delta) {
         float f = this.getPose() == EntityPose.STANDING ? Math.min(delta * 6.0f, 1.0f) : 0.0f;
         this.limbAnimator.updateLimbs(f, 0.2f);
@@ -256,11 +266,6 @@ public class MalfuryxEntity extends HostileEntity implements AttackingEntity {
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_WITHER_DEATH;
-    }
-
-    @Override
-    protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.ENTITY_WITHER_SKELETON_STEP, 0.25F, 1.0F);
     }
 
     @Override

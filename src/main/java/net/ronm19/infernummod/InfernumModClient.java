@@ -1,21 +1,17 @@
 package net.ronm19.infernummod;
 
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
-import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.util.SpriteIdentifier;
 import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.entity.ModBoats;
 import net.ronm19.infernummod.entity.ModEntities;
-import net.ronm19.infernummod.entity.client.DemonModel;
-import net.ronm19.infernummod.entity.client.MalfuryxModel;
-import net.ronm19.infernummod.entity.client.ModModelLayers;
+import net.ronm19.infernummod.entity.client.*;
+import net.ronm19.infernummod.entity.layer.ModModelLayers;
 
 public class InfernumModClient implements ClientModInitializer {
     @Override
@@ -48,12 +44,22 @@ public class InfernumModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INFERNAL_STONE_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INFERNAL_STONE_TRAPDOOR, RenderLayer.getCutout());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INFERNO_ESSENCE_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INFERNO_ESSENCE_TRAPDOOR, RenderLayer.getCutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLAZEBLOOM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_BLAZEBLOOM, RenderLayer.getCutout());
 
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.DEMON, DemonModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.MALFURYX, MalfuryxModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.EMBER_HUND, EmberHundModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.PYERLING_WYRN, PyerlingWyrnModel::getTexturedModelData);
 
+        
+        EntityRendererRegistry.register(ModEntities.DEMON, DemonRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.MALFURYX, MalfuryxRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.EMBER_HUND, EmberHundRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnRenderer ::new);
 
         TerraformBoatClientHelper.registerModelLayers(ModBoats.INFERNO_BOAT_ID, false);
 

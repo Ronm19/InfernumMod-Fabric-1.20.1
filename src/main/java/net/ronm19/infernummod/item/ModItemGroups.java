@@ -22,6 +22,13 @@ public class ModItemGroups {
                         entries.add(ModItems.RAW_FIRERITE);
 
                         entries.add(ModItems.ASH_DUST);
+                        entries.add(ModItems.FLAME_STAFF);
+                        entries.add(ModItems.INFERNUM_STAFF);
+
+                        entries.add(ModItems.INFERNUM_PAXEL);
+                        entries.add(ModItems.INFERNUM_DAGGER);
+                        entries.add(ModItems.INFERNO_FANG);
+                        entries.add(ModItems.INFERNO_SHIELD);
 
                         entries.add(ModItems.CINDERTSONE);
                         entries.add(ModItems.RAW_CINDESTONE);
@@ -105,6 +112,8 @@ public class ModItemGroups {
 
                         entries.add(ModItems.DEMON_SPAWN_EGG);
                         entries.add(ModItems.MALFURYX_SPAWN_EGG);
+                        entries.add(ModItems.EMBER_HUND_SPAWN_EGG);
+                        entries.add(ModItems.PYERLING_WYRN_SPAWN_EGG);
 
 
                         entries.add(ModBlocks.NETHER_RUBY_BLOCK);
@@ -200,6 +209,16 @@ public class ModItemGroups {
                         entries.add(ModBlocks.INFERNAL_STONE_FENCE_GATE);
                         entries.add(ModBlocks.INFERNAL_STONE_STAIRS);
 
+                        entries.add(ModBlocks.INFERNO_ESSENCE_BUTTON);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_SLAB);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_DOOR);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_TRAPDOOR);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_WALL);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_PRESSURE_PLATE);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_FENCE);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_FENCE_GATE);
+                        entries.add(ModBlocks.INFERNO_ESSENCE_STAIRS);
+
                         entries.add(ModBlocks.RAW_FIRERITE_BLOCK);
                         entries.add(ModBlocks.FIRERITE_BLOCK);
                         entries.add(ModBlocks.FIRERITE_ORE);
@@ -220,6 +239,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.NETHER_PYROCLAST_ORE);
 
                         entries.add(ModBlocks.ASH_BLOCK);
+                        entries.add(ModBlocks.ABYSSIUM_STONE);
+                        entries.add(ModBlocks.INFERNAL_RUNE_BLOCK);
 
                         entries.add(ModBlocks.BLAZEBLOOM);
 

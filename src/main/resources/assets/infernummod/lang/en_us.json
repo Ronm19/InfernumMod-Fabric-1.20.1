@@ -16,6 +16,14 @@
 
   "item.infernummod.ash_dust": "Ash Dust",
 
+  "item.infernummod.flame_staff": "Flame Staff",
+  "item.infernummod.infernum_staff": "Infernum Staff",
+  "item.infernummod.infernum_paxel": "Infernum Paxel",
+
+  "item.infernummod.infernum_dagger": "Infernum Dagger",
+  "item.infernummod.inferno_fang": "Inferno Fang",
+  "item.infernummod.inferno_shield": "Inferno Shield",
+
   "item.infernummod.inferno_boat": "Inferno Boat",
   "item.infernummod.inferno_chest_boat": "Inferno Chest Boat",
 
@@ -87,6 +95,9 @@
 
   "item.infernummod.demon_spawn_egg": "Demon Spawn Egg",
   "item.infernummod.malfuryx_spawn_egg": "Malfuryx Spawn Egg",
+  "item.infernummod.infernal_eye_spawn_egg": "Infernal Eye Spawn Egg",
+  "item.infernummod.ember_hund_spawn_egg": "Ember Hund Spawn Egg",
+  "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
 
   "block.infernummod.nether_ruby_block": "Nether Ruby Block",
   "block.infernummod.raw_nether_ruby_block": "Raw Nether Ruby Block",
@@ -100,6 +111,16 @@
   "block.infernummod.inferno_essence_planks": "Inferno Essence Planks",
   "block.infernummod.inferno_essence_leaves": "Inferno Essence Leaves",
   "block.infernummod.inferno_essence_sapling": "Inferno Essence Sapling",
+
+  "block.infernummod.inferno_essence_stairs": "Inferno Essence Stairs",
+  "block.infernummod.inferno_essence_slab": "Inferno Essence Slab",
+  "block.infernummod.inferno_essence_button": "Inferno Essence Button",
+  "block.infernummod.inferno_essence_pressure_plate": "Inferno Essence Pressure Plate",
+  "block.infernummod.inferno_essence_fence": "Inferno Essence Fence",
+  "block.infernummod.inferno_essence_fence_gate": "Inferno Essence Fence Gate",
+  "block.infernummod.inferno_essence_wall": "Inferno Essence Wall",
+  "block.infernummod.inferno_essence_door": "Inferno Essence Door",
+  "block.infernummod.inferno_essence_trapdoor": "Inferno Essence Trapdoor",
 
   "block.infernummod.nether_ruby_stairs": "Nether Ruby Stairs",
   "block.infernummod.nether_ruby_slab": "Nether Ruby Slab",
@@ -205,10 +226,24 @@
 
   "block.infernummod.blazebloom": "Blaze Bloom",
 
+  "block.infernummod.abyssium_stone": "Abyssium Stone",
+  "block.infernummod.infernal_rune_block": "Infernal Rune Block",
+
   "itemgroup.nether_ruby": "Infernum Mod",
+
+  "enchantment.infernummod.fireball_striker": "Fireball Striker",
+
+  "effect.infernummod.blazing_heart": "Blazing Heart",
+
+  "item.minecraft.potion.effect.blazing_heart_potion": "Blazing Heart Potion",
+  "item.minecraft.splash_potion.effect.blazing_heart_potion": "Blazing Heart Splash Potion",
+  "item.minecraft.lingering_potion.effect.blazing_heart_potion": "Blazing Heart Lingering Potion",
+  "item.minecraft.tipped_arrow.effect.blazing_heart_potion": "Blazing Heart Arrow",
 
   "entity.infernummod.demon": "Demon",
   "entity.infernummod.malfuryx": "Malfuryx",
-
+  "entity.infernummod.infernal_eye": "Infernal Eye",
+  "entity.infernummod.ember_hund": "Ember Hund",
+  "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
   "entity.infernummod.ash_dust": "Ash Dust"
 }

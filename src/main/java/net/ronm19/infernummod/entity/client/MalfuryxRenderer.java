@@ -7,6 +7,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.entity.custom.MalfuryxEntity;
+import net.ronm19.infernummod.entity.layer.ModModelLayers;
 
 public class MalfuryxRenderer extends MobEntityRenderer<MalfuryxEntity, MalfuryxModel<MalfuryxEntity>> {
    private static final Identifier TEXTURE = new Identifier(InfernumMod.MOD_ID, "textures/entity/malfuryx.png");

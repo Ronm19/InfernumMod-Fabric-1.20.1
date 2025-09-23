@@ -7,6 +7,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.entity.custom.DemonEntity;
+import net.ronm19.infernummod.entity.layer.ModModelLayers;
 
 public class DemonRenderer extends MobEntityRenderer<DemonEntity, DemonModel<DemonEntity>> {
     private static final Identifier TEXTURE = new Identifier(InfernumMod.MOD_ID, "textures/entity/demon.png");

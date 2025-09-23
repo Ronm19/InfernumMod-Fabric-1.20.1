@@ -97,12 +97,9 @@ public class ModConfiguredFeatures {
         register(context, INFERNO_ESSENCE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.INFERNO_ESSENCE_LOG),
                 new StraightTrunkPlacer(7, 4, 5), // taller trunk with more variance
-
                 BlockStateProvider.of(ModBlocks.INFERNO_ESSENCE_LEAVES),
-
                 new BlobFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), 4), // bigger foliage, starts at trunk top
-                new TwoLayersFeatureSize(2, 0, 3)) // slightly taller foliage layers
-                .build());
+                new TwoLayersFeatureSize(2, 0, 3)).dirtProvider(BlockStateProvider.of(ModBlocks.ASH_BLOCK)).build());
 
 
         register(context, BLAZEBLOOM_KEY, Feature.FLOWER, new RandomPatchFeatureConfig(13, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,

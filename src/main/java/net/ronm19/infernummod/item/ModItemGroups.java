@@ -112,8 +112,9 @@ public class ModItemGroups {
 
                         entries.add(ModItems.DEMON_SPAWN_EGG);
                         entries.add(ModItems.MALFURYX_SPAWN_EGG);
-                        entries.add(ModItems.EMBER_HUND_SPAWN_EGG);
                         entries.add(ModItems.PYERLING_WYRN_SPAWN_EGG);
+                        entries.add(ModItems.OBSIDIAN_GHAST_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_HOARDE_SPAWN_EGG);
 
 
                         entries.add(ModBlocks.NETHER_RUBY_BLOCK);
@@ -243,6 +244,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.INFERNAL_RUNE_BLOCK);
 
                         entries.add(ModBlocks.BLAZEBLOOM);
+
+                        entries.add(ModBlocks.INFERNAL_DIRT_BLOCK);
+                        entries.add(ModBlocks.INFERNAL_GRASS_BLOCK);
 
                     }).build());
 

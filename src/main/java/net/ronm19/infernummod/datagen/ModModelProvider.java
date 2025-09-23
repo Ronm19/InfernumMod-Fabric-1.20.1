@@ -2,15 +2,14 @@ package net.ronm19.infernummod.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.client.*;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.util.Identifier;
+import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.item.ModItems;
-import net.ronm19.infernummod.item.custom.ModArmorItem;
 
 import java.util.Optional;
 
@@ -21,6 +20,7 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels( BlockStateModelGenerator blockStateModelGenerator ) {
+
         BlockStateModelGenerator.BlockTexturePool netherRubyPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.NETHER_RUBY_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_NETHER_RUBY_BLOCK);
         BlockStateModelGenerator.BlockTexturePool fireritePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.FIRERITE_BLOCK);
@@ -51,8 +51,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.NETHER_PYROCLAST_ORE);
 
         BlockStateModelGenerator.BlockTexturePool infernoEssencePlanksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.INFERNO_ESSENCE_PLANKS);
-
-
 
         netherRubyPool.stairs(ModBlocks.NETHER_RUBY_STAIRS);
         netherRubyPool.slab(ModBlocks.NETHER_RUBY_SLAB);
@@ -160,7 +158,11 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerLog(ModBlocks.INFERNO_ESSENCE_LOG).log(ModBlocks.INFERNO_ESSENCE_LOG).wood(ModBlocks.INFERNO_ESSENCE_WOOD);
         blockStateModelGenerator.registerLog(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG).log(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG).wood(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNO_ESSENCE_LEAVES);
+
+        registerGrassBlock(blockStateModelGenerator, ModBlocks.INFERNAL_GRASS_BLOCK, "infernal_grass_top", "infernal_grass_side", "infernal_grass_bottom");
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_DIRT_BLOCK);
     }
+
 
     @Override
     public void generateItemModels( ItemModelGenerator itemModelGenerator ) {
@@ -262,10 +264,49 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.MALFURYX_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.EMBER_HUND_SPAWN_EGG,
-                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.PYERLING_WYRN_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.OBSIDIAN_GHAST_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.INFERNAL_HOARDE_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
 
     }
+
+    // ** Custom Methods ** //
+
+    /**
+     * Registers a cube_bottom_top style block (e.g., grass-like blocks).
+     *
+     * @param blockStateModelGenerator The Fabric block state model generator.
+     * @param block                    The block being registered.
+     * @param topTexture               The name of the top texture (without "block/").
+     * @param sideTexture              The name of the side texture (without "block/").
+     */
+    public void registerGrassBlock( BlockStateModelGenerator blockStateModelGenerator, Block block,
+                                    String topTexture, String sideTexture, String bottomTexture ) {
+        // Custom textures
+        Identifier top = new Identifier(InfernumMod.MOD_ID, "block/" + topTexture);
+        Identifier side = new Identifier(InfernumMod.MOD_ID, "block/" + sideTexture);
+        Identifier bottom = new Identifier(InfernumMod.MOD_ID, "block/" + bottomTexture);
+
+        // Build texture map
+        TextureMap textures = new TextureMap()
+                .put(TextureKey.BOTTOM, bottom)
+                .put(TextureKey.TOP, top)
+                .put(TextureKey.SIDE, side)
+                .inherit(TextureKey.BOTTOM, TextureKey.PARTICLE);
+
+        // Upload the cube_bottom_top model
+        Identifier modelId = Models.CUBE_BOTTOM_TOP.upload(block, textures, blockStateModelGenerator.modelCollector);
+
+        // Register blockstate using that model
+        blockStateModelGenerator.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(block, BlockStateVariant.create().put(VariantSettings.MODEL, modelId))
+        );
+
+        // Also register item model so the block looks right in inventory
+        blockStateModelGenerator.registerParentedItemModel(block, modelId);
+    }
 }
+

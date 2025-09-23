@@ -1,14 +1,8 @@
 package net.ronm19.infernummod.block;
 
-import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
-import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
-import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
-import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.data.family.BlockFamilies;
-import net.minecraft.data.family.BlockFamily;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -20,7 +14,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.block.custom.AshBlock;
 import net.ronm19.infernummod.block.custom.BlazebloomBlock;
-import net.ronm19.infernummod.block.custom.InfernalRuneBlock;
+import net.ronm19.infernummod.block.custom.ModInfernoEssenceSaplingBlock;
 import net.ronm19.infernummod.block.custom.RawFireriteBlock;
 import net.ronm19.infernummod.world.tree.InfernoEssenceSaplingGenerator;
 
@@ -72,7 +66,7 @@ public class ModBlocks {
     public static final Block ABYSSIUM_STONE = registerBlock("abyssium_stone",
             new Block(copyOf(Blocks.OBSIDIAN).sounds(BlockSoundGroup.MANGROVE_ROOTS).strength(5.0F, 4.0F).requiresTool().luminance(10)));
     public static final Block INFERNAL_RUNE_BLOCK = registerBlock("infernal_rune_block",
-            new InfernalRuneBlock(copyOf(Blocks.SPAWNER).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 4.0F).requiresTool().luminance(10)));
+            new Block(copyOf(Blocks.SPAWNER).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 4.0F).requiresTool().luminance(10)));
 
     public static final Block EMBERSTONE_ORE = registerBlock("emberstone_ore",
             new ExperienceDroppingBlock(copyOf(Blocks.GOLD_ORE).strength(3f), UniformIntProvider.create(3, 5)));
@@ -316,11 +310,15 @@ public class ModBlocks {
             new TrapdoorBlock(FabricBlockSettings.copyOf(Blocks.MANGROVE_WOOD).sounds(BlockSoundGroup.NETHER_WOOD).nonOpaque(), BlockSetType.OAK));
 
     public static final Block INFERNO_ESSENCE_SAPLING = registerBlock("inferno_essence_sapling",
-            new SaplingBlock(new InfernoEssenceSaplingGenerator(),FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
+            new ModInfernoEssenceSaplingBlock(new InfernoEssenceSaplingGenerator(),FabricBlockSettings.copyOf(Blocks.OAK_SAPLING)));
 
     public static final Block POTTED_INFERNO_ESSENCE_SAPLING = Registry.register(Registries.BLOCK, new Identifier(InfernumMod.MOD_ID, "potted_inferno_essence_sapling"),
             new FlowerPotBlock(INFERNO_ESSENCE_SAPLING, FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).nonOpaque()));
 
+    public static final Block INFERNAL_GRASS_BLOCK = registerBlock("infernal_grass_block",
+            new GrassBlock(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK).strength(1f).sounds(BlockSoundGroup.GRASS)));
+    public static final Block INFERNAL_DIRT_BLOCK = registerBlock("infernal_dirt_block",
+            new RootedDirtBlock(FabricBlockSettings.copyOf(Blocks.DIRT).strength(1f).sounds(BlockSoundGroup.ROOTED_DIRT)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

@@ -22,7 +22,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup arg) {
 
         getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
-                .add(ModBlocks.ASH_BLOCK);
+                .add(ModBlocks.ASH_BLOCK)
+                .add(ModBlocks.INFERNAL_DIRT_BLOCK)
+                .add(ModBlocks.INFERNAL_GRASS_BLOCK);
 
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .add(ModBlocks.NETHER_RUBY_DOOR)
@@ -228,9 +230,15 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG)
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
 
+        getOrCreateTagBuilder(BlockTags.DIRT)
+                .add(ModBlocks.INFERNAL_GRASS_BLOCK)
+                .add(ModBlocks.INFERNAL_DIRT_BLOCK);
+
         getOrCreateTagBuilder(ModTags.Blocks.INFERNUM_PAXEL_MINEABLE)
                 .forceAddTag(BlockTags.PICKAXE_MINEABLE)
                 .forceAddTag(BlockTags.AXE_MINEABLE)
                 .forceAddTag(BlockTags.SHOVEL_MINEABLE);
+
+
     }
 }

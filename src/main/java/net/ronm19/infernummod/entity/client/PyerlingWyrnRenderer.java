@@ -6,7 +6,6 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
-import net.ronm19.infernummod.entity.custom.EmberHundEntity;
 import net.ronm19.infernummod.entity.custom.PyerlingWyrnEntity;
 import net.ronm19.infernummod.entity.layer.ModModelLayers;
 

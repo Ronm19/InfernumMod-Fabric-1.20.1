@@ -31,6 +31,7 @@ public class ModBiomes {
     public static final RegistryKey<Biome> ASHLAND = RegistryKey.of(RegistryKeys.BIOME,
             new Identifier(InfernumMod.MOD_ID, "ashland"));
 
+
     public static void boostrap( Registerable<Biome> context ) {
         context.register(ASHLAND, ashlandBiome(context));
     }
@@ -48,14 +49,12 @@ public class ModBiomes {
     public static Biome ashlandBiome( Registerable<Biome> context ) {
         // Spawn settings
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MALFURYX, 20, 2, 6)); // more frequent
-        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.DEMON, 20, 2, 6)); // more frequent
-        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.BLAZE, 8, 1, 3)); // fiery mobs
-        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 5, 1, 2)); // creepy ambience
-        // Optional: remove passive mobs for a desolate feeling
-        // spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MALFURYX, 50, 2, 6)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.DEMON, 50, 2, 6)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.OBSIDIAN_GHAST, 50, 2, 6)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_HOARDE, 50, 1, 4)); // more frequent
 
-        DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PYERLING_WYRN, 50, 2, 6)); // more frequent
 
         // Terrain generation
         GenerationSettings.LookupBackedBuilder biomeBuilder =

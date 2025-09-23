@@ -9,8 +9,10 @@ public class ModModelLayers {
             new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "demon"), "main");
     public static final EntityModelLayer MALFURYX =
             new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "malfuryx"), "main");
-    public static final EntityModelLayer EMBER_HUND =
-            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "ember_hund"), "main");
     public static final EntityModelLayer PYERLING_WYRN =
             new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "pyerling_wyrn"), "main");
+    public static final EntityModelLayer OBSIDIAN_GHAST =
+            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "obsidian_ghast"), "main");
+    public static final EntityModelLayer INFERNAL_HOARDE =
+            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "infernal_hoarde"), "main");
 }

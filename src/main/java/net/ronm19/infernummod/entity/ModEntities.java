@@ -21,13 +21,19 @@ public class ModEntities {
             new Identifier(InfernumMod.MOD_ID, "malfuryx"),
             FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, MalfuryxEntity::new).dimensions(EntityDimensions.fixed(1f, 3.5f)).build());
 
-    public static final EntityType<EmberHundEntity> EMBER_HUND = Registry.register(Registries.ENTITY_TYPE,
-            new Identifier(InfernumMod.MOD_ID, "ember_hund"),
-            FabricEntityTypeBuilder.create(CREATURE, EmberHundEntity::new).dimensions(EntityDimensions.fixed(1f, 3.5f)).build());
-
     public static final EntityType<PyerlingWyrnEntity> PYERLING_WYRN = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(InfernumMod.MOD_ID, "pyerling_wyrn"),
             FabricEntityTypeBuilder.create(CREATURE, PyerlingWyrnEntity ::new).dimensions(EntityDimensions.fixed(1f, 3.5f)).build());
+
+    public static final EntityType<ObsidianGhastEntity> OBSIDIAN_GHAST = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(InfernumMod.MOD_ID, "obsidian_ghast"),
+            FabricEntityTypeBuilder.create(MONSTER, ObsidianGhastEntity ::new).dimensions(EntityDimensions.fixed(2f, 4.5f)).build());
+
+    public static final EntityType<InfernalHoardeEntity> INFERNAL_HOARDE = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(InfernumMod.MOD_ID, "infernal_hoarde"),
+            FabricEntityTypeBuilder.create(MONSTER, InfernalHoardeEntity::new).dimensions(EntityDimensions.fixed(1f, 4.5f)).build());
+
+
 
     public static final EntityType<AshDustProjectileEntity> ASH_DUST_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(InfernumMod.MOD_ID, "ash_dust_projectile"),

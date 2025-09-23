@@ -3,7 +3,6 @@ package net.ronm19.infernummod.entity.ai;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.passive.TameableEntity;
-import net.ronm19.infernummod.entity.custom.EmberHundEntity;
 
 public class ProtectOwnerGoal extends Goal {
     private final TameableEntity tameable;

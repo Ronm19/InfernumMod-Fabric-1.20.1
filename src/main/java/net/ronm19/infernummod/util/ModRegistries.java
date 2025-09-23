@@ -4,10 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.potion.Potions;
 import net.ronm19.infernummod.entity.ModEntities;
-import net.ronm19.infernummod.entity.custom.DemonEntity;
-import net.ronm19.infernummod.entity.custom.EmberHundEntity;
-import net.ronm19.infernummod.entity.custom.MalfuryxEntity;
-import net.ronm19.infernummod.entity.custom.PyerlingWyrnEntity;
+import net.ronm19.infernummod.entity.custom.*;
 import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.mixin.BrewingRecipeRegistryMixin;
 import net.ronm19.infernummod.potion.ModPotions;
@@ -31,8 +28,9 @@ public class ModRegistries {
     private static void registerAttributes() {
         FabricDefaultAttributeRegistry.register(ModEntities.DEMON, DemonEntity.createDemonAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.MALFURYX, MalfuryxEntity.createMalfuryxAttributes());
-        FabricDefaultAttributeRegistry.register(ModEntities.EMBER_HUND, EmberHundEntity.createEmberHundAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnEntity.createPyerlingWyrnAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.OBSIDIAN_GHAST, ObsidianGhastEntity.createObsidianGhastAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_HOARDE, InfernalHoardeEntity.createInfernalHoardeAttributes());
     }
 
 

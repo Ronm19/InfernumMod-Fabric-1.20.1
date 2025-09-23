@@ -1347,6 +1347,15 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipe
                 .input('I', ModItems.INFERNIUM)
                 .criterion(hasItem(ModItems.PYROCLAST), conditionsFromItem(ModItems.PYROCLAST))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNAL_RUNE_BLOCK)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOLTEN_GRANITE_BLOCK, 1)
+                .pattern("MMM")
+                .pattern("MGM")
+                .pattern("MMM")
+                .input('G', Blocks.GRANITE)
+                .input('M', ModBlocks.MOLTEN_STONE_BLOCK)
+                .criterion(hasItem(ModBlocks.MOLTEN_STONE_BLOCK), conditionsFromItem(ModBlocks.MOLTEN_STONE_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.MOLTEN_GRANITE_BLOCK)));
     }
 }
 

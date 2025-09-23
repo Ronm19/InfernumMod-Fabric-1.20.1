@@ -161,6 +161,11 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.INFERNO_ESSENCE_SAPLING);
 
         addDrop(ModBlocks.INFERNO_ESSENCE_LEAVES, leavesDrops(ModBlocks.INFERNO_ESSENCE_LEAVES, ModBlocks.INFERNO_ESSENCE_SAPLING, 0.0035f));
+
+        grassDrops(ModBlocks.INFERNAL_GRASS_BLOCK);
+
+        addDrop(ModBlocks.INFERNAL_GRASS_BLOCK);
+        addDrop(ModBlocks.INFERNAL_DIRT_BLOCK);
     }
 
     public LootTable.Builder copperLikeOreDrops( Block drop, Item item, UniformLootNumberProvider uniformLootNumberProvider ) {

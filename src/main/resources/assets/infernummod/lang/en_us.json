@@ -96,7 +96,8 @@
   "item.infernummod.demon_spawn_egg": "Demon Spawn Egg",
   "item.infernummod.malfuryx_spawn_egg": "Malfuryx Spawn Egg",
   "item.infernummod.infernal_eye_spawn_egg": "Infernal Eye Spawn Egg",
-  "item.infernummod.ember_hund_spawn_egg": "Ember Hund Spawn Egg",
+  "item.infernummod.infernal_hoarde_spawn_egg": "Infernal Hoarde Spawn Egg",
+  "item.infernummod.obsidian_ghast_spawn_egg": "Obsidian Ghast Spawn Egg",
   "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
 
   "block.infernummod.nether_ruby_block": "Nether Ruby Block",
@@ -121,6 +122,9 @@
   "block.infernummod.inferno_essence_wall": "Inferno Essence Wall",
   "block.infernummod.inferno_essence_door": "Inferno Essence Door",
   "block.infernummod.inferno_essence_trapdoor": "Inferno Essence Trapdoor",
+
+  "block.infernummod.infernal_grass_block": "Infernal Grass Block",
+  "block.infernummod.infernal_dirt_block": "Infernal Dirt Block",
 
   "block.infernummod.nether_ruby_stairs": "Nether Ruby Stairs",
   "block.infernummod.nether_ruby_slab": "Nether Ruby Slab",
@@ -243,7 +247,8 @@
   "entity.infernummod.demon": "Demon",
   "entity.infernummod.malfuryx": "Malfuryx",
   "entity.infernummod.infernal_eye": "Infernal Eye",
-  "entity.infernummod.ember_hund": "Ember Hund",
+  "entity.infernummod.infernal_hoarde": "Infernal Hoarde",
+  "entity.infernummod.obsidian_ghast": "Obsidian Ghast",
   "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
   "entity.infernummod.ash_dust": "Ash Dust"
 }

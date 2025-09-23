@@ -161,11 +161,6 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
 
     // ---------------- BREEDING ----------------
     @Override
-    public boolean isBreedingItem( ItemStack stack ) {
-        return stack.isOf(ModItems.NETHER_RUBY);
-    }
-
-    @Override
     public PyerlingWyrnEntity createChild( ServerWorld world, PassiveEntity entity ) {
         return ModEntities.PYERLING_WYRN.create(world);
     }
@@ -205,6 +200,7 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
 
         this.targetSelector.add(1, new RevengeGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, HostileEntity.class, false));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, ObsidianGhastEntity.class, false));
 
         // call integrator hook if you have more AI to append
         integrateAICode();

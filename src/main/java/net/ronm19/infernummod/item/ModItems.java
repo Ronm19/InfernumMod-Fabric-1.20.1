@@ -171,10 +171,12 @@ public class ModItems {
             new SpawnEggItem(ModEntities.DEMON, 0xFF4500, 0x1C1C1C, new FabricItemSettings()));
     public static final Item MALFURYX_SPAWN_EGG = registerItem("malfuryx_spawn_egg",
             new SpawnEggItem(ModEntities.MALFURYX, 0x0A0A0A, 0x1F1F1F, new FabricItemSettings()));
-    public static final Item EMBER_HUND_SPAWN_EGG = registerItem("ember_hund_spawn_egg",
-            new SpawnEggItem(ModEntities.EMBER_HUND, 0x1A0F0F, 0x3B1C1C, new FabricItemSettings()));
     public static final Item PYERLING_WYRN_SPAWN_EGG = registerItem("pyerling_wyrn_spawn_egg",
-            new SpawnEggItem(ModEntities.PYERLING_WYRN, 0xFF4500, 0xFF6B00, new FabricItemSettings()));
+            new SpawnEggItem(ModEntities.PYERLING_WYRN, 0x1A0B0B, 0xFF6B00, new FabricItemSettings()));
+    public static final Item OBSIDIAN_GHAST_SPAWN_EGG = registerItem("obsidian_ghast_spawn_egg",
+            new SpawnEggItem(ModEntities.OBSIDIAN_GHAST, 0x1A0B0B, 0xFF4500, new FabricItemSettings()));
+    public static final Item INFERNAL_HOARDE_SPAWN_EGG = registerItem("infernal_hoarde_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_HOARDE, 0xFF4500, 0xFF4500, new FabricItemSettings()));
 
 
 

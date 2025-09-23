@@ -52,14 +52,16 @@ public class InfernumModClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.DEMON, DemonModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.MALFURYX, MalfuryxModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.EMBER_HUND, EmberHundModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.PYERLING_WYRN, PyerlingWyrnModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.OBSIDIAN_GHAST, ObsidianGhastModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INFERNAL_HOARDE, InfernalHoardeModel::getTexturedModelData);
 
         
         EntityRendererRegistry.register(ModEntities.DEMON, DemonRenderer ::new);
         EntityRendererRegistry.register(ModEntities.MALFURYX, MalfuryxRenderer ::new);
-        EntityRendererRegistry.register(ModEntities.EMBER_HUND, EmberHundRenderer ::new);
         EntityRendererRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.OBSIDIAN_GHAST, ObsidianGhastRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.INFERNAL_HOARDE, InfernalHoardeRenderer ::new);
 
         TerraformBoatClientHelper.registerModelLayers(ModBoats.INFERNO_BOAT_ID, false);
 

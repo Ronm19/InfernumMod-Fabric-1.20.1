@@ -14,6 +14,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.*;
+import net.ronm19.infernummod.block.ModBlocks;
 import org.jetbrains.annotations.Nullable;
 
 public class BlazebloomBlock extends PlantBlock {
@@ -58,9 +59,8 @@ public class BlazebloomBlock extends PlantBlock {
         return super.isEnabled(enabledFeatures);
     }
 
-
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(BlockTags.DIRT) || floor.isOf(Blocks.FARMLAND);
+        return floor.isIn(BlockTags.DIRT) || floor.isOf(Blocks.FARMLAND) || floor.isOf(ModBlocks.ASH_BLOCK);
     }
 
     public BlockState getStateForNeighborUpdate( BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {

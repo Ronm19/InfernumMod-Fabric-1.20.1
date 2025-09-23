@@ -4,10 +4,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.advancement.*;
-import net.minecraft.advancement.criterion.ChangedDimensionCriterion;
-import net.minecraft.advancement.criterion.InventoryChangedCriterion;
-import net.minecraft.advancement.criterion.UsingItemCriterion;
+import net.minecraft.advancement.criterion.*;
 import net.minecraft.data.server.advancement.AdvancementProvider;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
@@ -17,11 +16,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.block.ModBlocks;
+import net.ronm19.infernummod.entity.ModEntities;
 import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.util.ModTags;
 import net.ronm19.infernummod.world.biome.ModBiomes;
 import net.ronm19.infernummod.world.dimension.ModDimensions;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class ModAdvancementProvider extends FabricAdvancementProvider {
@@ -75,6 +76,25 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .rewards(AdvancementRewards.Builder.experience(20))
                 .build(consumer, InfernumMod.MOD_ID + ":entered_abyssium");
 
+        AdvancementEntry SilencedTheObsidianWail = Advancement.Builder.create()
+                .display(new AdvancementDisplay(
+                        new ItemStack(ModItems.INFERNO_FANG),
+                        Text.literal("Silenced the Obsidian Wail"),
+                        Text.literal("You defeated the Obsidian Ghast, and obtained the Inferno Fang."),
+                        new Identifier(InfernumMod.MOD_ID, "textures/block/nether_ruby_block.png"),
+                        AdvancementFrame.CHALLENGE,
+                        true, true, false))
+                // Trigger ONLY when player kills Obsidian Ghast
+                .criterion("silenced_the_obsidian_wail",
+                        OnKilledCriterion.Conditions.createPlayerKilledEntity(
+                                Optional.ofNullable(EntityPredicate.Builder.create()
+                                        .type(ModEntities.OBSIDIAN_GHAST) // restrict to your custom entity
+                                        .build())
+                        )
+                )
+                .parent(rootAdvancement)
+                .rewards(AdvancementRewards.Builder.experience(12))
+                .build(consumer, InfernumMod.MOD_ID + ":silenced_the_obsidian_wail");
 
     }
 }

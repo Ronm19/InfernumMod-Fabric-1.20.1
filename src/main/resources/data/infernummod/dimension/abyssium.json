@@ -7,7 +7,7 @@
       "type": "minecraft:multi_noise",
       "biomes": [
         {
-          "biome": "infernummod:ashland",
+          "biome": "infernummod:infernal",
           "parameters": {
             "temperature": 2,
             "humidity": 0.7,

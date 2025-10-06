@@ -55,17 +55,29 @@ public class InfernumModClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.PYERLING_WYRN, PyerlingWyrnModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.OBSIDIAN_GHAST, ObsidianGhastModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INFERNAL_HOARDE, InfernalHoardeModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INFERNAL_EYE, InfernalEyeModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.EMBER_HUND, EmberHundModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INFERNAL_BEAST, InfernalBeastModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INFERNUM_HEROBRINE, InfernumHerobrineModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.INFERNUM, InfernumModel::getTexturedModelData);
 
-        
         EntityRendererRegistry.register(ModEntities.DEMON, DemonRenderer ::new);
         EntityRendererRegistry.register(ModEntities.MALFURYX, MalfuryxRenderer ::new);
         EntityRendererRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnRenderer ::new);
         EntityRendererRegistry.register(ModEntities.OBSIDIAN_GHAST, ObsidianGhastRenderer ::new);
         EntityRendererRegistry.register(ModEntities.INFERNAL_HOARDE, InfernalHoardeRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.INFERNAL_EYE, InfernalEyeRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.EMBER_HUND, EmberHundRenderer::new);
+        EntityRendererRegistry.register(ModEntities.INFERNAL_SKULL, InfernalSkullRenderer::new);
+        EntityRendererRegistry.register(ModEntities.INFERNAL_BEAST, InfernalBeastRenderer::new);
+        EntityRendererRegistry.register(ModEntities.INFERNUM_HEROBRINE, InfernumHerobrineRenderer::new);
+        EntityRendererRegistry.register(ModEntities.INFERNUM, InfernumRenderer::new);
 
         TerraformBoatClientHelper.registerModelLayers(ModBoats.INFERNO_BOAT_ID, false);
 
         EntityRendererRegistry.register(ModEntities.ASH_DUST_PROJECTILE, FlyingItemEntityRenderer ::new);
+        EntityRendererRegistry.register(ModEntities.INFERNAL_SKULL, InfernalSkullRenderer::new);
+
 
 
 

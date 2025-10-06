@@ -20,6 +20,7 @@ import net.ronm19.infernummod.entity.custom.MalfuryxEntity;
 import net.ronm19.infernummod.item.ModItemGroups;
 import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.potion.ModPotions;
+import net.ronm19.infernummod.sound.ModSounds;
 import net.ronm19.infernummod.util.ModRegistries;
 import net.ronm19.infernummod.world.gen.ModWorldGeneration;
 import net.ronm19.infernummod.world.tree.ModFoliagePlacerTypes;
@@ -50,6 +51,8 @@ public class InfernumMod implements ModInitializer {
 
         ModTrunkPlacerTypes.register();
         ModFoliagePlacerTypes.register();
+
+        ModSounds.registerSounds();
 
 
         StrippableBlockRegistry.register(ModBlocks.INFERNO_ESSENCE_LOG, ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG);

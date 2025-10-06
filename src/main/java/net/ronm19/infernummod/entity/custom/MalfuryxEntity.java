@@ -247,6 +247,13 @@ public class MalfuryxEntity extends HostileEntity implements AttackingEntity {
         return false;
     }
 
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // All infernum creatures ignore their god
+        return !(target instanceof InfernumEntity);
+    }
+
+
     // --- COMBAT & SOUNDS ---
     @Override
     public boolean isFireImmune() {

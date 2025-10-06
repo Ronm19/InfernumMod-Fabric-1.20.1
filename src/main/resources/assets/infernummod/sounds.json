@@ -1,0 +1,32 @@
+{
+  "infernal_beast_ambient": {
+    "subtitle": "sounds.infernummod.infernal_beast_ambient",
+    "sounds": [
+      "infernummod:infernal_beast_ambient"
+    ]
+  },
+  "infernal_beast_hurt": {
+    "subtitle": "sounds.infernummod.infernal_beast_hurt",
+    "sounds": [
+      "infernummod:infernal_beast_hurt"
+    ]
+  },
+  "infernal_beast_step": {
+    "subtitle": "sounds.infernummod.infernal_beast_step",
+    "sounds": [
+      "infernummod:infernal_beast_step"
+    ]
+  },
+  "infernal_beast_death": {
+    "subtitle": "sounds.infernummod.infernal_beast_death",
+    "sounds": [
+      "infernummod:infernal_beast_death"
+    ]
+  },
+  "infernal_beast_roar": {
+    "subtitle": "sounds.infernummod.infernal_beast_roar",
+    "sounds": [
+      "infernummod:infernal_beast_roar"
+    ]
+  }
+}

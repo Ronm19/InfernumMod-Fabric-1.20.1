@@ -18,10 +18,13 @@ public class ModOverworldRegion extends Region {
     }
 
     @Override
-    public void addBiomes( Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube,
-            RegistryKey<Biome>>> mapper ) {
+    public void addBiomes( Registry<Biome> registry,
+                           Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper ) {
         this.addModifiedVanillaOverworldBiomes(mapper, modifiedVanillaOverworldBuilder -> {
-            modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.DESERT, ModBiomes.ASHLAND);
+            modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.DESERT, ModBiomes.INFERNAL);
+            modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.BADLANDS, ModBiomes.INFERNAL);
+            modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.WOODED_BADLANDS, ModBiomes.INFERNAL);
+            modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.ERODED_BADLANDS, ModBiomes.INFERNAL);
         });
     }
 }

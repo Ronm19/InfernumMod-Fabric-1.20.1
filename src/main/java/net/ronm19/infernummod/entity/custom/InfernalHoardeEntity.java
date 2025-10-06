@@ -14,8 +14,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.entity.ai.FollowGroupGoal;
-import net.ronm19.infernummod.entity.ai.InfernalHoardeAttackGoal;
+import net.ronm19.infernummod.entity.ai.infernal_hoarde.FollowGroupGoal;
+import net.ronm19.infernummod.entity.ai.infernal_hoarde.InfernalHoardeAttackGoal;
 
 
 public class InfernalHoardeEntity extends HostileEntity implements Monster {
@@ -127,5 +127,11 @@ public class InfernalHoardeEntity extends HostileEntity implements Monster {
     protected void playStepSound( BlockPos pos, BlockState state ) {
         this.playSound(SoundEvents.BLOCK_NETHERRACK_STEP, 0.25F, 1.0F);
         // heavy footsteps, quieter volume
+    }
+
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // All infernum creatures ignore their god
+        return !(target instanceof InfernumEntity);
     }
 }

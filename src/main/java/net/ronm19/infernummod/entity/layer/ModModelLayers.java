@@ -15,4 +15,17 @@ public class ModModelLayers {
             new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "obsidian_ghast"), "main");
     public static final EntityModelLayer INFERNAL_HOARDE =
             new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "infernal_hoarde"), "main");
+    public static final EntityModelLayer INFERNAL_EYE =
+            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "infernal_eye"), "main");
+    public static final EntityModelLayer EMBER_HUND =
+            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "ember_hund"), "main");
+    public static final EntityModelLayer INFERNAL_BEAST =
+            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "infernal_beast"), "main");
+    public static final EntityModelLayer INFERNUM_HEROBRINE =
+            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "infernum_herobrine"), "main");
+    public static final EntityModelLayer INFERNUM =
+            new EntityModelLayer(new Identifier(InfernumMod.MOD_ID, "infernum"), "main");
+
+
+
 }

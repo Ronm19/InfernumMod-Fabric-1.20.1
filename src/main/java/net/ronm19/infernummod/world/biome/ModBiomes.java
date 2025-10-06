@@ -28,12 +28,12 @@ import net.ronm19.infernummod.world.ModPlacedFeatures;
 import static com.ibm.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class ModBiomes {
-    public static final RegistryKey<Biome> ASHLAND = RegistryKey.of(RegistryKeys.BIOME,
-            new Identifier(InfernumMod.MOD_ID, "ashland"));
+    public static final RegistryKey<Biome> INFERNAL = RegistryKey.of(RegistryKeys.BIOME,
+            new Identifier(InfernumMod.MOD_ID, "infernal"));
 
 
     public static void boostrap( Registerable<Biome> context ) {
-        context.register(ASHLAND, ashlandBiome(context));
+        context.register(INFERNAL, infernalBiome(context));
     }
 
 
@@ -46,7 +46,7 @@ public class ModBiomes {
         DefaultBiomeFeatures.addFrozenLavaSpring(builder);
     }
 
-    public static Biome ashlandBiome( Registerable<Biome> context ) {
+    public static Biome infernalBiome( Registerable<Biome> context ) {
         // Spawn settings
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MALFURYX, 50, 2, 6)); // more frequent
@@ -55,6 +55,7 @@ public class ModBiomes {
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_HOARDE, 50, 1, 4)); // more frequent
 
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PYERLING_WYRN, 50, 2, 6)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_EYE, 50, 2, 6));
 
         // Terrain generation
         GenerationSettings.LookupBackedBuilder biomeBuilder =
@@ -66,9 +67,8 @@ public class ModBiomes {
         DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
         DefaultBiomeFeatures.addNetherMineables(biomeBuilder); // extra volcanic feel
 
-        // Vegetation — corrupted, minimal
-        biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.MUSHROOM_ISLAND_VEGETATION); // sparse weird plants
-        DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
+        // Vegetation — corrupted, minimal// sparse weird plants
+
         DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
 
         // Build biome
@@ -86,7 +86,7 @@ public class ModBiomes {
                         .grassColor(0x5c1010)      // scorched grass
                         .foliageColor(0x3a0b0b)    // dead foliage
                         .moodSound(BiomeMoodSound.CAVE)
-                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_BASALT_DELTAS)) // darker music
+                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_END)) // darker music
                         .build()).build();
     }
 }

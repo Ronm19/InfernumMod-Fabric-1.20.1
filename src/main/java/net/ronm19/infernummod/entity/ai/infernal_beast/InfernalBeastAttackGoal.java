@@ -1,4 +1,4 @@
-package net.ronm19.infernummod.entity.ai;
+package net.ronm19.infernummod.entity.ai.infernal_beast;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -6,17 +6,18 @@ import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.util.Hand;
 import net.ronm19.infernummod.api.interfaces.AttackingEntity;
 import net.ronm19.infernummod.entity.custom.DemonEntity;
+import net.ronm19.infernummod.entity.custom.InfernalBeastEntity;
 
-public class DemonAttackGoal extends MeleeAttackGoal implements AttackingEntity {
-    private final DemonEntity entity;
+public class InfernalBeastAttackGoal extends MeleeAttackGoal implements AttackingEntity {
+    private final InfernalBeastEntity entity;
     private int attackDelay = 10;
     private int ticksUntilNextAttack = 10;
     private boolean shouldCountTillNextAttack = false;
 
 
-    public DemonAttackGoal( PathAwareEntity mob, double speed, boolean pauseWhenMobIdle ) {
+    public InfernalBeastAttackGoal( PathAwareEntity mob, double speed, boolean pauseWhenMobIdle ) {
         super(mob, speed, pauseWhenMobIdle);
-        entity = ((DemonEntity) mob);
+        entity = ((InfernalBeastEntity) mob);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class DemonAttackGoal extends MeleeAttackGoal implements AttackingEntity 
         ticksUntilNextAttack = 10;
     }
 
-    private boolean isEnemyWithinAttackDistance(LivingEntity pEnemy) {
+    private boolean isEnemyWithinAttackDistance( LivingEntity pEnemy) {
         return this.entity.distanceTo(pEnemy) <= 2f; // TODO
     }
 

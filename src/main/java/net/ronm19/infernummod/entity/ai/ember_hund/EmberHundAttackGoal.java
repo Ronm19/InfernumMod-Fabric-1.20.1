@@ -1,4 +1,4 @@
-package net.ronm19.infernummod.entity.ai;
+package net.ronm19.infernummod.entity.ai.ember_hund;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -6,28 +6,29 @@ import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.util.Hand;
 import net.ronm19.infernummod.api.interfaces.AttackingEntity;
 import net.ronm19.infernummod.entity.custom.DemonEntity;
-import net.ronm19.infernummod.entity.custom.InfernalHoardeEntity;
+import net.ronm19.infernummod.entity.custom.EmberHundEntity;
+import net.ronm19.infernummod.entity.custom.InfernalBeastEntity;
 
-public class InfernalHoardeAttackGoal extends MeleeAttackGoal implements AttackingEntity {
-    private final InfernalHoardeEntity entity;
-    private int attackDelay = 11;
-    private int ticksUntilNextAttack = 11;
+public class EmberHundAttackGoal extends MeleeAttackGoal implements AttackingEntity {
+    private final EmberHundEntity entity;
+    private int attackDelay = 10;
+    private int ticksUntilNextAttack = 10;
     private boolean shouldCountTillNextAttack = false;
 
 
-    public InfernalHoardeAttackGoal( PathAwareEntity mob, double speed, boolean pauseWhenMobIdle ) {
+    public EmberHundAttackGoal( PathAwareEntity mob, double speed, boolean pauseWhenMobIdle ) {
         super(mob, speed, pauseWhenMobIdle);
-        entity = ((InfernalHoardeEntity) mob);
+        entity = ((EmberHundEntity) mob);
     }
 
     @Override
     public void start() {
         super.start();
-        attackDelay = 11;
-        ticksUntilNextAttack = 11;
+        attackDelay = 10;
+        ticksUntilNextAttack = 10;
     }
 
-    private boolean isEnemyWithinAttackDistance(LivingEntity pEnemy) {
+    private boolean isEnemyWithinAttackDistance( LivingEntity pEnemy) {
         return this.entity.distanceTo(pEnemy) <= 2f; // TODO
     }
 

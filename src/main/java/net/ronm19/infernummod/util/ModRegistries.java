@@ -31,6 +31,11 @@ public class ModRegistries {
         FabricDefaultAttributeRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnEntity.createPyerlingWyrnAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.OBSIDIAN_GHAST, ObsidianGhastEntity.createObsidianGhastAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_HOARDE, InfernalHoardeEntity.createInfernalHoardeAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_EYE, InfernalEyeEntity.createInfernalEyeAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.EMBER_HUND, EmberHundEntity.createEmberHundAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_BEAST, InfernalBeastEntity.createInfernalBeastAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNUM_HEROBRINE, InfernumHerobrineEntity.createInfernumHerobrineAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNUM, InfernumEntity.createInfernumAttributes());
     }
 
 

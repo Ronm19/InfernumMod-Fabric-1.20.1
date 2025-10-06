@@ -1,4 +1,4 @@
-package net.ronm19.infernummod.entity.ai;
+package net.ronm19.infernummod.entity.ai.infernal_hoarde;
 
 import net.minecraft.entity.ai.goal.Goal;
 import net.ronm19.infernummod.entity.custom.InfernalHoardeEntity;

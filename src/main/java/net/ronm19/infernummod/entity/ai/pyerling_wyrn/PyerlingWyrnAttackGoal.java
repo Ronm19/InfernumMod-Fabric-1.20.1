@@ -1,4 +1,4 @@
-package net.ronm19.infernummod.entity.ai;
+package net.ronm19.infernummod.entity.ai.pyerling_wyrn;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;

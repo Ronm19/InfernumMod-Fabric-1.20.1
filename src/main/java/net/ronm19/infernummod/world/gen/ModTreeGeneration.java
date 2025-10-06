@@ -9,7 +9,7 @@ import net.ronm19.infernummod.world.biome.ModBiomes;
 
 public class ModTreeGeneration {
     public static void generateTrees() {
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.ASHLAND),
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(ModBiomes.INFERNAL),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.INFERNO_ESSENCE_PLACED_KEY);
     }
 }

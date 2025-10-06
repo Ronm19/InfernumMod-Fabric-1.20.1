@@ -21,6 +21,7 @@ public class ModItemGroups {
                         entries.add(ModItems.FIRERITE);
                         entries.add(ModItems.RAW_FIRERITE);
 
+                        entries.add(ModItems.INFERNUM_BONE);
                         entries.add(ModItems.ASH_DUST);
                         entries.add(ModItems.FLAME_STAFF);
                         entries.add(ModItems.INFERNUM_STAFF);
@@ -115,6 +116,11 @@ public class ModItemGroups {
                         entries.add(ModItems.PYERLING_WYRN_SPAWN_EGG);
                         entries.add(ModItems.OBSIDIAN_GHAST_SPAWN_EGG);
                         entries.add(ModItems.INFERNAL_HOARDE_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_EYE_SPAWN_EGG);
+                        entries.add(ModItems.EMBER_HUND_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_BEAST_SPAWN_EGG);
+                        entries.add(ModItems.INFERNUM_HEROBRINE_SPAWN_EGG);
+                        entries.add(ModItems.INFERNUM_SPAWN_EGG);
 
 
                         entries.add(ModBlocks.NETHER_RUBY_BLOCK);

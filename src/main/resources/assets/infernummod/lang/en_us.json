@@ -16,6 +16,8 @@
 
   "item.infernummod.ash_dust": "Ash Dust",
 
+  "item.infernummod.infernum_bone": "Infernum Bone",
+
   "item.infernummod.flame_staff": "Flame Staff",
   "item.infernummod.infernum_staff": "Infernum Staff",
   "item.infernummod.infernum_paxel": "Infernum Paxel",
@@ -96,9 +98,13 @@
   "item.infernummod.demon_spawn_egg": "Demon Spawn Egg",
   "item.infernummod.malfuryx_spawn_egg": "Malfuryx Spawn Egg",
   "item.infernummod.infernal_eye_spawn_egg": "Infernal Eye Spawn Egg",
+  "item.infernummod.ember_hund_spawn_egg": "Ember Hund Spawn Egg",
   "item.infernummod.infernal_hoarde_spawn_egg": "Infernal Hoarde Spawn Egg",
   "item.infernummod.obsidian_ghast_spawn_egg": "Obsidian Ghast Spawn Egg",
   "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
+  "item.infernummod.infernal_beast_spawn_egg": "Infernal Beast Spawn Egg",
+  "item.infernummod.infernum_herobrine_spawn_egg": "Infernum Herobrine Spawn Egg",
+  "item.infernummod.infernum_spawn_egg": "Infernum Spawn Egg",
 
   "block.infernummod.nether_ruby_block": "Nether Ruby Block",
   "block.infernummod.raw_nether_ruby_block": "Raw Nether Ruby Block",
@@ -236,8 +242,15 @@
   "itemgroup.nether_ruby": "Infernum Mod",
 
   "enchantment.infernummod.fireball_striker": "Fireball Striker",
+  "enchantment.infernummod.inferno_power": "Inferno Power",
 
   "effect.infernummod.blazing_heart": "Blazing Heart",
+
+  "sounds.infernummod.infernal_beast_ambient": "Infernal Beast Ambient",
+  "sounds.infernummod.infernal_beast_hurt": "Infernal Beast Hurt",
+  "sounds.infernummod.infernal_beast_step": "Infernal Beast Step",
+  "sounds.infernummod.infernal_beast_death": "Infernal Beast Death",
+
 
   "item.minecraft.potion.effect.blazing_heart_potion": "Blazing Heart Potion",
   "item.minecraft.splash_potion.effect.blazing_heart_potion": "Blazing Heart Splash Potion",
@@ -247,8 +260,12 @@
   "entity.infernummod.demon": "Demon",
   "entity.infernummod.malfuryx": "Malfuryx",
   "entity.infernummod.infernal_eye": "Infernal Eye",
+  "entity.infernummod.ember_hund": "Ember Hund",
   "entity.infernummod.infernal_hoarde": "Infernal Hoarde",
   "entity.infernummod.obsidian_ghast": "Obsidian Ghast",
   "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
+  "entity.infernummod.infernal_beast": "Infernal Beast",
+  "entity.infernummod.infernum_herobrine": "Infernum Herobrine",
+  "entity.infernummod.infernum": "Infernum",
   "entity.infernummod.ash_dust": "Ash Dust"
 }

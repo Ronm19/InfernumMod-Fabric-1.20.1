@@ -10,8 +10,8 @@ import terrablender.api.TerraBlenderApi;
 public class ModTerrablenderAPI implements TerraBlenderApi {
     @Override
     public void onTerraBlenderInitialized() {
-        Regions.register(new ModOverworldRegion(new Identifier(InfernumMod.MOD_ID, "overworld"), 20));
+        Regions.register(new ModOverworldRegion(new Identifier(InfernumMod.MOD_ID, "overworld"), 30));
 
-        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, InfernumMod.MOD_ID, ModMaterialRules.makeAshlandRules());
+        SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, InfernumMod.MOD_ID, ModMaterialRules.makeInfernalRules());
     }
 }

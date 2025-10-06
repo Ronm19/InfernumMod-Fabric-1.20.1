@@ -23,8 +23,6 @@ public class FireballStrikerSwordItem extends SwordItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
-
-
     public void shootFireballsInAir(PlayerEntity player, int level) {
         if (!(player.getWorld() instanceof ServerWorld world)) return;
 

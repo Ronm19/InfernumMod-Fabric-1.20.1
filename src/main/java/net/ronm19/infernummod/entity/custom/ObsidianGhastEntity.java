@@ -1,48 +1,47 @@
 package net.ronm19.infernummod.entity.custom;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.boss.BossBar;
-import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.FlyingEntity;
-import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.entity.ai.FlyRandomlyGoal;
+import net.ronm19.infernummod.entity.ai.obsidian_ghast.FlyRandomlyGoal;
 import net.ronm19.infernummod.entity.ai.LookAtTargetGoal;
 import net.ronm19.infernummod.item.ModItems;
 import org.joml.Vector3f;
 
-public class ObsidianGhastEntity extends GhastEntity implements Monster {
+import java.util.EnumSet;
+
+public class ObsidianGhastEntity extends HostileEntity implements Monster {
     private static final TrackedData<Boolean> SHOOTING;
     private int fireballStrength = 3;
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
-    public ObsidianGhastEntity( EntityType<? extends GhastEntity> entityType, World world ) {
+    public ObsidianGhastEntity( EntityType<? extends HostileEntity> entityType, World world ) {
         super(entityType, world);
 
         this.experiencePoints = 5;
@@ -160,6 +159,13 @@ public class ObsidianGhastEntity extends GhastEntity implements Monster {
         return this.getType().getSpawnGroup() != SpawnGroup.MONSTER || this.getWorld().getDifficulty() != Difficulty.PEACEFUL;
     }
 
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // All infernum creatures ignore their god
+        return !(target instanceof InfernumEntity);
+    }
+
+
     public int getFireballStrength() {
         return this.fireballStrength;
     }
@@ -243,6 +249,75 @@ public class ObsidianGhastEntity extends GhastEntity implements Monster {
             }
         }
 
+        static class FlyRandomlyGoal extends Goal {
+            private final ObsidianGhastEntity obsidianGhastEntity;
+
+            public FlyRandomlyGoal(ObsidianGhastEntity obsidianGhastEntity) {
+                this.obsidianGhastEntity = obsidianGhastEntity;
+                this.setControls(EnumSet.of(Control.MOVE));
+            }
+
+            public boolean canStart() {
+                MoveControl moveControl = this.obsidianGhastEntity.getMoveControl();
+                if (!moveControl.isMoving()) {
+                    return true;
+                } else {
+                    double d = moveControl.getTargetX() - this.obsidianGhastEntity.getX();
+                    double e = moveControl.getTargetY() - this.obsidianGhastEntity.getY();
+                    double f = moveControl.getTargetZ() - this.obsidianGhastEntity.getZ();
+                    double g = d * d + e * e + f * f;
+                    return g < (double)1.0F || g > (double)3600.0F;
+                }
+            }
+
+            public boolean shouldContinue() {
+                return false;
+            }
+
+            public void start() {
+                Random random = this.obsidianGhastEntity.getRandom();
+                double d = this.obsidianGhastEntity.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double e = this.obsidianGhastEntity.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double f = this.obsidianGhastEntity.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                this.obsidianGhastEntity.getMoveControl().moveTo(d, e, f, (double)1.0F);
+            }
+        }
+
+        static class LookAtTargetGoal extends Goal {
+            private final ObsidianGhastEntity obsidianGhastEntity;
+
+            public LookAtTargetGoal(ObsidianGhastEntity obsidianGhastEntity) {
+                this.obsidianGhastEntity = obsidianGhastEntity;
+                this.setControls(EnumSet.of(Control.LOOK));
+            }
+
+            public boolean canStart() {
+                return true;
+            }
+
+            public boolean shouldRunEveryTick() {
+                return true;
+            }
+
+            public void tick() {
+                if (this.obsidianGhastEntity.getTarget() == null) {
+                    Vec3d vec3d = this.obsidianGhastEntity.getVelocity();
+                    this.obsidianGhastEntity.setYaw(-((float)MathHelper.atan2(vec3d.x, vec3d.z)) * (180F / (float)Math.PI));
+                    this.obsidianGhastEntity.bodyYaw = this.obsidianGhastEntity.getYaw();
+                } else {
+                    LivingEntity livingEntity = this.obsidianGhastEntity.getTarget();
+                    double d = (double)64.0F;
+                    if (livingEntity.squaredDistanceTo(this.obsidianGhastEntity) < (double)4096.0F) {
+                        double e = livingEntity.getX() - this.obsidianGhastEntity.getX();
+                        double f = livingEntity.getZ() - this.obsidianGhastEntity.getZ();
+                        this.obsidianGhastEntity.setYaw(-((float)MathHelper.atan2(e, f)) * (180F / (float)Math.PI));
+                        this.obsidianGhastEntity.bodyYaw = this.obsidianGhastEntity.getYaw();
+                    }
+                }
+
+            }
+        }
+
         private boolean willCollide( Vec3d direction, int steps ) {
             Box box = this.obsidianGhastEntity.getBoundingBox();
 
@@ -257,7 +332,45 @@ public class ObsidianGhastEntity extends GhastEntity implements Monster {
         }
     }
 
-    public int getLimitPerChunk() {
+    protected void fall( double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition) {
+    }
+
+    public void travel(Vec3d movementInput) {
+        if (this.isLogicalSideForUpdatingMovement()) {
+            if (this.isTouchingWater()) {
+                this.updateVelocity(0.02F, movementInput);
+                this.move(MovementType.SELF, this.getVelocity());
+                this.setVelocity(this.getVelocity().multiply((double)0.8F));
+            } else if (this.isInLava()) {
+                this.updateVelocity(0.02F, movementInput);
+                this.move(MovementType.SELF, this.getVelocity());
+                this.setVelocity(this.getVelocity().multiply((double)0.5F));
+            } else {
+                float f = 0.91F;
+                if (this.isOnGround()) {
+                    f = this.getWorld().getBlockState(this.getVelocityAffectingPos()).getBlock().getSlipperiness() * 0.91F;
+                }
+
+                float g = 0.16277137F / (f * f * f);
+                f = 0.91F;
+                if (this.isOnGround()) {
+                    f = this.getWorld().getBlockState(this.getVelocityAffectingPos()).getBlock().getSlipperiness() * 0.91F;
+                }
+
+                this.updateVelocity(this.isOnGround() ? 0.1F * g : 0.02F, movementInput);
+                this.move(MovementType.SELF, this.getVelocity());
+                this.setVelocity(this.getVelocity().multiply((double)f));
+            }
+        }
+
+        this.updateLimbs(false);
+    }
+
+    public boolean isClimbing() {
+        return false;
+    }
+
+public int getLimitPerChunk() {
         return 1;
     }
 
@@ -289,10 +402,21 @@ public static DefaultAttributeContainer.Builder createObsidianGhastAttributes() 
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 32.0F));
         this.goalSelector.add(2, new LookAroundGoal(this));
-        this.goalSelector.add(3, new FlyRandomlyGoal(this));
-        this.goalSelector.add(4, new LookAtTargetGoal(this));
+        this.goalSelector.add(3, new LookAtTargetGoal(this));
+        this.goalSelector.add(4, new WanderAroundGoal(this, 2.0D));
+        this.goalSelector.add(5, new FlyGoal(this, 2.0D));
+        this.goalSelector.add(6, new TrackTargetGoal(this, true) {
+            @Override
+            public boolean canStart() {
+                return false;
+            }
+        });
+        this.goalSelector.add(7, new FlyRandomlyGoal(this));
+        this.goalSelector.add(8, new FlyRandomlyGoal(this));
 
+        this.targetSelector.add(3, new RevengeGoal(this));
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, 10, true, false, ( entity) -> Math.abs(entity.getY() - this.getY()) <= (double)4.0F));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, TameableEntity.class, 10, true, false, ( entity) -> Math.abs(entity.getY() - this.getY()) <= (double)4.0F));
     }
 
     public SoundCategory getSoundCategory() {

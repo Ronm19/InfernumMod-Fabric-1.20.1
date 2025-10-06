@@ -24,10 +24,9 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.api.interfaces.ItemEquippable;
-import net.ronm19.infernummod.entity.ai.DemonAttackGoal;
+import net.ronm19.infernummod.entity.ai.demon.DemonAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageTypes;
 
 
 import java.util.Random;
@@ -119,6 +118,13 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHER_RUBY_SWORD));
         this.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.0F); // 0% drop unless you want it to
     }
+
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // All infernum creatures ignore their god
+        return !(target instanceof InfernumEntity);
+    }
+
 
 
     @Override

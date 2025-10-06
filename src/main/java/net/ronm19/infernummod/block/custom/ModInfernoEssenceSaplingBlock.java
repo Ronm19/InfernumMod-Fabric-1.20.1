@@ -14,6 +14,6 @@ public class ModInfernoEssenceSaplingBlock extends SaplingBlock {
 
     @Override
     protected boolean canPlantOnTop( BlockState floor, BlockView world, BlockPos pos ) {
-        return floor.isOf(ModBlocks.ASH_BLOCK);
+        return floor.isOf(ModBlocks.INFERNAL_GRASS_BLOCK) || floor.isOf(ModBlocks.INFERNAL_DIRT_BLOCK) || floor.isOf(ModBlocks.ASH_BLOCK);
     }
 }

@@ -1,7 +1,6 @@
 package net.ronm19.infernummod.entity.custom;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -17,7 +16,6 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,7 +32,7 @@ import net.minecraft.world.World;
 import net.ronm19.infernummod.api.interfaces.MountableEntity;
 import net.ronm19.infernummod.entity.ModEntities;
 import net.ronm19.infernummod.entity.ai.ProtectOwnerGoal;
-import net.ronm19.infernummod.entity.ai.PyerlingWyrnAttackGoal;
+import net.ronm19.infernummod.entity.ai.pyerling_wyrn.PyerlingWyrnAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -140,7 +138,7 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
                             shootAt(target, 1.0F);
                         }
                             if (passenger instanceof PlayerEntity player) {
-                                player.setFireTicks(0); // extra safety
+                                player.isFireImmune(); // extra safety
                                 player.addStatusEffect(new StatusEffectInstance(
                                         StatusEffects.FIRE_RESISTANCE,
                                         10, // duration in ticks (0.5 second)
@@ -217,6 +215,11 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
     // ---------------- IMMUNITIES ----------------
     @Override
     public boolean isFireImmune() {
+        return true;
+    }
+
+    @Override
+    public boolean isImmuneToExplosion() {
         return true;
     }
 
@@ -330,7 +333,7 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
             double dY = target.getBodyY(0.5) - this.getBodyY(0.5);
             double dZ = target.getZ() - this.getZ();
 
-            SmallFireballEntity fireball = new SmallFireballEntity(
+            ExplosiveFireballEntity fireball = new ExplosiveFireballEntity(
                     this.getWorld(),
                     this,
                     dX + this.random.nextGaussian() * 0.1,
@@ -383,8 +386,8 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
      */
     // --- tuning knobs (updated) ---
     private static final double SEAT_SIDE = 0.12; // centered left/right
-    private static final double SEAT_BACK = -0.12; // was 1.05 → move forward (closer to shoulders)
-    private static final double SEAT_HEIGHT = 0.23; // was 0.60 → drop a bit lower
+    private static final double SEAT_BACK = -0.14; // was 1.05 → move forward (closer to shoulders)
+    private static final double SEAT_HEIGHT = 0.25; // was 0.60 → drop a bit lower
 
 
     // Seat offset in local space, rotated by BODY yaw (not head)
@@ -478,5 +481,3 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
         return super.updatePassengerForDismount(passenger);
     }
 }
-
-// keep your existing getMountedHeightOffset() method as-is

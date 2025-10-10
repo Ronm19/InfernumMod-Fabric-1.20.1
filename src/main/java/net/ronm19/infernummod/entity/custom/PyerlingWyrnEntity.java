@@ -7,12 +7,14 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,6 +55,10 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
 
     public final AnimationState attackAnimationState = new AnimationState();
     private int attackAnimationTimeout = 0;
+
+    private int portalTime;
+    private int portalCooldown = 300; // 15 seconds (same as players)
+
 
     // Debug toggle for rider coordinates (set true while testing only)
     private boolean debugRiderPositions = false;
@@ -125,37 +131,58 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
     public void tick() {
         super.tick();
         this.setFireTicks(0);
+        this.setupAnimationStates();
+
+        // 🔥 Handle rider protection and lava/fire logic
         for (Entity passenger : this.getPassengerList()) {
-            if (passenger instanceof LivingEntity living) {
+            if (passenger instanceof PlayerEntity living) {
                 living.setFireTicks(0);
-                if (this.getWorld().isClient()) {
-                    this.setupAnimationStates();
 
-                    if (!this.getWorld().isClient) {
-                        LivingEntity target = findNearestHostile(16.0D); // 16 blocks range
+                // Fire immunity always
+                living.addStatusEffect(new StatusEffectInstance(
+                        StatusEffects.FIRE_RESISTANCE,
+                        10,  // duration
+                        0,   // amplifier
+                        true,
+                        false
+                ));
 
-                        if (target != null && this.age % 40 == 0) { // every ~2 seconds
-                            shootAt(target, 1.0F);
-                        }
-                            if (passenger instanceof PlayerEntity player) {
-                                player.isFireImmune(); // extra safety
-                                player.addStatusEffect(new StatusEffectInstance(
-                                        StatusEffects.FIRE_RESISTANCE,
-                                        10, // duration in ticks (0.5 second)
-                                        0,  // amplifier (level 1)
-                                        true,  // ambient (small particles)
-                                        false  // showParticles
-                                ));
-                            }
-                        }
+                // 💥 Explosion damage nullifier
+                DamageSource recent = living.getRecentDamageSource();
+                if (recent != null && (
+                        recent.isOf(DamageTypes.EXPLOSION)
+                                || recent.isOf(DamageTypes.PLAYER_EXPLOSION)
+                                || recent.getType().msgId().contains("explosion")
+                )) {
 
+                    // Cancel explosion damage effects immediately
+                    living.hurtTime = 0;
+                    living.timeUntilRegen = 0;
+                    living.setHealth(living.getHealth());
+                }
 
-                        // Debug throttle decrement
-                        if (this.debugThrottle > 0) this.debugThrottle--;
-                    }
+                // Safety: prevent fall damage accumulation while mounted
+                living.fallDistance = 0.0F;
+
+                // Extra: suppress knockback from explosions
+                if (living.getVelocity().lengthSquared() > 0) {
+                    living.setVelocity(living.getVelocity().multiply(0.5D, 1.0D, 0.5D));
                 }
             }
         }
+
+        // 🧠 Server-side combat AI
+        if (!this.getWorld().isClient) {
+            LivingEntity target = findNearestHostile(16.0D);
+            if (target != null && this.age % 40 == 0) { // attack every 2 seconds
+                shootAt(target, 1.0F);
+            }
+        }
+
+        // 🧩 Debug throttle logic
+        if (this.debugThrottle > 0) this.debugThrottle--;
+    }
+
 
     // ---------------- BREEDING ----------------
     @Override
@@ -199,6 +226,7 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
         this.targetSelector.add(1, new RevengeGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, HostileEntity.class, false));
         this.targetSelector.add(3, new ActiveTargetGoal<>(this, ObsidianGhastEntity.class, false));
+        this.targetSelector.add(3, new ActiveTargetGoal<>(this, SlimeEntity.class, false));
 
         // call integrator hook if you have more AI to append
         integrateAICode();
@@ -235,13 +263,79 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        Entity attacker = source.getAttacker();
-        // If the attacker is the controlling passenger, ignore
-        if (attacker != null && this.hasPassenger(attacker)) {
+        // Rider protection — don't take explosion damage if being ridden
+        if (this.hasPassengers()) {
+            Entity rider = this.getFirstPassenger();
+            if (rider instanceof PlayerEntity player) {
+                // Block explosion damage for both rider and mount
+                if (source.isOf(DamageTypes.EXPLOSION) || source.isOf(DamageTypes.PLAYER_EXPLOSION)) {
+                    return false;
+                }
+            }
+        }
+
+        // Ignore explosion damage for the wyrn itself too
+        if (source.isOf(DamageTypes.EXPLOSION) || source.isOf(DamageTypes.PLAYER_EXPLOSION)) {
             return false;
         }
+
         return super.damage(source, amount);
     }
+
+    @Override
+    protected void tickPortal() {
+        // Prevent vanilla dismount logic
+        if (this.hasPassengers()) {
+            Entity rider = this.getFirstPassenger();
+
+            // handle portal cooldowns
+            if (this.portalTime++ >= this.getMaxNetherPortalTime()) {
+                this.portalTime = this.getMaxNetherPortalTime();
+                this.timeUntilRegen = this.getPortalCooldown(); // portal cooldown like vanilla
+
+                if (!this.getWorld().isClient && this.getWorld() instanceof ServerWorld serverWorld) {
+                    ServerWorld destination = serverWorld.getServer()
+                            .getWorld(this.getWorld().getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
+
+                    if (destination != null) {
+                        // transfer both the wyrn and its rider
+                        Entity teleported = this.moveToWorld(destination);
+                        if (teleported instanceof PyerlingWyrnEntity newWyrn) {
+                            if (rider != null && !rider.hasVehicle()) {
+                                Entity newRider = rider.moveToWorld(destination);
+                                if (newRider instanceof PlayerEntity player) {
+                                    player.requestTeleport(
+                                            newWyrn.getX(), newWyrn.getY() + newWyrn.getMountedHeightOffset(), newWyrn.getZ());
+                                    player.startRiding(newWyrn, true);
+                                } else if (newRider != null) {
+                                    newRider.requestTeleport(
+                                            newWyrn.getX(), newWyrn.getY() + newWyrn.getMountedHeightOffset(), newWyrn.getZ());
+                                    newRider.startRiding(newWyrn, true);
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        } else {
+            super.tickPortal(); // normal portal behaviour if not ridden
+        }
+    }
+
+    @Override
+    public int getPortalCooldown() {
+        return this.portalCooldown;
+    }
+
+    @Override
+    public int getMaxNetherPortalTime() {
+        return 80; // how long entity must stay in portal before teleporting
+    }
+
+
+
 
     @Override
     public EntityDimensions getDimensions(EntityPose pose) {
@@ -387,7 +481,7 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
     // --- tuning knobs (updated) ---
     private static final double SEAT_SIDE = 0.12; // centered left/right
     private static final double SEAT_BACK = -0.14; // was 1.05 → move forward (closer to shoulders)
-    private static final double SEAT_HEIGHT = 0.25; // was 0.60 → drop a bit lower
+    private static final double SEAT_HEIGHT = 0.55; // was 0.60 → drop a bit lower
 
 
     // Seat offset in local space, rotated by BODY yaw (not head)

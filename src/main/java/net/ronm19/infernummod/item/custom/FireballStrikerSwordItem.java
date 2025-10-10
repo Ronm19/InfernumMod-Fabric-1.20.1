@@ -16,6 +16,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.enchantment.ModEnchantments;
+import net.ronm19.infernummod.entity.custom.ExplosiveFireballEntity;
 
 public class FireballStrikerSwordItem extends SwordItem {
 
@@ -48,7 +49,7 @@ public class FireballStrikerSwordItem extends SwordItem {
                     look.x * sin + look.z * cos
             );
 
-            SmallFireballEntity fireball = new SmallFireballEntity(world, player, direction.x, direction.y, direction.z);
+            ExplosiveFireballEntity fireball = new ExplosiveFireballEntity(world, player, direction.x, direction.y, direction.z);
             fireball.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
             world.spawnEntity(fireball);
         }
@@ -76,7 +77,7 @@ public class FireballStrikerSwordItem extends SwordItem {
                 double rotatedX = look.x * cos - look.z * sin;
                 double rotatedZ = look.x * sin + look.z * cos;
 
-                SmallFireballEntity fireball = new SmallFireballEntity(serverWorld, user, rotatedX, look.y, rotatedZ);
+                ExplosiveFireballEntity fireball = new ExplosiveFireballEntity(serverWorld, user, rotatedX, look.y, rotatedZ);
                 fireball.setPos(user.getX(), user.getEyeY() - 0.1, user.getZ());
                 serverWorld.spawnEntity(fireball);
 
@@ -108,7 +109,7 @@ public class FireballStrikerSwordItem extends SwordItem {
 
                 int fireballCount = MathHelper.clamp(level, 1, 3);
                 for (int i = 0; i < fireballCount; i++) {
-                    SmallFireballEntity fireball = new SmallFireballEntity(serverWorld, player, look.x, look.y, look.z);
+                    ExplosiveFireballEntity fireball = new ExplosiveFireballEntity(serverWorld, player, look.x, look.y, look.z);
                     fireball.setPos(player.getX(), player.getEyeY() - 0.1, player.getZ());
                     serverWorld.spawnEntity(fireball);
                 }

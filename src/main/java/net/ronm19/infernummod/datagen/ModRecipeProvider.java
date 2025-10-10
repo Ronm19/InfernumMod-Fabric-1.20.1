@@ -6,6 +6,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -1272,14 +1273,14 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipe
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNO_ESSENCE_DOOR)));
 
         // Abyssium Stone (7 Obsidians, 1 Ash Block)
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ABYSSIUM_STONE, 4)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ABYSSIUM_STONE_BLOCK, 4)
                 .pattern("OOO")
                 .pattern("OGO")
                 .pattern("OOO")
                 .input('G', Blocks.GRAVEL)
                 .input('O', Blocks.OBSIDIAN)
                 .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
-                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.ABYSSIUM_STONE)));
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.ABYSSIUM_STONE_BLOCK)));
 
         // Flame Staff
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.FLAME_STAFF, 1)
@@ -1356,6 +1357,42 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipe
                 .input('M', ModBlocks.MOLTEN_STONE_BLOCK)
                 .criterion(hasItem(ModBlocks.MOLTEN_STONE_BLOCK), conditionsFromItem(ModBlocks.MOLTEN_STONE_BLOCK))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.MOLTEN_GRANITE_BLOCK)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNAL_OBSIDIAN_BLOCK, 1)
+                .pattern("MMM")
+                .pattern("MOM")
+                .pattern("MMM")
+                .input('M', Blocks.MAGMA_BLOCK)
+                .input('O', Blocks.OBSIDIAN)
+                .criterion(hasItem(Blocks.MAGMA_BLOCK), conditionsFromItem(Blocks.MAGMA_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNAL_OBSIDIAN_BLOCK)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNAL_EYE_STATUE_BLOCK, 1)
+                .pattern("AAA")
+                .pattern("AEA")
+                .pattern("AAA")
+                .input('A', ModBlocks.ASH_BLOCK)
+                .input('E', Items.ENDER_EYE)
+                .criterion(hasItem(ModBlocks.ASH_BLOCK), conditionsFromItem(ModBlocks.ASH_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNAL_EYE_STATUE_BLOCK)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CURSED_FLINT, 1)
+                .pattern(" S ")
+                .pattern(" F ")
+                .pattern(" S ")
+                .input('F', Items.FLINT)
+                .input('S', Blocks.SOUL_SAND)
+                .criterion(hasItem(Blocks.SOUL_SAND), conditionsFromItem(Blocks.SOUL_SAND))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.CURSED_FLINT)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ECHO_OF_DAMNATION, 1)
+                .pattern("III")
+                .pattern("IBI")
+                .pattern("III")
+                .input('I', ModItems.INFERNAL_BEAST_HORN)
+                .input('B', ModItems.BLAZE_HEART)
+                .criterion(hasItem(ModItems.BLAZE_HEART), conditionsFromItem(ModItems.BLAZE_HEART))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ECHO_OF_DAMNATION)));
     }
 }
 

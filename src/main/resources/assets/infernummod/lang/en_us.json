@@ -16,7 +16,16 @@
 
   "item.infernummod.ash_dust": "Ash Dust",
 
+  "item.infernummod.lava_fish": "Lava Fish",
+  "item.infernummod.magma_fish": "Magma Fish",
+  "item.infernummod.fire_fish": "Fire Fish",
+
   "item.infernummod.infernum_bone": "Infernum Bone",
+  "item.infernummod.cursed_flint": "Cursed Flint",
+
+  "item.infernummod.echo_of_damnation": "Echo Of Damnation",
+  "item.infernummod.blaze_heart": "Blaze Heart",
+  "item.infernummod.infernal_beast_horn": "Infernal Beast Horn",
 
   "item.infernummod.flame_staff": "Flame Staff",
   "item.infernummod.infernum_staff": "Infernum Staff",
@@ -95,13 +104,27 @@
   "item.infernummod.pyroclast_leggings": "Pyroclast Leggings",
   "item.infernummod.pyroclast_boots": "Pyroclast Boots",
 
+
+  "item.infernummod.infernal_eye_spawn_egg": "Infernal Eye Spawn Egg",
+  "item.infernummod.infernal_phantom_spawn_egg": "Infernal Phantom Spawn Egg",
+  "item.infernummod.ember_hund_spawn_egg": "Ember Hund Spawn Egg",
+  "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
+
+  "item.infernummod.lava_fish_spawn_egg": "Lava Fish Spawn Egg",
+  "item.infernummod.magma_fish_spawn_egg": "Magma Fish Spawn Egg",
+  "item.infernummod.fire_fish_spawn_egg": "Fire Fish Spawn Egg",
+  "item.infernummod.magma_dolphin_spawn_egg": "Magma Dolphin Spawn Egg",
+
   "item.infernummod.demon_spawn_egg": "Demon Spawn Egg",
   "item.infernummod.malfuryx_spawn_egg": "Malfuryx Spawn Egg",
-  "item.infernummod.infernal_eye_spawn_egg": "Infernal Eye Spawn Egg",
-  "item.infernummod.ember_hund_spawn_egg": "Ember Hund Spawn Egg",
+  "item.infernummod.inferno_zombie_spawn_egg": "Inferno Zombie Spawn Egg",
+  "item.infernummod.inferno_enderman_spawn_egg": "Inferno Enderman Spawn Egg",
+  "item.infernummod.flame_skeleton_spawn_egg": "Flame Skeleton Spawn Egg",
+  "item.infernummod.magma_strider_spawn_egg": "Magma Strider Spawn Egg",
+  "item.infernummod.magma_creeper_spawn_egg": "Magma Creeper Spawn Egg",
+  "item.infernummod.ember_serpent_spawn_egg": "Ember Serpent Spawn Egg",
   "item.infernummod.infernal_hoarde_spawn_egg": "Infernal Hoarde Spawn Egg",
   "item.infernummod.obsidian_ghast_spawn_egg": "Obsidian Ghast Spawn Egg",
-  "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
   "item.infernummod.infernal_beast_spawn_egg": "Infernal Beast Spawn Egg",
   "item.infernummod.infernum_herobrine_spawn_egg": "Infernum Herobrine Spawn Egg",
   "item.infernummod.infernum_spawn_egg": "Infernum Spawn Egg",
@@ -110,6 +133,9 @@
   "block.infernummod.raw_nether_ruby_block": "Raw Nether Ruby Block",
   "block.infernummod.nether_ruby_ore": "Nether Ruby Ore",
   "block.infernummod.deepslate_nether_ruby_ore": "Deepslate Nether Ruby Ore",
+
+  "block.infernummod.infernal_obsidian_block": "Infernal Obsidian Block",
+  "block.infernummod.infernal_eye_statue_block": "Infernal Eye Statue Block",
 
   "block.infernummod.inferno_essence_log": "Inferno Essence Log",
   "block.infernummod.inferno_essence_wood": "Inferno Essence Wood",
@@ -236,7 +262,7 @@
 
   "block.infernummod.blazebloom": "Blaze Bloom",
 
-  "block.infernummod.abyssium_stone": "Abyssium Stone",
+  "block.infernummod.abyssium_stone_block": "Abyssium Stone Block",
   "block.infernummod.infernal_rune_block": "Infernal Rune Block",
 
   "itemgroup.nether_ruby": "Infernum Mod",
@@ -245,6 +271,8 @@
   "enchantment.infernummod.inferno_power": "Inferno Power",
 
   "effect.infernummod.blazing_heart": "Blazing Heart",
+  "effect.infernummod.lava_vision": "Lava Vision",
+  "effect.infernummod.lava_breathing": "Lava Breathing",
 
   "sounds.infernummod.infernal_beast_ambient": "Infernal Beast Ambient",
   "sounds.infernummod.infernal_beast_hurt": "Infernal Beast Hurt",
@@ -257,15 +285,61 @@
   "item.minecraft.lingering_potion.effect.blazing_heart_potion": "Blazing Heart Lingering Potion",
   "item.minecraft.tipped_arrow.effect.blazing_heart_potion": "Blazing Heart Arrow",
 
+  "item.minecraft.potion.effect.lava_vision_potion": "Lava Vision Potion",
+  "item.minecraft.splash_potion.effect.lava_vision_potion": "Lava Vision Splash Potion",
+  "item.minecraft.lingering_potion.effect.lava_vision_potion": "Lava Vision Lingering Potion",
+  "item.minecraft.tipped_arrow.effect.lava_vision_potion": "Lava Vision Arrow",
+
   "entity.infernummod.demon": "Demon",
   "entity.infernummod.malfuryx": "Malfuryx",
-  "entity.infernummod.infernal_eye": "Infernal Eye",
-  "entity.infernummod.ember_hund": "Ember Hund",
+  "entity.infernummod.inferno_zombie": "Inferno Zombie",
+  "entity.infernummod.inferno_enderman": "Inferno Enderman",
+  "entity.infernummod.flame_skeleton": "Flame Skeleton",
+  "entity.infernummod.magma_strider": "Magma Strider",
+  "entity.infernummod.magma_creeper": "Magma Creeper",
+  "entity.infernummod.ember_serpent": "Ember Serpent",
   "entity.infernummod.infernal_hoarde": "Infernal Hoarde",
   "entity.infernummod.obsidian_ghast": "Obsidian Ghast",
-  "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
   "entity.infernummod.infernal_beast": "Infernal Beast",
   "entity.infernummod.infernum_herobrine": "Infernum Herobrine",
+
+  "entity.infernummod.infernal_eye": "Infernal Eye",
+  "entity.infernummod.ember_hund": "Ember Hund",
+  "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
+  "entity.infernummod.infernal_phantom": "Infernal Phantom",
+
+  "entity.infernummod.lava_fish": "Lava Fish",
+  "entity.infernummod.magma_fish": "Magma Fish",
+  "entity.infernummod.fire_fish": "Fire Fish",
+  "entity.infernummod.magma_dolphin": "Magma Dolphin",
+
   "entity.infernummod.infernum": "Infernum",
-  "entity.infernummod.ash_dust": "Ash Dust"
+  "entity.infernummod.ash_dust": "Ash Dust",
+
+  "advancements.infernummod.root.title": "Infernum",
+  "advancements.infernummod.root.desc": "The power lies in the Infernium realm…",
+
+  "advancements.infernummod.branch.weapons.title": "Weapons & Relics",
+  "advancements.infernummod.branch.weapons.desc": "Forge mighty Infernum relics",
+  "advancements.infernummod.branch.exploration.title": "Exploration",
+  "advancements.infernummod.branch.exploration.desc": "Discover the unknown realms",
+  "advancements.infernummod.branch.bosses.title": "Boss Hunts",
+  "advancements.infernummod.branch.bosses.desc": "Defeat legendary Infernum foes",
+
+  "advancements.infernummod.raw_nether_ruby.title": "Found the Nether Ruby",
+  "advancements.infernummod.raw_nether_ruby.desc": "A strange raw gem… what could it do?",
+  "advancements.infernummod.nether_ruby_sword.title": "Sword of the Nether",
+  "advancements.infernummod.nether_ruby_sword.desc": "Wield the molten ruby blade",
+  "advancements.infernummod.flame_staff.title": "Igniter of the Abyss",
+  "advancements.infernummod.flame_staff.desc": "Summon the flames of the abyss",
+  "advancements.infernummod.echo_damnation.title": "Echo of Damnation",
+  "advancements.infernummod.echo_damnation.desc": "The key to summon the king himself",
+  "advancements.infernummod.entered_abyssium.title": "Entered the Abyssium",
+  "advancements.infernummod.entered_abyssium.desc": "Welcome to the depths of Abyssium",
+  "advancements.infernummod.silenced_obsidian_wail.title": "Silenced the Obsidian Wail",
+  "advancements.infernummod.silenced_obsidian_wail.desc": "You felled the Obsidian Ghast",
+  "advancements.infernummod.silenced_eye_of_fire.title": "Silenced the Eye of the Fire",
+  "advancements.infernummod.silenced_eye_of_fire.desc": "Defeat Infernum Herobrine",
+  "advancements.infernummod.silenced_king_of_fire.title": "Silenced the King of the Fire",
+  "advancements.infernummod.silenced_king_of_fire.desc": "You vanquished the Infernum Threat"
 }

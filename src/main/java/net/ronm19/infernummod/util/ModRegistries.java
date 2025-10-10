@@ -28,14 +28,28 @@ public class ModRegistries {
     private static void registerAttributes() {
         FabricDefaultAttributeRegistry.register(ModEntities.DEMON, DemonEntity.createDemonAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.MALFURYX, MalfuryxEntity.createMalfuryxAttributes());
-        FabricDefaultAttributeRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnEntity.createPyerlingWyrnAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.OBSIDIAN_GHAST, ObsidianGhastEntity.createObsidianGhastAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_HOARDE, InfernalHoardeEntity.createInfernalHoardeAttributes());
-        FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_EYE, InfernalEyeEntity.createInfernalEyeAttributes());
-        FabricDefaultAttributeRegistry.register(ModEntities.EMBER_HUND, EmberHundEntity.createEmberHundAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNO_ZOMBIE, InfernoZombieEntity.createInfernoZombieAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.FLAME_SKELETON, FlameSkeletonEntity.createFlameSkeletonAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNO_ENDERMAN, InfernoEndermanEntity.createInfernoEndermanAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.MAGMA_STRIDER, MagmaStriderEntity.createMagmaStriderAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.MAGMA_CREEPER, MagmaCreeperEntity.createMagmaCreeperAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.EMBER_SERPENT, EmberSerpentEntity.createEmberSerpentAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_BEAST, InfernalBeastEntity.createInfernalBeastAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.INFERNUM_HEROBRINE, InfernumHerobrineEntity.createInfernumHerobrineAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.INFERNUM, InfernumEntity.createInfernumAttributes());
+
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_EYE, InfernalEyeEntity.createInfernalEyeAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.EMBER_HUND, EmberHundEntity.createEmberHundAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnEntity.createPyerlingWyrnAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_PHANTOM, InfernalPhantomEntity.createInfernalPhantomAttributes());
+
+        FabricDefaultAttributeRegistry.register(ModEntities.LAVA_FISH, LavaFishEntity.createLavaFishAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.MAGMA_FISH, MagmaFishEntity.createMagmaFishAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.FIRE_FISH, FireFishEntity.createFireFishAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.MAGMA_DOLPHIN, MagmaDolphinEntity.createMagmaDolphinAttributes());
+
     }
 
 
@@ -55,6 +69,7 @@ public class ModRegistries {
     }
 
     private static void registerPotionRecipes() {
-        BrewingRecipeRegistryMixin.InvokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.PYROCLAST, ModPotions.BLAZING_HEART_POTION);
+        BrewingRecipeRegistryMixin.InvokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.BLAZE_HEART, ModPotions.BLAZING_HEART_POTION);
+        BrewingRecipeRegistryMixin.InvokeRegisterPotionRecipe(Potions.AWKWARD, ModItems.INFERNAL_BEAST_HORN, ModPotions.LAVA_VISION_POTION);
     }
 }

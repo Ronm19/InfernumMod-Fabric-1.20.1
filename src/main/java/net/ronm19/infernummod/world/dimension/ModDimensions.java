@@ -7,10 +7,12 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
 import net.ronm19.infernummod.InfernumMod;
+import net.ronm19.infernummod.world.biome.ModBiomes;
 
 import java.util.OptionalLong;
 
@@ -23,12 +25,11 @@ public class ModDimensions {
             new Identifier(InfernumMod.MOD_ID, "abyssium_type"));
 
 
-
     public static void bootstrapType(Registerable<DimensionType> context) {
         context.register(ABYSSIUM_DIM_KEY, new DimensionType(
                 OptionalLong.of(12000), // fixedTime
                 false, // hasSkylight
-                false, // hasCeiling
+                true, // hasCeiling
                 true, // ultraWarm
                 true, // natural
                 1.0, // coordinateScale
@@ -38,7 +39,7 @@ public class ModDimensions {
                 256, // height
                 256, // logicalHeight
                 BlockTags.INFINIBURN_OVERWORLD, // infiniburn
-                DimensionTypes.OVERWORLD_ID, // effectsLocation
+                DimensionTypes.OVERWORLD_ID,
                 2.0f, // ambientLight
                 new DimensionType.MonsterSettings(false, false, UniformIntProvider.create(0, 0), 0)));
 

@@ -21,10 +21,19 @@ public class ModItemGroups {
                         entries.add(ModItems.FIRERITE);
                         entries.add(ModItems.RAW_FIRERITE);
 
+                        entries.add(ModItems.CURSED_FLINT);
                         entries.add(ModItems.INFERNUM_BONE);
                         entries.add(ModItems.ASH_DUST);
                         entries.add(ModItems.FLAME_STAFF);
                         entries.add(ModItems.INFERNUM_STAFF);
+
+                        entries.add(ModItems.INFERNAL_BEAST_HORN);
+                        entries.add(ModItems.ECHO_OF_DAMNATION);
+                        entries.add(ModItems.BLAZE_HEART);
+
+                        entries.add(ModItems.LAVA_FISH);
+                        entries.add(ModItems.MAGMA_FISH);
+                        entries.add(ModItems.FIRE_FISH);
 
                         entries.add(ModItems.INFERNUM_PAXEL);
                         entries.add(ModItems.INFERNUM_DAGGER);
@@ -113,14 +122,27 @@ public class ModItemGroups {
 
                         entries.add(ModItems.DEMON_SPAWN_EGG);
                         entries.add(ModItems.MALFURYX_SPAWN_EGG);
-                        entries.add(ModItems.PYERLING_WYRN_SPAWN_EGG);
                         entries.add(ModItems.OBSIDIAN_GHAST_SPAWN_EGG);
                         entries.add(ModItems.INFERNAL_HOARDE_SPAWN_EGG);
-                        entries.add(ModItems.INFERNAL_EYE_SPAWN_EGG);
-                        entries.add(ModItems.EMBER_HUND_SPAWN_EGG);
+                        entries.add(ModItems.INFERNO_ZOMBIE_SPAWN_EGG);
+                        entries.add(ModItems.FLAME_SKELETON_SPAWN_EGG);
+                        entries.add(ModItems.INFERNO_ENDERMAN_SPAWN_EGG);
+                        entries.add(ModItems.MAGMA_STRIDER_SPAWN_EGG);
+                        entries.add(ModItems.EMBER_SERPENT_SPAWN_EGG);
+                        entries.add(ModItems.MAGMA_CREEPER_SPAWN_EGG);
                         entries.add(ModItems.INFERNAL_BEAST_SPAWN_EGG);
                         entries.add(ModItems.INFERNUM_HEROBRINE_SPAWN_EGG);
                         entries.add(ModItems.INFERNUM_SPAWN_EGG);
+
+                        entries.add(ModItems.INFERNAL_EYE_SPAWN_EGG);
+                        entries.add(ModItems.PYERLING_WYRN_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_PHANTOM_SPAWN_EGG);
+                        entries.add(ModItems.EMBER_HUND_SPAWN_EGG);
+
+                        entries.add(ModItems.LAVA_FISH_SPAWN_EGG);
+                        entries.add(ModItems.MAGMA_FISH_SPAWN_EGG);
+                        entries.add(ModItems.FIRE_FISH_SPAWN_EGG);
+                        entries.add(ModItems.MAGMA_DOLPHIN_SPAWN_EGG);
 
 
                         entries.add(ModBlocks.NETHER_RUBY_BLOCK);
@@ -246,13 +268,16 @@ public class ModItemGroups {
                         entries.add(ModBlocks.NETHER_PYROCLAST_ORE);
 
                         entries.add(ModBlocks.ASH_BLOCK);
-                        entries.add(ModBlocks.ABYSSIUM_STONE);
+                        entries.add(ModBlocks.ABYSSIUM_STONE_BLOCK);
                         entries.add(ModBlocks.INFERNAL_RUNE_BLOCK);
 
                         entries.add(ModBlocks.BLAZEBLOOM);
 
                         entries.add(ModBlocks.INFERNAL_DIRT_BLOCK);
                         entries.add(ModBlocks.INFERNAL_GRASS_BLOCK);
+
+                        entries.add(ModBlocks.INFERNAL_OBSIDIAN_BLOCK);
+                        entries.add(ModBlocks.INFERNAL_EYE_STATUE_BLOCK);
 
                     }).build());
 

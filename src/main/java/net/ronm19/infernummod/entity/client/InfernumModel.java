@@ -75,7 +75,7 @@ public class InfernumModel <T extends InfernumEntity> extends SinglePartEntityMo
 
         this.head.yaw = headYaw * ((float) Math.PI / 180F);
         this.head.pitch = headPitch * ((float) Math.PI / 180F);
-}
+    }
 
     @Override
     public void render( MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {

@@ -28,10 +28,14 @@ public class ModItems {
     public static final Item RAW_EMBERSTONE = registerItem("raw_emberstone", new Item(new FabricItemSettings().fireproof()));
     public static final Item EMBERSTONE = registerItem("emberstone", new Item(new FabricItemSettings().fireproof()));
 
+    public static final Item BLAZE_HEART = registerItem("blaze_heart", new Item(new FabricItemSettings().fireproof().maxCount(16)));
+    public static final Item INFERNAL_BEAST_HORN = registerItem("infernal_beast_horn", new Item(new FabricItemSettings().fireproof()));
+    public static final Item ECHO_OF_DAMNATION = registerItem("echo_of_damnation", new Item(new FabricItemSettings().maxCount(1).fireproof().rarity(Rarity.EPIC)));
 
     public static final Item INFERNUM_BONE = registerItem("infernum_bone", new Item(new FabricItemSettings().fireproof()));
     public static final Item ASH_DUST = registerItem("ash_dust", new AshDustItem(new FabricItemSettings().fireproof()));
-    public static final Item FLAME_STAFF = registerItem("flame_staff", new Item(new FabricItemSettings().fireproof()));
+    public static final Item CURSED_FLINT = registerItem("cursed_flint", new Item(new FabricItemSettings().fireproof()));
+    public static final Item FLAME_STAFF = registerItem("flame_staff", new Item(new FabricItemSettings().fireproof().maxCount(1)));
     public static final Item INFERNUM_STAFF = registerItem("infernum_staff", new InfernalStaffItem(new FabricItemSettings().maxDamage(2500).fireproof().rarity(Rarity.UNCOMMON)));
 
     public static final Item INFERNUM_PAXEL = registerItem("infernum_paxel",
@@ -44,6 +48,12 @@ public class ModItems {
     public static final Item INFERNO_SHIELD = registerItem("inferno_shield",
             new ShieldItem(new FabricItemSettings().fireproof()));
 
+    public static final Item LAVA_FISH = registerItem("lava_fish",
+            new Item(new FabricItemSettings().food(ModFoodComponents.LAVA_FISH).fireproof().maxCount(16)));
+    public static final Item MAGMA_FISH = registerItem("magma_fish",
+            new Item(new FabricItemSettings().food(ModFoodComponents.MAGMA_FISH).fireproof().maxCount(16)));
+    public static final Item FIRE_FISH = registerItem("fire_fish",
+            new Item(new FabricItemSettings().food(ModFoodComponents.FIRE_FISH).fireproof().maxCount(16)));
 
     public static final Item NETHER_RUBY_PICKAXE = registerItem("nether_ruby_pickaxe",
             new PickaxeItem(ModToolMaterial.NETHER_RUBY, 3, 2.0f, new FabricItemSettings().fireproof()));
@@ -166,33 +176,51 @@ public class ModItems {
     public static final Item FIRERITE_BOOTS = registerItem("firerite_boots",
             new ArmorItem(ModArmorMaterials.FIRERITE, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
-    public static final Item DEMON_SPAWN_EGG = registerItem("demon_spawn_egg",
-            new SpawnEggItem(ModEntities.DEMON, 0x7A0000, 0xFF3C00, new FabricItemSettings()));
-
-    public static final Item MALFURYX_SPAWN_EGG = registerItem("malfuryx_spawn_egg",
-            new SpawnEggItem(ModEntities.MALFURYX, 0x101010, 0x7A0B7A, new FabricItemSettings()));
-
-    public static final Item PYERLING_WYRN_SPAWN_EGG = registerItem("pyerling_wyrn_spawn_egg",
-            new SpawnEggItem(ModEntities.PYERLING_WYRN, 0xC1440A, 0xFFD12C, new FabricItemSettings()));
-
-    public static final Item OBSIDIAN_GHAST_SPAWN_EGG = registerItem("obsidian_ghast_spawn_egg",
-            new SpawnEggItem(ModEntities.OBSIDIAN_GHAST, 0x2B2B2B, 0x8A0000, new FabricItemSettings()));
-
-    public static final Item INFERNAL_HOARDE_SPAWN_EGG = registerItem("infernal_hoarde_spawn_egg",
-            new SpawnEggItem(ModEntities.INFERNAL_HOARDE, 0xA52C0A, 0xE3B800, new FabricItemSettings()));
 
     public static final Item INFERNAL_EYE_SPAWN_EGG = registerItem("infernal_eye_spawn_egg",
             new SpawnEggItem(ModEntities.INFERNAL_EYE, 0x400000, 0xF3E000, new FabricItemSettings()));
-
+    public static final Item PYERLING_WYRN_SPAWN_EGG = registerItem("pyerling_wyrn_spawn_egg",
+            new SpawnEggItem(ModEntities.PYERLING_WYRN, 0xC1440A, 0xFFD12C, new FabricItemSettings()));
+    public static final Item INFERNAL_PHANTOM_SPAWN_EGG = registerItem("infernal_phantom_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_PHANTOM, 0x3A0D0D, 0xE65C2C, new FabricItemSettings()));
     public static final Item EMBER_HUND_SPAWN_EGG = registerItem("ember_hund_spawn_egg",
             new SpawnEggItem(ModEntities.EMBER_HUND, 0x5C1C00, 0xFF6B00, new FabricItemSettings()));
 
+
+    public static final Item LAVA_FISH_SPAWN_EGG = registerItem("lava_fish_spawn_egg",
+            new SpawnEggItem(ModEntities.LAVA_FISH, 0xD32F2F, 0xFF9800, new FabricItemSettings()));
+    public static final Item MAGMA_FISH_SPAWN_EGG = registerItem("magma_fish_spawn_egg",
+            new SpawnEggItem(ModEntities.MAGMA_FISH,  0x4B2E24, 0xFF6F00, new FabricItemSettings()));
+    public static final Item FIRE_FISH_SPAWN_EGG = registerItem("fire_fish_spawn_egg",
+            new SpawnEggItem(ModEntities.FIRE_FISH,  0xFF6F00, 0xFFD54F, new FabricItemSettings()));
+    public static final Item MAGMA_DOLPHIN_SPAWN_EGG = registerItem("magma_dolphin_spawn_egg",
+            new SpawnEggItem(ModEntities.MAGMA_DOLPHIN,  0xFF3C00, 0x7A1A00, new FabricItemSettings()));
+
+
+    public static final Item DEMON_SPAWN_EGG = registerItem("demon_spawn_egg",
+            new SpawnEggItem(ModEntities.DEMON, 0x7A0000, 0xFF3C00, new FabricItemSettings()));
+    public static final Item MALFURYX_SPAWN_EGG = registerItem("malfuryx_spawn_egg",
+            new SpawnEggItem(ModEntities.MALFURYX, 0x101010, 0x7A0B7A, new FabricItemSettings()));
+    public static final Item OBSIDIAN_GHAST_SPAWN_EGG = registerItem("obsidian_ghast_spawn_egg",
+            new SpawnEggItem(ModEntities.OBSIDIAN_GHAST, 0x2B2B2B, 0x8A0000, new FabricItemSettings()));
+    public static final Item INFERNAL_HOARDE_SPAWN_EGG = registerItem("infernal_hoarde_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_HOARDE, 0xA52C0A, 0xE3B800, new FabricItemSettings()));
+    public static final Item INFERNO_ZOMBIE_SPAWN_EGG = registerItem("inferno_zombie_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNO_ZOMBIE, 0x331C1C, 0x552000, new FabricItemSettings()));
+    public static final Item FLAME_SKELETON_SPAWN_EGG = registerItem("flame_skeleton_spawn_egg",
+            new SpawnEggItem(ModEntities.FLAME_SKELETON, 0xB32C00, 0xFF8C1A, new FabricItemSettings()));
+    public static final Item MAGMA_CREEPER_SPAWN_EGG = registerItem("magma_creeper_spawn_egg",
+            new SpawnEggItem(ModEntities.MAGMA_CREEPER, 0x4A1A0B, 0xFF4500, new FabricItemSettings()));
+    public static final Item INFERNO_ENDERMAN_SPAWN_EGG = registerItem("inferno_enderman_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNO_ENDERMAN, 0x1A0B0B, 0xFF3C00, new FabricItemSettings()));
+    public static final Item MAGMA_STRIDER_SPAWN_EGG = registerItem("magma_strider_spawn_egg",
+            new SpawnEggItem(ModEntities.MAGMA_STRIDER, 0x4A1B00, 0xFF3C00, new FabricItemSettings()));
+    public static final Item EMBER_SERPENT_SPAWN_EGG = registerItem("ember_serpent_spawn_egg",
+            new SpawnEggItem(ModEntities.EMBER_SERPENT,  0x8B0000, 0xFF6600, new FabricItemSettings()));
     public static final Item INFERNUM_HEROBRINE_SPAWN_EGG = registerItem("infernum_herobrine_spawn_egg",
             new SpawnEggItem(ModEntities.INFERNUM_HEROBRINE, 0x3A0D0D, 0xC90000, new FabricItemSettings()));
-
     public static final Item INFERNAL_BEAST_SPAWN_EGG = registerItem("infernal_beast_spawn_egg",
             new SpawnEggItem(ModEntities.INFERNAL_BEAST, 0x8B1A1A, 0xFF8200, new FabricItemSettings()));
-
     public static final Item INFERNUM_SPAWN_EGG = registerItem("infernum_spawn_egg",
             new SpawnEggItem(ModEntities.INFERNUM, 0x0D0D0D, 0xFF2400, new FabricItemSettings()));
 

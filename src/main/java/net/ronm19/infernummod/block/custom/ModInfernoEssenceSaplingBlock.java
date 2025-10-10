@@ -1,6 +1,7 @@
 package net.ronm19.infernummod.block.custom;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +15,6 @@ public class ModInfernoEssenceSaplingBlock extends SaplingBlock {
 
     @Override
     protected boolean canPlantOnTop( BlockState floor, BlockView world, BlockPos pos ) {
-        return floor.isOf(ModBlocks.INFERNAL_GRASS_BLOCK) || floor.isOf(ModBlocks.INFERNAL_DIRT_BLOCK) || floor.isOf(ModBlocks.ASH_BLOCK);
+        return floor.isOf(ModBlocks.INFERNAL_GRASS_BLOCK) || floor.isOf(ModBlocks.INFERNAL_DIRT_BLOCK) || floor.isOf(ModBlocks.ASH_BLOCK) || floor.isOf(Blocks.GRASS_BLOCK) || floor.isOf(Blocks.DIRT);
     }
 }

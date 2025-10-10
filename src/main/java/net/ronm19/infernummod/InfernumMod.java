@@ -2,26 +2,24 @@ package net.ronm19.infernummod;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.block.ModBlocks;
+import net.ronm19.infernummod.client.particle.ModParticles;
 import net.ronm19.infernummod.effect.ModEffects;
 import net.ronm19.infernummod.enchantment.ModEnchantments;
 import net.ronm19.infernummod.entity.ModBoats;
 import net.ronm19.infernummod.entity.ModEntities;
-import net.ronm19.infernummod.entity.client.DemonRenderer;
-import net.ronm19.infernummod.entity.client.MalfuryxRenderer;
-import net.ronm19.infernummod.entity.custom.DemonEntity;
-import net.ronm19.infernummod.entity.custom.MalfuryxEntity;
 import net.ronm19.infernummod.item.ModItemGroups;
 import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.potion.ModPotions;
 import net.ronm19.infernummod.sound.ModSounds;
+import net.ronm19.infernummod.util.ModLootTableModifiers;
 import net.ronm19.infernummod.util.ModRegistries;
+import net.ronm19.infernummod.world.biome.ModBiomes;
 import net.ronm19.infernummod.world.gen.ModWorldGeneration;
 import net.ronm19.infernummod.world.tree.ModFoliagePlacerTypes;
 import net.ronm19.infernummod.world.tree.ModTrunkPlacerTypes;
@@ -49,6 +47,10 @@ public class InfernumMod implements ModInitializer {
         ModEffects.registerEffects();
         ModPotions.registerPotions();
 
+        ModParticles.registerParticles();
+
+        ModLootTableModifiers.modifyLootTables();
+
         ModTrunkPlacerTypes.register();
         ModFoliagePlacerTypes.register();
 
@@ -69,14 +71,13 @@ public class InfernumMod implements ModInitializer {
         ModWorldGeneration.generateModWorldGen();
 
         CustomPortalBuilder.beginPortal()
-                .frameBlock(ModBlocks.ABYSSIUM_STONE)
+                .frameBlock(ModBlocks.ABYSSIUM_STONE_BLOCK)
                 .lightWithItem(ModItems.FLAME_STAFF)
                 .destDimID(new Identifier(InfernumMod.MOD_ID, "abyssium"))
                 .tintColor(0x3b0f5c)
                 .registerPortal();
 
     }
-
 
 
 }

@@ -12,10 +12,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.ronm19.infernummod.InfernumMod;
-import net.ronm19.infernummod.block.custom.AshBlock;
-import net.ronm19.infernummod.block.custom.BlazebloomBlock;
-import net.ronm19.infernummod.block.custom.ModInfernoEssenceSaplingBlock;
-import net.ronm19.infernummod.block.custom.RawFireriteBlock;
+import net.ronm19.infernummod.block.custom.*;
 import net.ronm19.infernummod.world.tree.InfernoEssenceSaplingGenerator;
 
 import static net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings.copyOf;
@@ -63,10 +60,15 @@ public class ModBlocks {
 
     public static final Block ASH_BLOCK = registerBlock("ash_block",
             new AshBlock(copyOf(Blocks.GRAVEL).sounds(BlockSoundGroup.GRAVEL).strength(1.0F, 3.0F).ticksRandomly().requiresTool()));
-    public static final Block ABYSSIUM_STONE = registerBlock("abyssium_stone",
+    public static final Block ABYSSIUM_STONE_BLOCK = registerBlock("abyssium_stone_block",
             new Block(copyOf(Blocks.OBSIDIAN).sounds(BlockSoundGroup.MANGROVE_ROOTS).strength(5.0F, 4.0F).requiresTool().luminance(10)));
     public static final Block INFERNAL_RUNE_BLOCK = registerBlock("infernal_rune_block",
-            new Block(copyOf(Blocks.SPAWNER).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 4.0F).requiresTool().luminance(10)));
+            new InfernalRuneBlock(copyOf(Blocks.SPAWNER).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 4.0F).requiresTool().luminance(10)));
+
+    public static final Block INFERNAL_OBSIDIAN_BLOCK = registerBlock("infernal_obsidian_block",
+            new Block(copyOf(Blocks.OBSIDIAN).sounds(BlockSoundGroup.STONE)));
+    public static final Block INFERNAL_EYE_STATUE_BLOCK = registerBlock("infernal_eye_statue_block",
+            new InfernalEyeStatueBlock(copyOf(Blocks.STONE).sounds(BlockSoundGroup.DRIPSTONE_BLOCK).ticksRandomly()));
 
     public static final Block EMBERSTONE_ORE = registerBlock("emberstone_ore",
             new ExperienceDroppingBlock(copyOf(Blocks.GOLD_ORE).strength(3f), UniformIntProvider.create(3, 5)));

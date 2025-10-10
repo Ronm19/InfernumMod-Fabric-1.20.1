@@ -43,7 +43,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.MOLTEN_STONE_BLOCK);
         addDrop(ModBlocks.ASH_BLOCK, copperLikeOreDrops(ModBlocks.ASH_BLOCK, ModItems.ASH_DUST, UniformLootNumberProvider.create(1.0F, 2.0F)));
 
-        addDrop(ModBlocks.ABYSSIUM_STONE);
+        addDrop(ModBlocks.ABYSSIUM_STONE_BLOCK);
         addDrop(ModBlocks.INFERNAL_RUNE_BLOCK);
 
         addDrop(ModBlocks.EMBERSTONE_ORE, copperLikeOreDrops(ModBlocks.EMBERSTONE_ORE, ModItems.RAW_EMBERSTONE, UniformLootNumberProvider.create(2.0F, 6.0F)));
@@ -166,6 +166,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.INFERNAL_GRASS_BLOCK);
         addDrop(ModBlocks.INFERNAL_DIRT_BLOCK);
+
+        addDrop(ModBlocks.INFERNAL_OBSIDIAN_BLOCK);
+        addDrop(ModBlocks.INFERNAL_EYE_STATUE_BLOCK);
     }
 
     public LootTable.Builder copperLikeOreDrops( Block drop, Item item, UniformLootNumberProvider uniformLootNumberProvider ) {

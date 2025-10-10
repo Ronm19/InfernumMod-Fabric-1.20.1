@@ -8,6 +8,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
@@ -90,7 +91,7 @@ public class InfernalHoardeEntity extends HostileEntity implements Monster {
         // Targeting goals
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true, true)); // Aggro on players
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, VillagerEntity.class, true, true));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PyerlingWyrnEntity.class, true, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, TameableEntity.class, true, true));
         this.targetSelector.add(3, new RevengeGoal(this).setGroupRevenge(InfernalHoardeEntity.class)); // Attack back if hurt
     }
 

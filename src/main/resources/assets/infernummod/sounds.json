@@ -5,12 +5,6 @@
       "infernummod:infernal_beast_ambient"
     ]
   },
-  "infernal_beast_hurt": {
-    "subtitle": "sounds.infernummod.infernal_beast_hurt",
-    "sounds": [
-      "infernummod:infernal_beast_hurt"
-    ]
-  },
   "infernal_beast_step": {
     "subtitle": "sounds.infernummod.infernal_beast_step",
     "sounds": [

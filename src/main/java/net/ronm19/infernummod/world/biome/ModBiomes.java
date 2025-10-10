@@ -1,43 +1,33 @@
 package net.ronm19.infernummod.world.biome;
 
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.minecraft.client.sound.MusicType;
-import net.minecraft.client.sound.SoundSystem;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.*;
 import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
-import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.ronm19.infernummod.InfernumMod;
-import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.entity.ModEntities;
-import net.ronm19.infernummod.world.ModPlacedFeatures;
 
-import static com.ibm.icu.lang.UCharacter.GraphemeClusterBreak.T;
+import static java.lang.runtime.ObjectMethods.bootstrap;
 
 public class ModBiomes {
     public static final RegistryKey<Biome> INFERNAL = RegistryKey.of(RegistryKeys.BIOME,
             new Identifier(InfernumMod.MOD_ID, "infernal"));
-
 
     public static void boostrap( Registerable<Biome> context ) {
         context.register(INFERNAL, infernalBiome(context));
     }
 
 
-    public static void globalOverworldGeneration( GenerationSettings.LookupBackedBuilder builder ) {
+        public static void globalOverworldGeneration( GenerationSettings.LookupBackedBuilder builder ) {
         DefaultBiomeFeatures.addLandCarvers(builder);
         DefaultBiomeFeatures.addAmethystGeodes(builder);
         DefaultBiomeFeatures.addDungeons(builder);
@@ -53,9 +43,25 @@ public class ModBiomes {
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.DEMON, 50, 2, 6)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.OBSIDIAN_GHAST, 50, 2, 6)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_HOARDE, 50, 1, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNO_ZOMBIE, 50, 1, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.FLAME_SKELETON, 50, 2, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_STRIDER, 50, 2, 7)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_CREEPER, 50, 2, 7)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.EMBER_SERPENT, 50, 2, 7)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNO_ENDERMAN, 50, 2, 6)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_BEAST, 50, 1, 4)); // more frequent
 
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PYERLING_WYRN, 50, 2, 6)); // more frequent
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_EYE, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.EMBER_HUND, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_PHANTOM, 50, 2, 6));
+
+        spawnBuilder.spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(ModEntities.LAVA_FISH, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_FISH, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(ModEntities.FIRE_FISH, 50, 2, 6));
+
+        spawnBuilder.spawn(SpawnGroup.WATER_CREATURE, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_DOLPHIN, 50, 2, 6));
+
 
         // Terrain generation
         GenerationSettings.LookupBackedBuilder biomeBuilder =
@@ -65,8 +71,7 @@ public class ModBiomes {
         globalOverworldGeneration(biomeBuilder);
         DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
         DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
-        DefaultBiomeFeatures.addNetherMineables(biomeBuilder); // extra volcanic feel
-
+        DefaultBiomeFeatures.addNetherMineables(biomeBuilder);// extra volcanic feel
         // Vegetation — corrupted, minimal// sparse weird plants
 
         DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
@@ -79,14 +84,16 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .spawnSettings(spawnBuilder.build())
                 .effects((new BiomeEffects.Builder())
-                        .waterColor(0x9e0b0f)      // blood-red water
-                        .waterFogColor(0x4a0505)   // deep crimson fog
-                        .skyColor(0x3d0c0c)        // dark hellish sky
-                        .fogColor(0x1a0505)        // oppressive fog
+                        .waterFogColor(0x5e0b0b)   // richer crimson fog, more visible depth underwater
+                        .waterColor(0x8f1e1e)      // vivid molten red on surface water
+                        .skyColor(0x2d0707)        // deeper maroon sky to give sunsets a fiery glow
+                        .fogColor(0x220606)     // oppressive fog
                         .grassColor(0x5c1010)      // scorched grass
                         .foliageColor(0x3a0b0b)    // dead foliage
                         .moodSound(BiomeMoodSound.CAVE)
-                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_END)) // darker music
+                        .music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_CRIMSON_FOREST)) // darker music
                         .build()).build();
     }
 }
+
+

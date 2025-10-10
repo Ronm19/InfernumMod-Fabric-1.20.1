@@ -1,6 +1,7 @@
 package net.ronm19.infernummod.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -32,6 +33,13 @@ public class ModTags {
 
         private static TagKey<Item> createCommonItemTag(String name) {
             return TagKey.of(RegistryKeys.ITEM, new Identifier("c", name));
+        }
+    }
+
+    public static class Entity {
+
+        private static TagKey<EntityType<?>> createEntityTypeTag(String name) {
+            return TagKey.of(RegistryKeys.ENTITY_TYPE, new Identifier(InfernumMod.MOD_ID, name));
         }
     }
 }

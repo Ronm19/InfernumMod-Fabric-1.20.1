@@ -6,10 +6,12 @@
     "BrewingRecipeRegistryMixin",
     "ExampleMixin",
     "FoliagePlacerTypeInvoker",
+    "LivingEntityExplosionProtectionMixin",
     "PlayerEntityMixin",
     "TrunkPlacerTypeInvoker"
   ],
   "client": [
+    "LavaFogRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -32,7 +32,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DEEPSLATE_FIRERITE_ORE);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ASH_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ABYSSIUM_STONE);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ABYSSIUM_STONE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_RUNE_BLOCK);
 
         BlockStateModelGenerator.BlockTexturePool blazePool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBlocks.BLAZE_BLOCK);
@@ -161,6 +161,9 @@ public class ModModelProvider extends FabricModelProvider {
 
         registerGrassBlock(blockStateModelGenerator, ModBlocks.INFERNAL_GRASS_BLOCK, "infernal_grass_top", "infernal_grass_side", "infernal_grass_bottom");
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_DIRT_BLOCK);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_OBSIDIAN_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_EYE_STATUE_BLOCK);
     }
 
 
@@ -171,6 +174,10 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.FIRERITE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_FIRERITE, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.LAVA_FISH, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MAGMA_FISH, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FIRE_FISH, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.EMBERSTONE, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAW_EMBERSTONE, Models.GENERATED);
@@ -257,6 +264,11 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.INFERNUM_STAFF, Models.HANDHELD);
         itemModelGenerator.register(ModItems.INFERNUM_BONE, Models.HANDHELD);
 
+        itemModelGenerator.register(ModItems.ECHO_OF_DAMNATION, Models.GENERATED);
+        itemModelGenerator.register(ModItems.INFERNAL_BEAST_HORN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BLAZE_HEART, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.CURSED_FLINT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.INFERNO_BOAT, Models.GENERATED);
         itemModelGenerator.register(ModItems.INFERNO_CHEST_BOAT, Models.GENERATED);
@@ -265,15 +277,21 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.MALFURYX_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.PYERLING_WYRN_SPAWN_EGG,
-                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.OBSIDIAN_GHAST_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.INFERNAL_HOARDE_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.INFERNAL_EYE_SPAWN_EGG,
+        itemModelGenerator.register(ModItems.INFERNO_ZOMBIE_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.EMBER_HUND_SPAWN_EGG,
+        itemModelGenerator.register(ModItems.FLAME_SKELETON_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MAGMA_CREEPER_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MAGMA_STRIDER_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.EMBER_SERPENT_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.INFERNO_ENDERMAN_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.INFERNUM_HEROBRINE_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
@@ -281,6 +299,26 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.INFERNUM_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+
+        itemModelGenerator.register(ModItems.INFERNAL_EYE_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.PYERLING_WYRN_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.INFERNAL_PHANTOM_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.EMBER_HUND_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+
+        itemModelGenerator.register(ModItems.LAVA_FISH_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MAGMA_FISH_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.FIRE_FISH_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MAGMA_DOLPHIN_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+
+
 
     }
 

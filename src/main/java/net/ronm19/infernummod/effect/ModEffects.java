@@ -23,6 +23,14 @@ public class ModEffects {
             .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED,
                     "7107DE5E-7CE8-4030-940E-514C1F160890", 0.1, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 
+    public static final StatusEffect LAVA_VISION = registerStatusEffect("lava_vision",
+            new LavaVisionEffect(StatusEffectCategory.BENEFICIAL, 0xFF4C00)
+                    .addAttributeModifier(
+                            EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                            "b8b7c95f-81cb-4e69-9cc4-778a2db87456", // random UUID
+                            0.15D, // +15% movement
+                            EntityAttributeModifier.Operation.MULTIPLY_TOTAL
+                    ));
 
 
     private static StatusEffect registerStatusEffect(String name, StatusEffect statusEffect) {

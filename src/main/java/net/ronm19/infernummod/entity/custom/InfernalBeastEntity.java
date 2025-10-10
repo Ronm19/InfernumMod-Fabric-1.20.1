@@ -14,12 +14,14 @@ import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.entity.ai.infernal_beast.InfernalBeastAttackGoal;
+import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.sound.ModSounds;
 
 public class InfernalBeastEntity extends HostileEntity implements Monster {
@@ -209,6 +211,15 @@ public class InfernalBeastEntity extends HostileEntity implements Monster {
     public boolean canTarget( LivingEntity target) {
         // All infernum creatures ignore their god
         return !(target instanceof InfernumEntity);
+    }
+
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+
+        if (!this.getWorld().isClient) {
+            this.dropStack(new ItemStack(ModItems.INFERNAL_BEAST_HORN, 1));
+        }
     }
 
 }

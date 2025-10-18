@@ -3,18 +3,20 @@ package net.ronm19.infernummod.entity.client;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.model.EndermanEntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.entity.custom.InfernoEndermanEntity;
 import net.ronm19.infernummod.entity.layer.ModModelLayers;
 
-public class InfernoEndermanRenderer extends MobEntityRenderer<InfernoEndermanEntity, InfernoEndermanModel<InfernoEndermanEntity>> {
+public class InfernoEndermanRenderer extends MobEntityRenderer<InfernoEndermanEntity, EndermanEntityModel<InfernoEndermanEntity>> {
     private static final Identifier TEXTURE = new Identifier(InfernumMod.MOD_ID, "textures/entity/inferno_enderman.png");
 
 
     public InfernoEndermanRenderer( EntityRendererFactory.Context context) {
-        super(context, new InfernoEndermanModel<>(context.getPart(ModModelLayers.INFERNO_ENDERMAN)), 0.7F);
+        super(context, new EndermanEntityModel<>(context.getPart(EntityModelLayers.ENDERMAN)), 0.7F);
     }
 
     @Override

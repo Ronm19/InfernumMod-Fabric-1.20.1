@@ -149,8 +149,8 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         AdvancementEntry theFlameStaff = Advancement.Builder.create()
                 .display(new AdvancementDisplay(
                         new ItemStack(ModItems.FLAME_STAFF),
-                        Text.literal("The Igniter of the Abyss"),
-                        Text.literal("You've found the key to summon the abyss, use it wisely."),
+                        Text.literal("The Igniter of Infernal"),
+                        Text.literal("You've found the key to summon the infernal gateway, use it wisely."),
                         new Identifier("minecraft", "textures/gui/advancements/backgrounds/nether.png"),
                         AdvancementFrame.GOAL,
                         true, true, false
@@ -160,19 +160,19 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .build(consumer, InfernumMod.MOD_ID + ":flame_staff");
 
         // Entered Abyssium
-        AdvancementEntry enteredIntoAbyssium = Advancement.Builder.create()
+        AdvancementEntry enteredIntoInfernal = Advancement.Builder.create()
                 .display(new AdvancementDisplay(
-                        new ItemStack(ModBlocks.ABYSSIUM_STONE_BLOCK),
-                        Text.literal("Entered Into the Abyss"),
-                        Text.literal("You have entered into the Abyss! Welcome to Abyssium."),
+                        new ItemStack(ModBlocks.INFERNAL_OBSIDIAN_BLOCK),
+                        Text.literal("Entered Into the Infernal"),
+                        Text.literal("You have entered into the Soul of Fire! Welcome to Infernal."),
                         new Identifier("minecraft", "textures/gui/advancements/backgrounds/nether.png"),
                         AdvancementFrame.CHALLENGE,
                         true, true, false
                 ))
-                .criterion("entered_abyssium", ChangedDimensionCriterion.Conditions.to(ModDimensions.ABYSSIUM_LEVEL_KEY))
+                .criterion("entered_infernal", ChangedDimensionCriterion.Conditions.to(ModDimensions.INFERNAL_LEVEL_KEY))
                 .parent(theFlameStaff)
                 .rewards(AdvancementRewards.Builder.experience(20))
-                .build(consumer, InfernumMod.MOD_ID + ":entered_abyssium");
+                .build(consumer, InfernumMod.MOD_ID + ":entered_infernal");
 
         // Silenced the Obsidian Wail
         AdvancementEntry silencedTheObsidianWail = Advancement.Builder.create()
@@ -188,7 +188,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         OnKilledCriterion.Conditions.createPlayerKilledEntity(
                                 Optional.of(EntityPredicate.Builder.create().type(ModEntities.OBSIDIAN_GHAST).build())
                         ))
-                .parent(enteredIntoAbyssium)
+                .parent(enteredIntoInfernal)
                 .rewards(AdvancementRewards.Builder.experience(12))
                 .build(consumer, InfernumMod.MOD_ID + ":silenced_the_obsidian_wail");
 

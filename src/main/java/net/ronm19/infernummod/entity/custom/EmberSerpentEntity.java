@@ -22,11 +22,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldView;
-import net.ronm19.infernummod.entity.ai.ember_serpent.EmberSerpentAttackGoal;
+import net.ronm19.infernummod.entity.ai.goals.ember_serpent.EmberSerpentAttackGoal;
 
 public class EmberSerpentEntity extends HostileEntity implements Monster {
 
@@ -102,6 +101,23 @@ public class EmberSerpentEntity extends HostileEntity implements Monster {
         }
     }
 
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
+    }
     // ---------------- GOALS ----------------
     @Override
     protected void initGoals() {

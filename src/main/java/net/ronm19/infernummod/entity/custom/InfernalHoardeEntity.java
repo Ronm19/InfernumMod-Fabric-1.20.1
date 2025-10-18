@@ -15,8 +15,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.entity.ai.infernal_hoarde.FollowGroupGoal;
-import net.ronm19.infernummod.entity.ai.infernal_hoarde.InfernalHoardeAttackGoal;
+import net.ronm19.infernummod.entity.ai.goals.infernal_hoarde.FollowGroupGoal;
+import net.ronm19.infernummod.entity.ai.goals.infernal_hoarde.InfernalHoardeAttackGoal;
 
 
 public class InfernalHoardeEntity extends HostileEntity implements Monster {
@@ -132,7 +132,19 @@ public class InfernalHoardeEntity extends HostileEntity implements Monster {
 
     @Override
     public boolean canTarget(LivingEntity target) {
-        // All infernum creatures ignore their god
-        return !(target instanceof InfernumEntity);
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
     }
 }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:overworld",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "minecraft:overworld",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "infernummod:infernal",
+          "parameters": {
+            "temperature": 2,
+            "humidity": 0.8,
+            "continentalness": 1,
+            "erosion": 1,
+            "weirdness": 1,
+            "depth": 1,
+            "offset": 0
+          }
+        }
+      ]
+    }
+  }
+}

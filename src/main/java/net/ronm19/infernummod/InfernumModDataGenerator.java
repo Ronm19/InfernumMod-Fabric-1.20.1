@@ -22,6 +22,7 @@ public class InfernumModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModRecipeProvider::new);
         pack.addProvider(ModWorldGenerator::new);
         pack.addProvider(ModAdvancementProvider::new);
+        pack.addProvider(ModPOITagProvider::new);
 	}
 
     @Override

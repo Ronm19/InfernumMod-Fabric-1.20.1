@@ -24,8 +24,18 @@ public class ModItemGroups {
                         entries.add(ModItems.CURSED_FLINT);
                         entries.add(ModItems.INFERNUM_BONE);
                         entries.add(ModItems.ASH_DUST);
+                        entries.add(ModItems.ASH_EGG);
                         entries.add(ModItems.FLAME_STAFF);
                         entries.add(ModItems.INFERNUM_STAFF);
+                        entries.add(ModItems.INFERNUM_HEROBRINE_RELIC);
+                        entries.add(ModItems.INFERNAL_GEM);
+                        entries.add(ModItems.EMBER_ASH);
+                        entries.add(ModItems.INFERNAL_ROYAL_STAFF);
+                        entries.add(ModItems.INFERNUM_SWORD);
+
+
+
+                        entries.add(ModItems.LAVAGER_ARROW);
 
                         entries.add(ModItems.INFERNAL_BEAST_HORN);
                         entries.add(ModItems.ECHO_OF_DAMNATION);
@@ -34,6 +44,7 @@ public class ModItemGroups {
                         entries.add(ModItems.LAVA_FISH);
                         entries.add(ModItems.MAGMA_FISH);
                         entries.add(ModItems.FIRE_FISH);
+                        entries.add(ModItems.INFERNAL_APPLE);
 
                         entries.add(ModItems.INFERNUM_PAXEL);
                         entries.add(ModItems.INFERNUM_DAGGER);
@@ -125,7 +136,16 @@ public class ModItemGroups {
                         entries.add(ModItems.OBSIDIAN_GHAST_SPAWN_EGG);
                         entries.add(ModItems.INFERNAL_HOARDE_SPAWN_EGG);
                         entries.add(ModItems.INFERNO_ZOMBIE_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_ZOMBILAGER_SPAWN_EGG);
                         entries.add(ModItems.FLAME_SKELETON_SPAWN_EGG);
+                        entries.add(ModItems.LAVA_WITCH_SPAWN_EGG);
+                        entries.add(ModItems.LAVA_SLIME_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_VEX_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_VOKER_SPAWN_EGG);
+                        entries.add(ModItems.LAVACATOR_SPAWN_EGG);
+                        entries.add(ModItems.LAVAGER_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_WRAITH_SPAWN_EGG);
+                        entries.add(ModItems.MAGMA_SPIDER_SPAWN_EGG);
                         entries.add(ModItems.INFERNO_ENDERMAN_SPAWN_EGG);
                         entries.add(ModItems.MAGMA_STRIDER_SPAWN_EGG);
                         entries.add(ModItems.EMBER_SERPENT_SPAWN_EGG);
@@ -134,16 +154,26 @@ public class ModItemGroups {
                         entries.add(ModItems.INFERNUM_HEROBRINE_SPAWN_EGG);
                         entries.add(ModItems.INFERNUM_SPAWN_EGG);
 
+                        entries.add(ModItems.INFERNAL_KNIGHT_SPAWN_EGG);
                         entries.add(ModItems.INFERNAL_EYE_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_HORSE_SPAWN_EGG);
+                        entries.add(ModItems.FLAME_HORSE_SPAWN_EGG);
+                        entries.add(ModItems.ASHBONE_HORSE_SPAWN_EGG);
                         entries.add(ModItems.PYERLING_WYRN_SPAWN_EGG);
                         entries.add(ModItems.INFERNAL_PHANTOM_SPAWN_EGG);
                         entries.add(ModItems.EMBER_HUND_SPAWN_EGG);
+                        entries.add(ModItems.VOLCARNIS_SPAWN_EGG);
+                        entries.add(ModItems.SCORCHED_WOOLIE_SPAWN_EGG);
+                        entries.add(ModItems.ASH_CHICKEN_SPAWN_EGG);
+                        entries.add(ModItems.EMBER_BOAR_SPAWN_EGG);
 
                         entries.add(ModItems.LAVA_FISH_SPAWN_EGG);
                         entries.add(ModItems.MAGMA_FISH_SPAWN_EGG);
                         entries.add(ModItems.FIRE_FISH_SPAWN_EGG);
                         entries.add(ModItems.MAGMA_DOLPHIN_SPAWN_EGG);
 
+
+                        // ---------------------------- BLOCKS ------------------------------------
 
                         entries.add(ModBlocks.NETHER_RUBY_BLOCK);
                         entries.add(ModBlocks.RAW_NETHER_RUBY_BLOCK);
@@ -270,6 +300,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ASH_BLOCK);
                         entries.add(ModBlocks.ABYSSIUM_STONE_BLOCK);
                         entries.add(ModBlocks.INFERNAL_RUNE_BLOCK);
+                        entries.add(ModBlocks.CHARRED_WOOL_BLOCK);
+                        entries.add(ModBlocks.INFERNAL_FORGE_BLOCK);
+                        entries.add(ModBlocks.ROYAL_FIRE_BLOCK);
 
                         entries.add(ModBlocks.BLAZEBLOOM);
 

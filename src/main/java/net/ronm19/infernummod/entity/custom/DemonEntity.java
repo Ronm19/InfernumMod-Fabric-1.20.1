@@ -24,7 +24,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.api.interfaces.ItemEquippable;
-import net.ronm19.infernummod.entity.ai.demon.DemonAttackGoal;
+import net.ronm19.infernummod.entity.ai.goals.demon.DemonAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
 import net.minecraft.entity.damage.DamageSource;
 
@@ -121,11 +121,21 @@ public class DemonEntity extends HostileEntity implements Monster, ItemEquippabl
 
     @Override
     public boolean canTarget(LivingEntity target) {
-        // All infernum creatures ignore their god
-        return !(target instanceof InfernumEntity);
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
     }
-
-
 
     @Override
     protected void initGoals() {

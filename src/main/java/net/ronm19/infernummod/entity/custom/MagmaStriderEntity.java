@@ -1,7 +1,6 @@
 package net.ronm19.infernummod.entity.custom;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.*;
@@ -15,12 +14,12 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.IronGolemEntity;
+import net.minecraft.entity.passive.StriderEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -31,7 +30,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import net.ronm19.infernummod.entity.ai.magma_strider.MagmaStriderAttackGoal;
+import net.ronm19.infernummod.entity.ai.goals.magma_strider.MagmaStriderAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
 
 public class MagmaStriderEntity extends HostileEntity implements Monster {
@@ -287,5 +286,23 @@ public class MagmaStriderEntity extends HostileEntity implements Monster {
             } while (world.getFluidState(m).isIn(FluidTags.LAVA));
             return world.getBlockState(m).isAir();
         }
+    }
+
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
     }
 }

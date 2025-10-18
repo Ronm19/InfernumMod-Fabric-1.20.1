@@ -1,22 +1,15 @@
 package net.ronm19.infernummod.world.biome;
 
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.*;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeEffects;
-import net.minecraft.world.biome.GenerationSettings;
-import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.entity.ModEntities;
-
-import static java.lang.runtime.ObjectMethods.bootstrap;
 
 public class ModBiomes {
     public static final RegistryKey<Biome> INFERNAL = RegistryKey.of(RegistryKeys.BIOME,
@@ -27,7 +20,7 @@ public class ModBiomes {
     }
 
 
-        public static void globalOverworldGeneration( GenerationSettings.LookupBackedBuilder builder ) {
+    public static void globalOverworldGeneration( GenerationSettings.LookupBackedBuilder builder ) {
         DefaultBiomeFeatures.addLandCarvers(builder);
         DefaultBiomeFeatures.addAmethystGeodes(builder);
         DefaultBiomeFeatures.addDungeons(builder);
@@ -42,9 +35,16 @@ public class ModBiomes {
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MALFURYX, 50, 2, 6)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.DEMON, 50, 2, 6)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.OBSIDIAN_GHAST, 50, 2, 6)); // more frequent
-        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_HOARDE, 50, 1, 4)); // more frequent
-        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNO_ZOMBIE, 50, 1, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_HOARDE, 50, 2, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNO_ZOMBIE, 50, 2, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_ZOMBILAGER, 50, 2, 5)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.FLAME_SKELETON, 50, 2, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_WRAITH, 50, 2, 4)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_VEX, 50, 2, 5)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.LAVACATOR, 50, 3, 8)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.LAVAGER, 50, 3, 8)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.LAVA_WITCH, 50, 3, 8)); // more frequent
+        spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.LAVA_SLIME, 50, 4, 8)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_STRIDER, 50, 2, 7)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_CREEPER, 50, 2, 7)); // more frequent
         spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(ModEntities.EMBER_SERPENT, 50, 2, 7)); // more frequent
@@ -53,7 +53,14 @@ public class ModBiomes {
 
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.PYERLING_WYRN, 50, 2, 6)); // more frequent
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_EYE, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_HORSE, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.FLAME_HORSE, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.ASHBONE_HORSE, 50, 2, 6));
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.EMBER_HUND, 50, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.VOLCARNIS, 40, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.SCORCHED_WOOLIE, 40, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.ASH_CHICKEN, 40, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.EMBER_BOAR, 70, 3, 9));
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_PHANTOM, 50, 2, 6));
 
         spawnBuilder.spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(ModEntities.LAVA_FISH, 50, 2, 6));
@@ -95,5 +102,8 @@ public class ModBiomes {
                         .build()).build();
     }
 }
+
+
+
 
 

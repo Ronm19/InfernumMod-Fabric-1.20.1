@@ -20,7 +20,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.entity.ai.infernal_beast.InfernalBeastAttackGoal;
+import net.ronm19.infernummod.entity.ai.goals.infernal_beast.InfernalBeastAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.sound.ModSounds;
 
@@ -208,9 +208,21 @@ public class InfernalBeastEntity extends HostileEntity implements Monster {
     }
 
     @Override
-    public boolean canTarget( LivingEntity target) {
-        // All infernum creatures ignore their god
-        return !(target instanceof InfernumEntity);
+    public boolean canTarget(LivingEntity target) {
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
     }
 
     @Override

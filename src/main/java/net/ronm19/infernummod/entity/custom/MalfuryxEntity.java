@@ -249,10 +249,21 @@ public class MalfuryxEntity extends HostileEntity implements AttackingEntity {
 
     @Override
     public boolean canTarget(LivingEntity target) {
-        // All infernum creatures ignore their god
-        return !(target instanceof InfernumEntity);
-    }
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
 
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
+    }
 
     // --- COMBAT & SOUNDS ---
     @Override

@@ -86,7 +86,6 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG)
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
 
-
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.NETHER_RUBY_BLOCK)
                 .add(ModBlocks.RAW_NETHER_RUBY_BLOCK)
@@ -136,8 +135,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
                 .add(ModBlocks.DEEPSLATE_CINDERSTONE_ORE)
                 .add(ModBlocks.STONE_INFERNIUM_ORE)
-                .add(ModBlocks.INFERNAL_RUNE_BLOCK);
+                .add(ModBlocks.INFERNAL_RUNE_BLOCK)
 
+                .add(ModBlocks.INFERNAL_FORGE_BLOCK)
+                .add(ModBlocks.INFERNAL_OBSIDIAN_BLOCK)
+                .add(ModBlocks.INFERNAL_EYE_STATUE_BLOCK)
+                .add(ModBlocks.ROYAL_FIRE_BLOCK);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.NETHER_RUBY_BLOCK)
@@ -187,7 +190,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.INFERNAL_STONE_SLAB)
 
                 .add(ModBlocks.DEEPSLATE_CINDERSTONE_ORE)
-                .add(ModBlocks.STONE_INFERNIUM_ORE);
+                .add(ModBlocks.STONE_INFERNIUM_ORE)
+
+                .add(ModBlocks.INFERNAL_FORGE_BLOCK)
+                .add(ModBlocks.INFERNAL_OBSIDIAN_BLOCK)
+                .add(ModBlocks.INFERNAL_EYE_STATUE_BLOCK)
+                .add(ModBlocks.ROYAL_FIRE_BLOCK);
 
         getOrCreateTagBuilder(BlockTags.FENCES)
                 .add(ModBlocks.NETHER_RUBY_FENCE)
@@ -234,10 +242,28 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.INFERNAL_GRASS_BLOCK)
                 .add(ModBlocks.INFERNAL_DIRT_BLOCK);
 
+        getOrCreateTagBuilder(BlockTags.WOOL)
+                .add(ModBlocks.CHARRED_WOOL_BLOCK);
+
+        getOrCreateTagBuilder(BlockTags.DOORS)
+                .add(ModBlocks.INFERNO_ESSENCE_DOOR)
+                .add(ModBlocks.BLAZE_DOOR)
+                .add(ModBlocks.EMBERSTONE_DOOR)
+                .add(ModBlocks.INFERNAL_BRICKS_STONE_DOOR)
+                .add(ModBlocks.FIRERITE_DOOR)
+                .add(ModBlocks.MOLTEN_BRICKS_DOOR)
+                .add(ModBlocks.NETHER_RUBY_DOOR)
+                .add(ModBlocks.INFERNAL_STONE_DOOR);
+
+        getOrCreateTagBuilder(BlockTags.INVALID_SPAWN_INSIDE)
+                .add(ModBlocks.ASH_BLOCK);
+
         getOrCreateTagBuilder(ModTags.Blocks.INFERNUM_PAXEL_MINEABLE)
                 .forceAddTag(BlockTags.PICKAXE_MINEABLE)
                 .forceAddTag(BlockTags.AXE_MINEABLE)
                 .forceAddTag(BlockTags.SHOVEL_MINEABLE);
+
+
 
 
     }

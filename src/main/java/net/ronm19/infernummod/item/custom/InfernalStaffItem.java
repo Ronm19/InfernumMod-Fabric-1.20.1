@@ -47,7 +47,7 @@ public class InfernalStaffItem extends Item {
                 double rotatedZ = look.x * sin + look.z * cos;
 
                 // --- Vanilla Wither Skull, accurate and safe ---
-                WitherSkullEntity skull = new WitherSkullEntity(serverWorld, user, rotatedX, look.y, rotatedZ);
+                InfernalSkullEntity skull = new InfernalSkullEntity(serverWorld, user, rotatedX, look.y, rotatedZ);
 
                 // Spawn slightly forward to avoid hitting self
                 Vec3d forward = look.normalize().multiply(1.5);

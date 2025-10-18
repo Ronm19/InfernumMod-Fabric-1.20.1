@@ -3,7 +3,9 @@ package net.ronm19.infernummod.block.custom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
@@ -127,21 +129,23 @@ public class InfernalEyeStatueBlock extends Block {
                     pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5,
                     300, 2.0, 1.0, 2.0, 0.03);
 
-            // ---- Spawn Infernum instantly ----
+            // ---- Spawn Infernum with EMERGING state ----
             InfernumEntity infernum = ModEntities.INFERNUM.create(serverWorld);
             if (infernum != null) {
-                infernum.refreshPositionAndAngles(
-                        pos.getX() + 0.5,
-                        pos.getY() + 1,
-                        pos.getZ() + 0.5,
-                        0, 0);
+                infernum.refreshPositionAndAngles(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, 0);
+                infernum.initialize(serverWorld, serverWorld.getLocalDifficulty(pos), SpawnReason.TRIGGERED, null, null);
+
+                infernum.setPose(EntityPose.EMERGING);
+                infernum.playSound(SoundEvents.ENTITY_WARDEN_AGITATED, 5.0F, 1.0F);
+                infernum.getWorld().sendEntityStatus(infernum, (byte) 61); // Trigger tendril animation packet
                 serverWorld.spawnEntity(infernum);
             }
-        }
 
-        player.sendMessage(Text.literal("🔥 The Lord of Fire has awoken!"), true);
+            player.sendMessage(Text.literal("🔥 The Lord of Fire has awoken!"), true);
+        }
         return ActionResult.SUCCESS;
     }
+
 
     private boolean checkObsidianRing(World world, BlockPos center) {
         for (int dx = -2; dx <= 2; dx++) {

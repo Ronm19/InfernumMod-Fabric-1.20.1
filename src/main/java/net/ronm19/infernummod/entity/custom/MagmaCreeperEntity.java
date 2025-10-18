@@ -290,6 +290,29 @@ public class MagmaCreeperEntity extends CreeperEntity implements Monster {
         this.dataTracker.set(IGNITED, true);
     }
 
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
+    }
+
+    @Override
+    public boolean isFireImmune() {
+        return true;
+    }
+
     // ------------------- SOUNDS -------------------
     @Override
     protected SoundEvent getAmbientSound() {

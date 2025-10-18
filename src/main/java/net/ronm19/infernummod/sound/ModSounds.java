@@ -11,10 +11,11 @@ public class ModSounds {
 
 
     public static final SoundEvent INFERNAL_BEAST_AMBIENT = registerSoundEvent("infernal_beast_ambient");
-    public static final SoundEvent INFERNAL_BEAST_HURT = registerSoundEvent("infernal_beast_hurt");
     public static final SoundEvent INFERNAL_BEAST_STEP = registerSoundEvent("infernal_beast_step");
     public static final SoundEvent INFERNAL_BEAST_DEATH = registerSoundEvent("infernal_beast_death");
     public static final SoundEvent INFERNAL_BEAST_ROAR = registerSoundEvent("infernal_beast_roar");
+
+    public static final SoundEvent INFERNAL_KNIGHT_SUMMON = registerSoundEvent("infernal_knight_summon");
 
 
     private static SoundEvent registerSoundEvent(String name) {

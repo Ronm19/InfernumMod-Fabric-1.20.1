@@ -4,7 +4,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -12,10 +11,12 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.Angerable;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,17 +29,14 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.api.interfaces.AttackingEntity;
 import net.ronm19.infernummod.entity.ModEntities;
-import net.ronm19.infernummod.entity.ai.ProtectOwnerGoal;
-import net.ronm19.infernummod.entity.ai.ember_hund.EmberHundAttackGoal;
-import net.ronm19.infernummod.entity.ai.infernal_eye.InfernalEyeShootGoal;
+import net.ronm19.infernummod.entity.ai.goals.ProtectOwnerGoal;
+import net.ronm19.infernummod.entity.ai.goals.ember_hund.EmberHundAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
-import net.ronm19.infernummod.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
 
 
-public class EmberHundEntity extends TameableEntity {
+public class EmberHundEntity extends WolfEntity implements Angerable {
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
@@ -49,7 +47,7 @@ public class EmberHundEntity extends TameableEntity {
     public final AnimationState sitAnimationState = new AnimationState();
 
 
-    public EmberHundEntity( EntityType<? extends TameableEntity> entityType, World world ) {
+    public EmberHundEntity( EntityType<? extends WolfEntity> entityType, World world ) {
         super(entityType, world);
     }
 
@@ -151,7 +149,7 @@ public class EmberHundEntity extends TameableEntity {
 
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, HostileEntity.class, false));
-        this.targetSelector.add(2, new RevengeGoal(this));
+        this.targetSelector.add(2, new RevengeGoal(this).setGroupRevenge(EmberHundEntity.class));
     }
 
     @Override
@@ -217,7 +215,7 @@ public class EmberHundEntity extends TameableEntity {
     }
 
     @Override
-    public @Nullable PassiveEntity createChild( ServerWorld world, PassiveEntity entity ) {
+    public @Nullable EmberHundEntity createChild( ServerWorld world, PassiveEntity entity ) {
         return ModEntities.EMBER_HUND.create(world);
     }
 

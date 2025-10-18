@@ -23,12 +23,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.entity.ai.infernal_hoarde.FollowGroupGoal;
-import net.ronm19.infernummod.entity.ai.infernal_hoarde.InfernalHoardeAttackGoal;
-import net.ronm19.infernummod.entity.ai.inferno_zombie.InfernoZombieAttackGoal;
-import net.ronm19.infernummod.sound.ModSounds;
+import net.ronm19.infernummod.entity.ai.goals.inferno_zombie.InfernoZombieAttackGoal;
 
-public class InfernoZombieEntity extends HostileEntity implements Monster {
+public class InfernoZombieEntity extends ZombieEntity implements Monster {
 
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(InfernoZombieEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -39,7 +36,7 @@ public class InfernoZombieEntity extends HostileEntity implements Monster {
     public final AnimationState attackAnimationState = new AnimationState();
     public int attackAnimationTimeout = 0;
 
-    public InfernoZombieEntity( EntityType<? extends HostileEntity> entityType, World world ) {
+    public InfernoZombieEntity( EntityType<? extends ZombieEntity> entityType, World world ) {
         super(entityType, world);
     }
 
@@ -178,8 +175,20 @@ public class InfernoZombieEntity extends HostileEntity implements Monster {
     }
 
     @Override
-    public boolean canTarget( LivingEntity target) {
-        // All infernum creatures ignore their god
-        return !(target instanceof InfernumEntity);
+    public boolean canTarget(LivingEntity target) {
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
     }
 }

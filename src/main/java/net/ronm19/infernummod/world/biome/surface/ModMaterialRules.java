@@ -11,6 +11,8 @@ public class ModMaterialRules {
     private static final MaterialRules.MaterialRule INFERNAL_DIRT_BLOCK = makeStateRule(ModBlocks.INFERNAL_DIRT_BLOCK);
     private static final MaterialRules.MaterialRule RAW_FIRERITE_BLOCK = makeStateRule(ModBlocks.RAW_FIRERITE_BLOCK);
 
+    private static final MaterialRules.MaterialRule ASH_BLOCK = makeStateRule(ModBlocks.ASH_BLOCK);
+
 
     public static MaterialRules.MaterialRule makeInfernalRules() {
         // Surface condition: at or above water level
@@ -34,6 +36,7 @@ public class ModMaterialRules {
                 fireriteAndBricks,
                 MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, grassSurface)
         );
+
     }
 
     private static MaterialRules.MaterialRule makeStateRule(Block block) {

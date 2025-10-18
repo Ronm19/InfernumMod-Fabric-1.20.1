@@ -34,8 +34,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.entity.ModEntities;
-import net.ronm19.infernummod.entity.ai.infernal_eye.InfernalEyeShootGoal;
-import net.ronm19.infernummod.entity.ai.ProtectOwnerGoal;
+import net.ronm19.infernummod.entity.ai.goals.infernal_eye.InfernalEyeShootGoal;
+import net.ronm19.infernummod.entity.ai.goals.ProtectOwnerGoal;
 import net.ronm19.infernummod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
@@ -244,7 +244,7 @@ public class InfernalEyeEntity extends TameableEntity implements Tameable, Range
             double dy = target.getBodyY(0.5) - this.getBodyY(0.5);
             double dz = target.getZ() - this.getZ();
 
-            WitherSkullEntity skull = new WitherSkullEntity(
+            InfernalSkullEntity skull = new InfernalSkullEntity(
                     this.getWorld(),
                     this,
                     dx, dy, dz

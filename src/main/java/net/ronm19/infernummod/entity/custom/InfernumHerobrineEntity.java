@@ -16,7 +16,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
 import net.minecraft.entity.projectile.WitherSkullEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -26,10 +25,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.entity.ai.infernum_herobrine.*;
+import net.ronm19.infernummod.entity.ai.goals.infernum_herobrine.*;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class InfernumHerobrineEntity extends HostileEntity implements RangedAttackMob {
@@ -222,7 +220,7 @@ public class InfernumHerobrineEntity extends HostileEntity implements RangedAtta
         float inaccuracy = this.isEnraged() ? 0.01F : 0.03F;  // more accurate when enraged
 
         if (this.isEnraged()) {
-            WitherSkullEntity skull = new WitherSkullEntity(this.getWorld(), this, dx, dy, dz);
+            InfernalSkullEntity skull = new InfernalSkullEntity(this.getWorld(), this, dx, dy, dz);
             skull.setPos(this.getX(), this.getEyeY() - 0.2, this.getZ());
             skull.setVelocity(dx, dy, dz, velocity, inaccuracy);
             skull.setCharged(true);
@@ -286,6 +284,7 @@ public class InfernumHerobrineEntity extends HostileEntity implements RangedAtta
     @Override protected SoundEvent getHurtSound(DamageSource src) {
         return SoundEvents.ENTITY_BLAZE_HURT;
     }
+
     @Override protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_WITHER_DEATH;
     }

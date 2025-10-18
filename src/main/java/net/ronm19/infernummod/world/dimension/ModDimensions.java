@@ -17,16 +17,16 @@ import net.ronm19.infernummod.world.biome.ModBiomes;
 import java.util.OptionalLong;
 
 public class ModDimensions {
-    public static final RegistryKey<DimensionOptions> ABYSSIUM_KEY = RegistryKey.of(RegistryKeys.DIMENSION,
-            new Identifier(InfernumMod.MOD_ID, "abyssium"));
-    public static final RegistryKey<World> ABYSSIUM_LEVEL_KEY = RegistryKey.of(RegistryKeys.WORLD,
-            new Identifier(InfernumMod.MOD_ID, "abyssium"));
-    public static final RegistryKey<DimensionType> ABYSSIUM_DIM_KEY = RegistryKey.of(RegistryKeys.DIMENSION_TYPE,
-            new Identifier(InfernumMod.MOD_ID, "abyssium_type"));
+    public static final RegistryKey<DimensionOptions> INFERNAL_KEY = RegistryKey.of(RegistryKeys.DIMENSION,
+            new Identifier(InfernumMod.MOD_ID, "infernal"));
+    public static final RegistryKey<World> INFERNAL_LEVEL_KEY = RegistryKey.of(RegistryKeys.WORLD,
+            new Identifier(InfernumMod.MOD_ID, "infernal"));
+    public static final RegistryKey<DimensionType> INFERNAL_DIM_KEY = RegistryKey.of(RegistryKeys.DIMENSION_TYPE,
+            new Identifier(InfernumMod.MOD_ID, "infernal_type"));
 
 
     public static void bootstrapType(Registerable<DimensionType> context) {
-        context.register(ABYSSIUM_DIM_KEY, new DimensionType(
+        context.register(INFERNAL_DIM_KEY, new DimensionType(
                 OptionalLong.of(12000), // fixedTime
                 false, // hasSkylight
                 true, // hasCeiling

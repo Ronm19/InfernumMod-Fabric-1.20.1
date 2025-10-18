@@ -3,6 +3,8 @@ package net.ronm19.infernummod.entity.client;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
+import net.minecraft.client.render.entity.model.ZombieEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
@@ -22,7 +24,7 @@ public class InfernoZombieRenderer  extends MobEntityRenderer<InfernoZombieEntit
     }
 
     @Override
-    public void render( InfernoZombieEntity mobEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i ) {
+    public void render(InfernoZombieEntity mobEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i ) {
         super.render(mobEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 }

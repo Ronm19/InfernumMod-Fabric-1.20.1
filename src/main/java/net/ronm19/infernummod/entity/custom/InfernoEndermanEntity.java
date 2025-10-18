@@ -20,7 +20,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.mob.EndermiteEntity;
 import net.minecraft.entity.mob.Monster;
-import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
@@ -47,11 +46,9 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.RaycastContext;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.ronm19.infernummod.api.interfaces.DayLightBurnImmuneEntity;
-import net.ronm19.infernummod.entity.ai.LookAtTargetGoal;
 import net.ronm19.infernummod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
@@ -307,6 +304,24 @@ public class InfernoEndermanEntity extends EndermanEntity implements Monster, Da
                 entityAttributeInstance.addTemporaryModifier(ATTACKING_SPEED_BOOST);
             }
         }
+    }
+
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
     }
 
     protected void initDataTracker() {

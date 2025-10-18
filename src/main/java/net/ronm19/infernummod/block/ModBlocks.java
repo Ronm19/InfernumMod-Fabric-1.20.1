@@ -64,6 +64,13 @@ public class ModBlocks {
             new Block(copyOf(Blocks.OBSIDIAN).sounds(BlockSoundGroup.MANGROVE_ROOTS).strength(5.0F, 4.0F).requiresTool().luminance(10)));
     public static final Block INFERNAL_RUNE_BLOCK = registerBlock("infernal_rune_block",
             new InfernalRuneBlock(copyOf(Blocks.SPAWNER).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 4.0F).requiresTool().luminance(10)));
+    public static final Block CHARRED_WOOL_BLOCK = registerBlock("charred_wool_block",
+            new CharredWoolBlock(copyOf(Blocks.RED_WOOL).sounds(BlockSoundGroup.WOOL).strength(1.0F, 0.0F)));
+    public static final Block INFERNAL_FORGE_BLOCK = registerBlock("infernal_forge_block",
+            new InfernalForgeBlock(copyOf(Blocks.STONE).sounds(BlockSoundGroup.NETHER_BRICKS).luminance(10).strength(4.0F, 6.0F).requiresTool()));
+    public static final Block ROYAL_FIRE_BLOCK  = registerBlock("royal_fire_block",
+            new RoyalFireBlock(copyOf(Blocks.SPAWNER).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(4.0F, 6.0F).requiresTool()));
+
 
     public static final Block INFERNAL_OBSIDIAN_BLOCK = registerBlock("infernal_obsidian_block",
             new Block(copyOf(Blocks.OBSIDIAN).sounds(BlockSoundGroup.STONE)));

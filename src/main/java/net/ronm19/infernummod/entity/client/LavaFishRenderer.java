@@ -5,13 +5,14 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.model.SmallTropicalFishEntityModel;
 import net.minecraft.util.Identifier;
 import net.ronm19.infernummod.InfernumMod;
 import net.ronm19.infernummod.entity.custom.LavaFishEntity;
 import net.ronm19.infernummod.entity.layer.ModModelLayers;
 
 @Environment(EnvType.CLIENT)
-public class LavaFishRenderer extends MobEntityRenderer<LavaFishEntity, LavaFishModel<LavaFishEntity>> {
+public class LavaFishRenderer extends MobEntityRenderer<LavaFishEntity, SmallTropicalFishEntityModel<LavaFishEntity>> {
 
     // Path to your texture
     private static final Identifier TEXTURE =
@@ -19,7 +20,7 @@ public class LavaFishRenderer extends MobEntityRenderer<LavaFishEntity, LavaFish
 
     public LavaFishRenderer(EntityRendererFactory.Context context) {
         // Pass in the model with its baked layer and shadow size
-        super(context, new LavaFishModel<>(context.getPart(ModModelLayers.LAVA_FISH)), 0.2f);
+        super(context, new SmallTropicalFishEntityModel<>(context.getPart(ModModelLayers.LAVA_FISH)), 0.2f);
     }
 
     @Override

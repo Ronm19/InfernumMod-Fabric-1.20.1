@@ -15,10 +15,16 @@
   "item.infernummod.emberstone": "Emberstone",
 
   "item.infernummod.ash_dust": "Ash Dust",
+  "item.infernummod.ash_egg": "Ash Egg",
+  "item.infernummod.ember_ash": "Ember Ash",
+  "item.infernummod.infernal_gem": "Infernal Gem",
+  "item.infernummod.infernal_royal_staff": "Infernal Royal Staff",
+
 
   "item.infernummod.lava_fish": "Lava Fish",
   "item.infernummod.magma_fish": "Magma Fish",
   "item.infernummod.fire_fish": "Fire Fish",
+  "item.infernummod.infernal_apple": "Infernal Apple",
 
   "item.infernummod.infernum_bone": "Infernum Bone",
   "item.infernummod.cursed_flint": "Cursed Flint",
@@ -30,8 +36,12 @@
   "item.infernummod.flame_staff": "Flame Staff",
   "item.infernummod.infernum_staff": "Infernum Staff",
   "item.infernummod.infernum_paxel": "Infernum Paxel",
+  "item.infernummod.infernum_herobrine_relic": "Infernum Herobrine Relic",
+  "item.infernummod.lavager_arrow": "Lavager Arrow",
+
 
   "item.infernummod.infernum_dagger": "Infernum Dagger",
+  "item.infernummod.infernum_sword": "Infernum Sword",
   "item.infernummod.inferno_fang": "Inferno Fang",
   "item.infernummod.inferno_shield": "Inferno Shield",
 
@@ -104,11 +114,20 @@
   "item.infernummod.pyroclast_leggings": "Pyroclast Leggings",
   "item.infernummod.pyroclast_boots": "Pyroclast Boots",
 
-
+  "item.infernummod.infernal_knight_spawn_egg": "Infernal Knight Spawn Egg",
   "item.infernummod.infernal_eye_spawn_egg": "Infernal Eye Spawn Egg",
+  "item.infernummod.infernal_horse_spawn_egg": "Infernal Horse Spawn Egg",
+  "item.infernummod.flame_horse_spawn_egg": "Flame Horse Spawn Egg",
   "item.infernummod.infernal_phantom_spawn_egg": "Infernal Phantom Spawn Egg",
   "item.infernummod.ember_hund_spawn_egg": "Ember Hund Spawn Egg",
+  "item.infernummod.volcarnis_spawn_egg": "Volcarnis Spawn Egg",
+  "item.infernummod.scorched_woolie_spawn_egg": "Scorched Woolie Spawn Egg",
+  "item.infernummod.ash_chicken_spawn_egg": "Ash Chicken Spawn Egg",
+  "item.infernummod.ember_boar_spawn_egg": "Ember Boar Spawn Egg",
+  "item.infernummod.ashbone_horse_spawn_egg": "Ashbone Horse Spawn Egg",
   "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
+  "item.infernummod.ashager_spawn_egg": "Ashager Spawn Egg",
+
 
   "item.infernummod.lava_fish_spawn_egg": "Lava Fish Spawn Egg",
   "item.infernummod.magma_fish_spawn_egg": "Magma Fish Spawn Egg",
@@ -118,12 +137,21 @@
   "item.infernummod.demon_spawn_egg": "Demon Spawn Egg",
   "item.infernummod.malfuryx_spawn_egg": "Malfuryx Spawn Egg",
   "item.infernummod.inferno_zombie_spawn_egg": "Inferno Zombie Spawn Egg",
+  "item.infernummod.infernal_zombilager_spawn_egg": "Infernal Zombilager Spawn Egg",
+  "item.infernummod.infernal_wraith_spawn_egg": "Infernal Wraith Spawn Egg",
+  "item.infernummod.magma_spider_spawn_egg": "Magma Spider Spawn Egg",
   "item.infernummod.inferno_enderman_spawn_egg": "Inferno Enderman Spawn Egg",
   "item.infernummod.flame_skeleton_spawn_egg": "Flame Skeleton Spawn Egg",
+  "item.infernummod.infernal_vex_spawn_egg": "Infernal Vex Spawn Egg",
   "item.infernummod.magma_strider_spawn_egg": "Magma Strider Spawn Egg",
   "item.infernummod.magma_creeper_spawn_egg": "Magma Creeper Spawn Egg",
+  "item.infernummod.lava_witch_spawn_egg": "Lava Witch Spawn Egg",
+  "item.infernummod.lava_slime_spawn_egg": "Lava Slime Spawn Egg",
   "item.infernummod.ember_serpent_spawn_egg": "Ember Serpent Spawn Egg",
   "item.infernummod.infernal_hoarde_spawn_egg": "Infernal Hoarde Spawn Egg",
+  "item.infernummod.lavacator_spawn_egg": "Lavacator Spawn Egg",
+  "item.infernummod.lavager_spawn_egg": "Lavager Spawn Egg",
+  "item.infernummod.infernal_voker_spawn_egg": "Infernal Voker Spawn Egg",
   "item.infernummod.obsidian_ghast_spawn_egg": "Obsidian Ghast Spawn Egg",
   "item.infernummod.infernal_beast_spawn_egg": "Infernal Beast Spawn Egg",
   "item.infernummod.infernum_herobrine_spawn_egg": "Infernum Herobrine Spawn Egg",
@@ -136,6 +164,7 @@
 
   "block.infernummod.infernal_obsidian_block": "Infernal Obsidian Block",
   "block.infernummod.infernal_eye_statue_block": "Infernal Eye Statue Block",
+  "block.infernummod.royal_fire_block": "Royal Fire Block",
 
   "block.infernummod.inferno_essence_log": "Inferno Essence Log",
   "block.infernummod.inferno_essence_wood": "Inferno Essence Wood",
@@ -157,6 +186,7 @@
 
   "block.infernummod.infernal_grass_block": "Infernal Grass Block",
   "block.infernummod.infernal_dirt_block": "Infernal Dirt Block",
+  "block.infernummod.charred_wool_block": "Charred Wool Block",
 
   "block.infernummod.nether_ruby_stairs": "Nether Ruby Stairs",
   "block.infernummod.nether_ruby_slab": "Nether Ruby Slab",
@@ -264,6 +294,7 @@
 
   "block.infernummod.abyssium_stone_block": "Abyssium Stone Block",
   "block.infernummod.infernal_rune_block": "Infernal Rune Block",
+  "block.infernummod.infernal_forge_block": "Infernal Forge Block",
 
   "itemgroup.nether_ruby": "Infernum Mod",
 
@@ -279,6 +310,8 @@
   "sounds.infernummod.infernal_beast_step": "Infernal Beast Step",
   "sounds.infernummod.infernal_beast_death": "Infernal Beast Death",
 
+  "sounds.infernummod.infernal_knight_summon": "Infernal Knight Summon",
+
 
   "item.minecraft.potion.effect.blazing_heart_potion": "Blazing Heart Potion",
   "item.minecraft.splash_potion.effect.blazing_heart_potion": "Blazing Heart Splash Potion",
@@ -293,28 +326,51 @@
   "entity.infernummod.demon": "Demon",
   "entity.infernummod.malfuryx": "Malfuryx",
   "entity.infernummod.inferno_zombie": "Inferno Zombie",
+  "entity.infernummod.infernal_zombilager": "Infernal Zombilager",
   "entity.infernummod.inferno_enderman": "Inferno Enderman",
   "entity.infernummod.flame_skeleton": "Flame Skeleton",
+  "entity.infernummod.infernal_vex": "Infernal Vex",
+  "entity.infernummod.infernal_wraith": "Infernal Wraith",
+  "entity.infernummod.lavacator": "Lavacator",
+  "entity.infernummod.lavager": "Lavager",
+  "entity.infernummod.infernal_voker": "Infernal Voker",
+  "entity.infernummod.lava_witch": "Lava Witch",
+  "entity.infernummod.lava_slime": "Lava Slime",
   "entity.infernummod.magma_strider": "Magma Strider",
+  "entity.infernummod.magma_spider": "Magma Spider",
   "entity.infernummod.magma_creeper": "Magma Creeper",
   "entity.infernummod.ember_serpent": "Ember Serpent",
   "entity.infernummod.infernal_hoarde": "Infernal Hoarde",
   "entity.infernummod.obsidian_ghast": "Obsidian Ghast",
   "entity.infernummod.infernal_beast": "Infernal Beast",
   "entity.infernummod.infernum_herobrine": "Infernum Herobrine",
+  "entity.infernummod.infernum": "Infernum",
 
+  "entity.infernummod.infernal_knight": "Infernal Knight",
   "entity.infernummod.infernal_eye": "Infernal Eye",
+  "entity.infernummod.infernal_horse": "Infernal Horse",
+  "entity.infernummod.flame_horse": "Flame Horse",
   "entity.infernummod.ember_hund": "Ember Hund",
+  "entity.infernummod.volcarnis": "Volcarnis",
+  "entity.infernummod.scorchedwoolie": "Scorched Woolie",
+  "entity.infernummod.ash_chicken": "Ash Chicken",
+  "entity.infernummod.ember_boar": "Ember Boar",
+  "entity.infernummod.ashbone_horse": "Ashbone Horse",
   "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
   "entity.infernummod.infernal_phantom": "Infernal Phantom",
+  "entity.infernummod.ashager": "Ashager",
 
   "entity.infernummod.lava_fish": "Lava Fish",
   "entity.infernummod.magma_fish": "Magma Fish",
   "entity.infernummod.fire_fish": "Fire Fish",
   "entity.infernummod.magma_dolphin": "Magma Dolphin",
 
-  "entity.infernummod.infernum": "Infernum",
   "entity.infernummod.ash_dust": "Ash Dust",
+  "entity.infernummod.ash_egg": "Ash Egg",
+  "entity.infernummod.lavager_arrow": "Lavager Arrow",
+  "entity.infernummod.infernal_lightning": "Infernal Lightning",
+
+  "entity.minecraft.villager.infernalmaster": "Infernal Master",
 
   "advancements.infernummod.root.title": "Infernum",
   "advancements.infernummod.root.desc": "The power lies in the Infernium realm…",

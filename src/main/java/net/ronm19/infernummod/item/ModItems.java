@@ -33,15 +33,29 @@ public class ModItems {
     public static final Item ECHO_OF_DAMNATION = registerItem("echo_of_damnation", new Item(new FabricItemSettings().maxCount(1).fireproof().rarity(Rarity.EPIC)));
 
     public static final Item INFERNUM_BONE = registerItem("infernum_bone", new Item(new FabricItemSettings().fireproof()));
+
+    public static final Item INFERNUM_HEROBRINE_RELIC = registerItem("infernum_herobrine_relic", new Item(new FabricItemSettings().fireproof().maxCount(1)));
+    public static final Item INFERNAL_GEM = registerItem("infernal_gem", new Item(new FabricItemSettings().fireproof()));
+
     public static final Item ASH_DUST = registerItem("ash_dust", new AshDustItem(new FabricItemSettings().fireproof()));
+    public static final Item ASH_EGG = registerItem("ash_egg", new AshEggItem(new FabricItemSettings().fireproof().maxCount(16)));
+
+    public static final Item EMBER_ASH = registerItem("ember_ash", new Item(new FabricItemSettings().fireproof()));
+
     public static final Item CURSED_FLINT = registerItem("cursed_flint", new Item(new FabricItemSettings().fireproof()));
     public static final Item FLAME_STAFF = registerItem("flame_staff", new Item(new FabricItemSettings().fireproof().maxCount(1)));
     public static final Item INFERNUM_STAFF = registerItem("infernum_staff", new InfernalStaffItem(new FabricItemSettings().maxDamage(2500).fireproof().rarity(Rarity.UNCOMMON)));
+    public static final Item INFERNAL_ROYAL_STAFF = registerItem("infernal_royal_staff", new InfernalRoyalStaffItem(new FabricItemSettings().maxDamage(512).fireproof().rarity(Rarity.UNCOMMON)));
 
     public static final Item INFERNUM_PAXEL = registerItem("infernum_paxel",
             new InfernumPaxelItem(ModToolMaterial.FIRERITE, 8, 2.3f, new FabricItemSettings().fireproof()));
     public static final Item INFERNUM_DAGGER = registerItem("infernum_dagger",
             new ModInfernumWeaknessSwordItem(ModToolMaterial.NETHER_RUBY, 9, 2.2f, new FabricItemSettings().fireproof()));
+    public static final Item INFERNUM_SWORD = registerItem("infernum_sword",
+            new InfernumSwordItem(ModToolMaterial.FIRERITE, 10, 2.3f, new FabricItemSettings().fireproof().rarity(Rarity.UNCOMMON)));
+
+    public static final Item LAVAGER_ARROW = registerItem("lavager_arrow",
+            new LavagerArrowItem(new FabricItemSettings().fireproof()));
 
     public static final Item INFERNO_FANG = registerItem("inferno_fang",
             new FireballStrikerSwordItem(ModToolMaterial.FIRERITE, 7, 2.2f, new FabricItemSettings().fireproof().rarity(Rarity.UNCOMMON)));
@@ -54,6 +68,8 @@ public class ModItems {
             new Item(new FabricItemSettings().food(ModFoodComponents.MAGMA_FISH).fireproof().maxCount(16)));
     public static final Item FIRE_FISH = registerItem("fire_fish",
             new Item(new FabricItemSettings().food(ModFoodComponents.FIRE_FISH).fireproof().maxCount(16)));
+    public static final Item INFERNAL_APPLE = registerItem("infernal_apple",
+            new Item(new FabricItemSettings().fireproof().food(ModFoodComponents.INFERNAL_APPLE)));
 
     public static final Item NETHER_RUBY_PICKAXE = registerItem("nether_ruby_pickaxe",
             new PickaxeItem(ModToolMaterial.NETHER_RUBY, 3, 2.0f, new FabricItemSettings().fireproof()));
@@ -177,14 +193,31 @@ public class ModItems {
             new ArmorItem(ModArmorMaterials.FIRERITE, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
 
+    public static final Item INFERNAL_KNIGHT_SPAWN_EGG = registerItem("infernal_knight_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_KNIGHT, 0x3C0F00, 0xFF8C00, new FabricItemSettings()));
     public static final Item INFERNAL_EYE_SPAWN_EGG = registerItem("infernal_eye_spawn_egg",
             new SpawnEggItem(ModEntities.INFERNAL_EYE, 0x400000, 0xF3E000, new FabricItemSettings()));
+    public static final Item INFERNAL_HORSE_SPAWN_EGG = registerItem("infernal_horse_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_HORSE, 0x3B0C02, 0xFF4500, new FabricItemSettings()));
+    public static final Item FLAME_HORSE_SPAWN_EGG = registerItem("flame_horse_spawn_egg",
+            new SpawnEggItem(ModEntities.FLAME_HORSE,  0x1A0000, 0xFF6600, new FabricItemSettings()));
+    public static final Item ASHBONE_HORSE_SPAWN_EGG = registerItem("ashbone_horse_spawn_egg",
+            new SpawnEggItem(ModEntities.ASHBONE_HORSE, 0x4A403A, 0xC97E3A, new FabricItemSettings()));
     public static final Item PYERLING_WYRN_SPAWN_EGG = registerItem("pyerling_wyrn_spawn_egg",
             new SpawnEggItem(ModEntities.PYERLING_WYRN, 0xC1440A, 0xFFD12C, new FabricItemSettings()));
     public static final Item INFERNAL_PHANTOM_SPAWN_EGG = registerItem("infernal_phantom_spawn_egg",
             new SpawnEggItem(ModEntities.INFERNAL_PHANTOM, 0x3A0D0D, 0xE65C2C, new FabricItemSettings()));
     public static final Item EMBER_HUND_SPAWN_EGG = registerItem("ember_hund_spawn_egg",
             new SpawnEggItem(ModEntities.EMBER_HUND, 0x5C1C00, 0xFF6B00, new FabricItemSettings()));
+    public static final Item VOLCARNIS_SPAWN_EGG = registerItem("volcarnis_spawn_egg",
+            new SpawnEggItem(ModEntities.VOLCARNIS, 0xE25822, 0x8B0000, new FabricItemSettings()));
+    public static final Item SCORCHED_WOOLIE_SPAWN_EGG = registerItem("scorched_woolie_spawn_egg",
+            new SpawnEggItem(ModEntities.SCORCHED_WOOLIE, 0x4B2A24, 0xD67B5D, new FabricItemSettings()));
+    public static final Item ASH_CHICKEN_SPAWN_EGG = registerItem("ash_chicken_spawn_egg",
+            new SpawnEggItem(ModEntities.ASH_CHICKEN, 0x2B1B18, 0xD96500, new FabricItemSettings()));
+    public static final Item EMBER_BOAR_SPAWN_EGG = registerItem("ember_boar_spawn_egg",
+            new SpawnEggItem(ModEntities.EMBER_BOAR, 0x2A0E00, 0xFF5500, new FabricItemSettings()));
+
 
 
     public static final Item LAVA_FISH_SPAWN_EGG = registerItem("lava_fish_spawn_egg",
@@ -207,8 +240,26 @@ public class ModItems {
             new SpawnEggItem(ModEntities.INFERNAL_HOARDE, 0xA52C0A, 0xE3B800, new FabricItemSettings()));
     public static final Item INFERNO_ZOMBIE_SPAWN_EGG = registerItem("inferno_zombie_spawn_egg",
             new SpawnEggItem(ModEntities.INFERNO_ZOMBIE, 0x331C1C, 0x552000, new FabricItemSettings()));
+    public static final Item INFERNAL_ZOMBILAGER_SPAWN_EGG = registerItem("infernal_zombilager_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_ZOMBILAGER, 0x5A1E16, 0xD35400, new FabricItemSettings()));
     public static final Item FLAME_SKELETON_SPAWN_EGG = registerItem("flame_skeleton_spawn_egg",
             new SpawnEggItem(ModEntities.FLAME_SKELETON, 0xB32C00, 0xFF8C1A, new FabricItemSettings()));
+    public static final Item MAGMA_SPIDER_SPAWN_EGG = registerItem("magma_spider_spawn_egg",
+            new SpawnEggItem(ModEntities.MAGMA_SPIDER, 0x3B1B00, 0xFF6F00, new FabricItemSettings()));
+    public static final Item INFERNAL_VEX_SPAWN_EGG = registerItem("infernal_vex_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_VEX, 0x2B0B0B, 0xE14A00, new FabricItemSettings()));
+    public static final Item INFERNAL_WRAITH_SPAWN_EGG = registerItem("infernal_wraith_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_WRAITH, 0x1A0A00, 0xFF5E00, new FabricItemSettings()));
+    public static final Item LAVACATOR_SPAWN_EGG = registerItem("lavacator_spawn_egg",
+            new SpawnEggItem(ModEntities.LAVACATOR, 0x2C0F08, 0xFF4500, new FabricItemSettings()));
+    public static final Item LAVAGER_SPAWN_EGG = registerItem("lavager_spawn_egg",
+            new SpawnEggItem(ModEntities.LAVAGER, 0x3B0C04, 0xFF4E0D, new FabricItemSettings()));
+    public static final Item INFERNAL_VOKER_SPAWN_EGG = registerItem("infernal_voker_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_VOKER, 0x2B0B0B, 0xE14A00, new FabricItemSettings()));
+    public static final Item LAVA_WITCH_SPAWN_EGG = registerItem("lava_witch_spawn_egg",
+            new SpawnEggItem(ModEntities.LAVA_WITCH, 0x4B0D09, 0xFF5E00, new FabricItemSettings()));
+    public static final Item LAVA_SLIME_SPAWN_EGG = registerItem("lava_slime_spawn_egg",
+            new SpawnEggItem(ModEntities.LAVA_SLIME, 0x7A1F00, 0xFF6600, new FabricItemSettings()));
     public static final Item MAGMA_CREEPER_SPAWN_EGG = registerItem("magma_creeper_spawn_egg",
             new SpawnEggItem(ModEntities.MAGMA_CREEPER, 0x4A1A0B, 0xFF4500, new FabricItemSettings()));
     public static final Item INFERNO_ENDERMAN_SPAWN_EGG = registerItem("inferno_enderman_spawn_egg",

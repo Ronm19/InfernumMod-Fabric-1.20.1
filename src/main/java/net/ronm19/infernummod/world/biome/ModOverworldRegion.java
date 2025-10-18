@@ -25,6 +25,7 @@ public class ModOverworldRegion extends Region {
             modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.BADLANDS, ModBiomes.INFERNAL);
             modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.WOODED_BADLANDS, ModBiomes.INFERNAL);
             modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.ERODED_BADLANDS, ModBiomes.INFERNAL);
+
         });
     }
 }

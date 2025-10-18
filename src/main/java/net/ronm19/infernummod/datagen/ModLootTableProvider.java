@@ -45,6 +45,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
         addDrop(ModBlocks.ABYSSIUM_STONE_BLOCK);
         addDrop(ModBlocks.INFERNAL_RUNE_BLOCK);
+        addDrop(ModBlocks.CHARRED_WOOL_BLOCK);
+        addDrop(ModBlocks.INFERNAL_FORGE_BLOCK);
 
         addDrop(ModBlocks.EMBERSTONE_ORE, copperLikeOreDrops(ModBlocks.EMBERSTONE_ORE, ModItems.RAW_EMBERSTONE, UniformLootNumberProvider.create(2.0F, 6.0F)));
         addDrop(ModBlocks.DEEPSLATE_CINDERSTONE_ORE, copperLikeOreDrops(ModBlocks.DEEPSLATE_CINDERSTONE_ORE, ModItems.RAW_CINDESTONE, UniformLootNumberProvider.create(3.0F, 7.0F)));

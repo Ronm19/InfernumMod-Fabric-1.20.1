@@ -1,19 +1,20 @@
 package net.ronm19.infernummod.entity.custom;
 
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.util.Unit;
+import net.minecraft.world.*;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -29,15 +30,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.s2c.play.BossBarS2CPacket;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.entity.ModEntities;
+import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.sound.ModSounds;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class InfernumEntity extends HostileEntity implements Monster {
+public class InfernumEntity extends WardenEntity implements Monster {
 
     /* ------------ DATA TRACKERS ------------ */
     private static final TrackedData<Boolean> ENRAGED =
@@ -81,7 +82,7 @@ public class InfernumEntity extends HostileEntity implements Monster {
     /* ------------ ATTRIBUTES ------------ */
     public static DefaultAttributeContainer.Builder createInfernumAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 600.0D)       // 300 ♥
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 900.0D)       // 500 ♥
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 24.0D)     // hits harder
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.34D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
@@ -135,6 +136,24 @@ public class InfernumEntity extends HostileEntity implements Monster {
             this.attackAnimationState.stop();
         }
     }
+
+    /* ------------- SPAWNING SET UP ------------ */
+
+    @Override
+    public EntityData initialize( ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason,
+                                  @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        this.getBrain().remember(MemoryModuleType.DIG_COOLDOWN, Unit.INSTANCE, 1200L);
+
+        // Only play emerging animation when summoned by statue
+        if (spawnReason == SpawnReason.TRIGGERED) {
+            this.setPose(EntityPose.EMERGING);
+            this.getBrain().remember(MemoryModuleType.IS_EMERGING, Unit.INSTANCE, (long) WardenBrain.EMERGE_DURATION);
+            this.playSound(SoundEvents.ENTITY_WARDEN_AGITATED, 5.0F, 1.0F);
+        }
+
+        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    }
+
 
     /* ------------ TICK ------------ */
     @Override
@@ -258,4 +277,37 @@ public class InfernumEntity extends HostileEntity implements Monster {
         return this.getType().getSpawnGroup() != SpawnGroup.MONSTER
                 || this.getWorld().getDifficulty() != Difficulty.PEACEFUL;
     }
+
+    /* ------------ TARGET ------------ */
+
+    @Override
+    public boolean canTarget( LivingEntity target) {
+        // Ignore creative/spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Ignore other hostile mobs unless enraged
+        if (target instanceof HostileEntity && !(target instanceof InfernumEntity)) {
+            if (!this.isEnraged()) {
+                return false;
+            }
+        }
+
+        // Ignore self or allies
+        if (target == this) return false;
+
+        return super.canTarget(target);
+    }
+
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+        if (!this.getWorld().isClient) {
+            this.dropStack(new ItemStack(ModItems.INFERNAL_GEM, this.random.nextBetween(1, 3)));
+        }
+    }
+
 }

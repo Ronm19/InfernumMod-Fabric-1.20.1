@@ -5,6 +5,7 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
+import net.ronm19.infernummod.entity.animation.EmberHundAnimations;
 import net.ronm19.infernummod.entity.animation.EmberSerpentAnimations;
 import net.ronm19.infernummod.entity.animation.InfernumAnimations;
 import net.ronm19.infernummod.entity.custom.EmberSerpentEntity;
@@ -98,21 +99,9 @@ public class EmberSerpentModel <T extends EmberSerpentEntity> extends SinglePart
     public void setAngles(EmberSerpentEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch) {
         this.getPart().traverse().forEach(ModelPart :: resetTransform);
 
+        this.animateMovement(EmberSerpentAnimations.EMBER_SERPENT_WALKING, limbSwing, limbSwingAmount, 1f, 1f);
         this.updateAnimation(entity.idleAnimationState, EmberSerpentAnimations.EMBER_SERPENT_IDLE, ageInTicks, 1f);
         this.updateAnimation(entity.attackAnimationState, EmberSerpentAnimations.EMBER_SERPENT_ATTACK, ageInTicks, 1f);
-
-        // ---- Serpent-like body wave motion ----
-        float waveSpeed = 0.15F; // how fast the wave travels
-        float waveAmplitude = 0.2F; // how much the tail bends
-
-        for (int i = 0; i < tailSegments.length; i++) {
-            ModelPart segment = tailSegments[i];
-            float offset = i * 0.6F; // spacing between wave peaks
-            segment.yaw = MathHelper.sin(ageInTicks * waveSpeed - offset) * waveAmplitude;
-        }
-
-        // Slight body undulation
-        body.yaw = MathHelper.sin(ageInTicks * waveSpeed) * (waveAmplitude / 2);
     }
 
     @Override

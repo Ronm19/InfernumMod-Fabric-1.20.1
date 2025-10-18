@@ -37,6 +37,10 @@
     "infernummod:infernal_stone_slab",
     "infernummod:deepslate_cinderstone_ore",
     "infernummod:stone_infernium_ore",
-    "infernummod:infernal_rune_block"
+    "infernummod:infernal_rune_block",
+    "infernummod:infernal_forge_block",
+    "infernummod:infernal_obsidian_block",
+    "infernummod:infernal_eye_statue_block",
+    "infernummod:royal_fire_block"
   ]
 }

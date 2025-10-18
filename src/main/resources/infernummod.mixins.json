@@ -7,7 +7,9 @@
     "ExampleMixin",
     "FoliagePlacerTypeInvoker",
     "LivingEntityExplosionProtectionMixin",
+    "PigEntityMixin",
     "PlayerEntityMixin",
+    "RaidMixin",
     "TrunkPlacerTypeInvoker"
   ],
   "client": [

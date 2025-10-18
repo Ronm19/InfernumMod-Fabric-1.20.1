@@ -22,16 +22,22 @@ import java.util.concurrent.CompletableFuture;
 import static net.minecraft.data.server.recipe.RecipeProvider.*;
 
 public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipeProviderGenerator {
+
     private final static List<ItemConvertible> NETHER_RUBY_SMELTABLES = List.of(ModItems.RAW_NETHER_RUBY,
             ModBlocks.NETHER_RUBY_ORE, ModBlocks.DEEPSLATE_NETHER_RUBY_ORE);
+
     private final static List<ItemConvertible> FIRERITE_SMELTABLES = List.of(ModItems.RAW_FIRERITE,
             ModBlocks.FIRERITE_ORE, ModBlocks.DEEPSLATE_FIRERITE_ORE);
+
     private final static List<ItemConvertible> EMBERSTONE_SMELTABLES = List.of(ModItems.RAW_EMBERSTONE,
             ModBlocks.EMBERSTONE_ORE);
+
     private final static List<ItemConvertible> PYROCLAST_SMELTABLES = List.of(ModItems.RAW_PYROCLAST,
             ModBlocks.NETHER_PYROCLAST_ORE);
+
     private final static List<ItemConvertible> CINDERSTONE_SMELTABLES = List.of(ModItems.RAW_CINDESTONE,
             ModBlocks.DEEPSLATE_CINDERSTONE_ORE);
+
     private final static List<ItemConvertible> INFERNIUM_SMELTABLES = List.of(ModItems.RAW_INFERNIUM,
             ModBlocks.STONE_INFERNIUM_ORE);
 
@@ -1393,6 +1399,98 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipe
                 .input('B', ModItems.BLAZE_HEART)
                 .criterion(hasItem(ModItems.BLAZE_HEART), conditionsFromItem(ModItems.BLAZE_HEART))
                 .offerTo(exporter, new Identifier(getRecipeName(ModItems.ECHO_OF_DAMNATION)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHARRED_WOOL_BLOCK, 1)
+                .pattern("WWW")
+                .pattern("WBW")
+                .pattern("WWW")
+                .input('W', Items.WHITE_WOOL)
+                .input('B', Items.BLAZE_POWDER)
+                .criterion(hasItem(Items.BLAZE_POWDER), conditionsFromItem(Items.BLAZE_POWDER))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.CHARRED_WOOL_BLOCK)));
+
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNAL_FORGE_BLOCK, 1)
+                .pattern("III")
+                .pattern("IBI")
+                .pattern("III")
+                .input('I', ModBlocks.INFERNAL_OBSIDIAN_BLOCK)
+                .input('B', Items.BLAZE_POWDER)
+                .criterion(hasItem(ModBlocks.INFERNAL_OBSIDIAN_BLOCK), conditionsFromItem(ModBlocks.INFERNAL_OBSIDIAN_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNAL_FORGE_BLOCK)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INFERNAL_GRASS_BLOCK, 1)
+                .pattern("MMM")
+                .pattern("MGM")
+                .pattern("MMM")
+                .input('M', Blocks.MAGMA_BLOCK)
+                .input('G', Items.GRASS)
+                .criterion(hasItem(Blocks.MAGMA_BLOCK), conditionsFromItem(Blocks.MAGMA_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.INFERNAL_GRASS_BLOCK)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.INFERNUM_HEROBRINE_RELIC, 1)
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .input('I', ModItems.INFERNAL_BEAST_HORN)
+                .input('C', ModItems.CURSED_FLINT)
+                .criterion(hasItem(ModItems.CURSED_FLINT), conditionsFromItem(ModItems.CURSED_FLINT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNUM_HEROBRINE_RELIC)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.INFERNAL_APPLE, 1)
+                .pattern("MMM")
+                .pattern("MAM")
+                .pattern("MMM")
+                .input('M', Blocks.MAGMA_BLOCK)
+                .input('A', Items.APPLE)
+                .criterion(hasItem(Blocks.MAGMA_BLOCK), conditionsFromItem(Blocks.MAGMA_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName( ModItems.INFERNAL_APPLE)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.EMBER_ASH, 1)
+                .pattern("   ")
+                .pattern(" A ")
+                .pattern(" E ")
+                .input('E', ModItems.EMBERSTONE)
+                .input('A', ModItems.ASH_DUST)
+                .criterion(hasItem(ModItems.EMBERSTONE), conditionsFromItem(ModItems.EMBERSTONE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.EMBER_ASH)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LAVAGER_ARROW, 1)
+                .pattern("  F")
+                .pattern(" S ")
+                .pattern("S  ")
+                .input('F', ModItems.FIRERITE)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModItems.FIRERITE), conditionsFromItem(ModItems.FIRERITE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.LAVAGER_ARROW)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.INFERNAL_GEM, 1)
+                .pattern(" F ")
+                .pattern(" D ")
+                .pattern("   ")
+                .input('F', ModItems.FIRERITE)
+                .input('D', Items.DIAMOND)
+                .criterion(hasItem(ModItems.FIRERITE), conditionsFromItem(ModItems.FIRERITE))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNAL_GEM)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.INFERNAL_ROYAL_STAFF, 1)
+                .pattern(" I ")
+                .pattern(" N ")
+                .pattern(" S ")
+                .input('I', ModItems.INFERNIUM)
+                .input('N', ModItems.NETHER_RUBY)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModItems.INFERNIUM), conditionsFromItem(ModItems.INFERNIUM))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNAL_ROYAL_STAFF)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.INFERNUM_SWORD, 1)
+                .pattern(" I ")
+                .pattern(" I ")
+                .pattern(" S ")
+                .input('I', ModItems.INFERNAL_GEM)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModItems.INFERNAL_GEM), conditionsFromItem(ModItems.INFERNAL_GEM))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNUM_SWORD)));
     }
 }
 

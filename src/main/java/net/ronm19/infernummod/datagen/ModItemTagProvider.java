@@ -40,6 +40,34 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.MAGMA_FISH)
                 .add(ModItems.FIRE_FISH);
 
+        getOrCreateTagBuilder(ItemTags.BOATS)
+                .add(ModItems.INFERNO_BOAT)
+                .add(ModItems.INFERNO_CHEST_BOAT);
+
+        getOrCreateTagBuilder(ItemTags.ARROWS)
+                .add(ModItems.LAVAGER_ARROW);
+
+        getOrCreateTagBuilder(ItemTags.SWORDS)
+                .add(CINDERSTONE_SWORD)
+                .add(EMBERSTONE_SWORD)
+                .add(FIRERITE_SWORD)
+                .add(INFERNIUM_SWORD)
+                .add(PYROCLAST_SWORD)
+                .add(NETHER_RUBY_SWORD)
+                .add(INFERNUM_SWORD);
+
+        getOrCreateTagBuilder(ItemTags.DOORS)
+                .add(ModBlocks.INFERNO_ESSENCE_DOOR.asItem())
+                .add(ModBlocks.BLAZE_DOOR.asItem())
+                .add(ModBlocks.EMBERSTONE_DOOR.asItem())
+                .add(ModBlocks.INFERNAL_BRICKS_STONE_DOOR.asItem())
+                .add(ModBlocks.FIRERITE_DOOR.asItem())
+                .add(ModBlocks.MOLTEN_BRICKS_DOOR.asItem())
+                .add(ModBlocks.NETHER_RUBY_DOOR.asItem())
+                .add(ModBlocks.INFERNAL_STONE_DOOR.asItem());
+
+
+
 
 
 

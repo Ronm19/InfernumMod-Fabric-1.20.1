@@ -27,8 +27,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-import net.ronm19.infernummod.entity.ai.obsidian_ghast.FlyRandomlyGoal;
-import net.ronm19.infernummod.entity.ai.LookAtTargetGoal;
+import net.ronm19.infernummod.entity.ai.goals.obsidian_ghast.FlyRandomlyGoal;
+import net.ronm19.infernummod.entity.ai.goals.LookAtTargetGoal;
 import net.ronm19.infernummod.item.ModItems;
 import org.joml.Vector3f;
 

@@ -27,12 +27,12 @@ import net.ronm19.infernummod.api.interfaces.DayLightBurnImmuneEntity;
 import net.ronm19.infernummod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
-public class FlameSkeletonEntity extends SkeletonEntity implements DayLightBurnImmuneEntity, Monster {
+public class FlameSkeletonEntity extends WitherSkeletonEntity implements Monster {
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
-    public FlameSkeletonEntity( EntityType<? extends SkeletonEntity> entityType, World world ) {
+    public FlameSkeletonEntity( EntityType<? extends WitherSkeletonEntity> entityType, World world ) {
         super(entityType, world);
     }
 
@@ -66,7 +66,7 @@ public class FlameSkeletonEntity extends SkeletonEntity implements DayLightBurnI
         EntityData data = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 
         // Equip a bow
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.FIRERITE_SWORD));
         this.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.1F);
 
         if (this.random.nextFloat() < 0.20F) { // 20% chance for any armor piece
@@ -124,14 +124,6 @@ public class FlameSkeletonEntity extends SkeletonEntity implements DayLightBurnI
         return true;
     }
 
-    @Override
-    public boolean burnsInDaylight() {
-        return false;
-    }
-
-
-
-
     /* ------------- ANIMATIONS --------------- */
 
     private void setupAnimationStates() {
@@ -173,6 +165,8 @@ public class FlameSkeletonEntity extends SkeletonEntity implements DayLightBurnI
 
     }
 
+
+
     @Override
     public boolean tryAttack(Entity target) {
         boolean hit = super.tryAttack(target);
@@ -186,11 +180,31 @@ public class FlameSkeletonEntity extends SkeletonEntity implements DayLightBurnI
         return hit;
     }
 
+
+
     @Override
     public boolean cannotDespawn() {
         // Prevents despawn in normal conditions, but monsters still despawn on peaceful
         return this.getType().getSpawnGroup() != SpawnGroup.MONSTER
                 || this.getWorld().getDifficulty() != Difficulty.PEACEFUL;
+    }
+
+    @Override
+    public boolean canTarget(LivingEntity target) {
+        // Ignore Infernum itself
+        if (target instanceof InfernumEntity) {
+            return false;
+        }
+
+        // Ignore Creative / Spectator players
+        if (target instanceof PlayerEntity player) {
+            if (player.isCreative() || player.isSpectator()) {
+                return false;
+            }
+        }
+
+        // Otherwise, follow normal targeting rules
+        return super.canTarget(target);
     }
 }
 

@@ -37,6 +37,8 @@ import net.minecraft.util.TimeHelper;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.LocalDifficulty;
@@ -76,7 +78,7 @@ public class InfernalKnightEntity extends TameableEntity {
 
     // Patrol center/radius (optional persisted)
     private BlockPos patrolCenter;
-    private int patrolRadius = 10;
+    private int patrolRadius = 20;
 
     public InfernalKnightEntity( EntityType<? extends TameableEntity> type, World world ) {
         super(type, world);
@@ -254,25 +256,25 @@ public class InfernalKnightEntity extends TameableEntity {
 
 
     @Override
-    public EntityData initialize( ServerWorldAccess world, LocalDifficulty difficulty,
-                                  SpawnReason spawnReason, @Nullable EntityData entityData,
-                                  @Nullable NbtCompound entityNbt ) {
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty,
+                                 SpawnReason spawnReason, @Nullable EntityData entityData,
+                                 @Nullable NbtCompound entityNbt) {
         EntityData data = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 
-        // Randomize variant first
+        // Randomize variant (25% chance for Elite)
         InfernalKnightVariant variant = this.random.nextFloat() < 0.25F
-                ? InfernalKnightVariant.ELITE  // 25% chance to spawn as archer
+                ? InfernalKnightVariant.ELITE
                 : InfernalKnightVariant.DEFAULT;
-        setVariant(variant);
+        this.setVariant(variant);
 
-        // Common default equipment
+        // Common equipment drop rates
         this.setEquipmentDropChance(EquipmentSlot.MAINHAND, 0.1F);
         this.setEquipmentDropChance(EquipmentSlot.HEAD, 0.05F);
         this.setEquipmentDropChance(EquipmentSlot.CHEST, 0.05F);
         this.setEquipmentDropChance(EquipmentSlot.LEGS, 0.05F);
         this.setEquipmentDropChance(EquipmentSlot.FEET, 0.05F);
 
-        // Equip armor
+        // Optional: armor chance (keep that awesome Nether Ruby armor look)
         if (this.random.nextFloat() < 0.20F) {
             this.equipStack(EquipmentSlot.HEAD, new ItemStack(ModItems.NETHER_RUBY_HELMET));
             this.equipStack(EquipmentSlot.CHEST, new ItemStack(ModItems.NETHER_RUBY_CHESTPLATE));
@@ -282,46 +284,60 @@ public class InfernalKnightEntity extends TameableEntity {
                     .addEnchantment(Enchantments.BLAST_PROTECTION, 2);
         }
 
-        // Equip based on variant
-        if (variant == InfernalKnightVariant.ELITE) {
-            this.equipStack(EquipmentSlot.MAINHAND, ModItems.FIRERITE_SWORD.getDefaultStack());
-            this.equipStack(EquipmentSlot.OFFHAND, ModItems.INFERNO_SHIELD.getDefaultStack());
-            Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE))
-                    .setBaseValue(6.0D); // archers have weaker melee
-        } else {
-            this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.FIRERITE_SWORD));
-            this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.INFERNO_SHIELD));
-            Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE))
-                    .setBaseValue(19.0D);
-        }
+        // --- NEW FIX ---
+        // Always apply proper gear *before* the entity ticks
+        this.setupDefaultLoadout();
+
+        // Safety: ensure they actually render their weapon instantly
+        this.setCurrentHand(Hand.MAIN_HAND);
+        this.setAttacking(false);
+
+        // Fully heal to max based on loadout attributes
+        this.setHealth(this.getMaxHealth());
 
         return data;
     }
 
     public void setupDefaultLoadout() {
+        // Always clear hands before re-equipping (prevents stacking bugs)
+        this.equipStack(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+        this.equipStack(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+
+        // --- ELITE KNIGHT ---
         if (this.getVariant() == InfernalKnightVariant.ELITE) {
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.INFERNUM_SWORD));
             this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.INFERNO_SHIELD));
+
+            // Attributes
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)).setBaseValue(250.0D);
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE)).setBaseValue(28.0D);
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR)).setBaseValue(30.0D);
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.33D);
-            this.setHealth(this.getMaxHealth());
+
+            // --- NORMAL KNIGHT ---
         } else {
             this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ModItems.FIRERITE_SWORD));
             this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(ModItems.INFERNO_SHIELD));
+
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH)).setBaseValue(150.0D);
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE)).setBaseValue(19.0D);
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR)).setBaseValue(20.0D);
             Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)).setBaseValue(0.30D);
-            this.setHealth(this.getMaxHealth());
         }
+
+        // --- Common finalization ---
+        this.setHealth(this.getMaxHealth());
+        this.setAttacking(false);
+        this.handSwingProgress = 0.0F; // reset animation
     }
+
 
 
     @Override
     protected void initGoals() {
 
+
+        goalSelector.add(0, new SwimGoal(this));
         goalSelector.add(1, new MeleeAttackGoal(this, 1.2D, true) {
             @Override
             public boolean canStart() {
@@ -377,18 +393,119 @@ public class InfernalKnightEntity extends TameableEntity {
 
     // PATROL: stroll around patrolCenter
     private class PatrolGoal extends Goal {
-        PatrolGoal(){ setControls(EnumSet.of(Control.MOVE)); }
-        @Override public boolean canStart() { return getCommand()==CommandMode.PATROL && patrolCenter!=null; }
-        @Override public void tick() {
-            if (getNavigation().isIdle()) {
-                var r = Random.createLocal().nextInt(patrolRadius);
-                var dx = patrolCenter.getX() + (random.nextBoolean()? r : -r);
-                var dz = patrolCenter.getZ() + (random.nextBoolean()? r : -r);
-                var y  = patrolCenter.getY();
-                getNavigation().startMovingTo(dx + 0.5, y + 0.5, dz + 0.5, 1.0);
+        private static final int BASE_COOLDOWN = 40;
+
+        private Vec3d pointA;
+        private Vec3d pointB;
+        private Vec3d currentTarget;
+        private int cooldown;
+        private boolean movingToB = true;
+
+        PatrolGoal() {
+            setControls(EnumSet.of(Control.MOVE));
+        }
+
+        @Override
+        public boolean canStart() {
+            if (getCommand() != CommandMode.PATROL) return false;
+            if (patrolCenter == null) patrolCenter = getBlockPos();
+            return true;
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            return getCommand() == CommandMode.PATROL;
+        }
+
+        @Override
+        public void start() {
+            cooldown = 0;
+            generatePatrolRoute();
+            currentTarget = movingToB ? pointB : pointA;
+            if (currentTarget != null) {
+                getNavigation().startMovingTo(currentTarget.x, currentTarget.y, currentTarget.z, 1.0);
             }
         }
+
+        @Override
+        public void tick() {
+            Random random = InfernalKnightEntity.this.getRandom();
+
+            if (cooldown > 0) {
+                cooldown--;
+                return;
+            }
+
+            // If no current target or path is idle, resume movement
+            if (currentTarget == null || getNavigation().isIdle()) {
+                currentTarget = movingToB ? pointB : pointA;
+                if (currentTarget != null) {
+                    getNavigation().startMovingTo(currentTarget.x, currentTarget.y, currentTarget.z, 1.0);
+                }
+                cooldown = BASE_COOLDOWN + random.nextInt(40);
+            }
+
+            // Occasionally glance toward patrol center
+            if (random.nextInt(200) == 0) {
+                lookAt(Vec3d.ofCenter(patrolCenter));
+            }
+
+            // If close enough to current target, switch direction
+            if (currentTarget != null && distanceTo(currentTarget) < 2.5) {
+                movingToB = !movingToB;
+                currentTarget = movingToB ? pointB : pointA;
+                if (currentTarget != null) {
+                    getNavigation().startMovingTo(currentTarget.x, currentTarget.y, currentTarget.z, 1.0);
+                }
+                cooldown = BASE_COOLDOWN + random.nextInt(60);
+            }
+        }
+
+        /** Makes the knight look toward a point naturally */
+        private void lookAt(Vec3d vec3d) {
+            getLookControl().lookAt(vec3d.x, vec3d.y, vec3d.z);
+        }
+
+        /** Calculates distance from the knight to a Vec3d target */
+        private double distanceTo(Vec3d target) {
+            return InfernalKnightEntity.this.getPos().distanceTo(target);
+        }
+
+        /** Generates two opposite patrol points around the center */
+        private void generatePatrolRoute() {
+            Random random = InfernalKnightEntity.this.getRandom();
+
+            // pick a random direction
+            double angle = random.nextDouble() * Math.PI * 2;
+            double offsetX = Math.cos(angle) * patrolRadius;
+            double offsetZ = Math.sin(angle) * patrolRadius;
+
+            Vec3d center = Vec3d.ofCenter(patrolCenter);
+            pointA = findValidGround(center.add(offsetX, 0, offsetZ));
+            pointB = findValidGround(center.add(-offsetX, 0, -offsetZ));
+
+            // fallback: if both fail, default to center
+            if (pointA == null) pointA = center;
+            if (pointB == null) pointB = center;
+        }
+
+        /** Finds a valid ground position near a target point */
+        @Nullable
+        private Vec3d findValidGround(Vec3d pos) {
+            BlockPos.Mutable mutable = BlockPos.ofFloored(pos).mutableCopy();
+            World world = getWorld();
+
+            while (mutable.getY() > world.getBottomY()) {
+                BlockState state = world.getBlockState(mutable);
+                if (state.isSolidBlock(world, mutable)) {
+                    return Vec3d.ofCenter(mutable.up()); // place entity just above solid ground
+                }
+                mutable.move(Direction.DOWN);
+            }
+            return null;
+        }
     }
+
 
     private static class FollowTargetGoal extends ActiveTargetGoal<LivingEntity> {
         private final InfernalKnightEntity knight;

@@ -29,6 +29,7 @@ public class InfernalKnightRenderer extends MobEntityRenderer<InfernalKnightEnti
 
     public InfernalKnightRenderer( EntityRendererFactory.Context context) {
         super(context, new InfernalKnightModel<>(context.getPart(ModModelLayers.INFERNAL_KNIGHT)), 0.6F);
+        this.addFeature(new HeldItemFeatureRenderer<>(this, context.getHeldItemRenderer()));
         this.addFeature(new ArmorFeatureRenderer<>(
                 this,
                 new BipedEntityModel<>(context.getPart(EntityModelLayers.PLAYER_INNER_ARMOR)),

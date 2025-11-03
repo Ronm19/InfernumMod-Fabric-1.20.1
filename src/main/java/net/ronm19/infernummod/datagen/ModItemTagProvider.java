@@ -54,7 +54,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(INFERNIUM_SWORD)
                 .add(PYROCLAST_SWORD)
                 .add(NETHER_RUBY_SWORD)
-                .add(INFERNUM_SWORD);
+                .add(INFERNUM_SWORD)
+                .add(ABYSSAL_BLADE);
 
         getOrCreateTagBuilder(ItemTags.DOORS)
                 .add(ModBlocks.INFERNO_ESSENCE_DOOR.asItem())

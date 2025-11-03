@@ -20,6 +20,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.mob.ZombieVillagerEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TameableEntity;
@@ -38,10 +39,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.village.TradeOfferList;
-import net.minecraft.village.VillagerData;
-import net.minecraft.village.VillagerProfession;
-import net.minecraft.village.VillagerType;
+import net.minecraft.village.*;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -52,7 +50,7 @@ import org.slf4j.Logger;
 import java.util.Objects;
 import java.util.UUID;
 
-public class InfernalZombilagerEntity extends ZombieVillagerEntity implements Monster {
+public class InfernalZombilagerEntity extends ZombieEntity implements Monster, VillagerDataContainer {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final TrackedData<Boolean> CONVERTING;
     private static final TrackedData<VillagerData> VILLAGER_DATA;
@@ -69,7 +67,7 @@ public class InfernalZombilagerEntity extends ZombieVillagerEntity implements Mo
     private NbtCompound offerData;
     private int xp;
 
-    public InfernalZombilagerEntity( EntityType<? extends ZombieVillagerEntity> entityType, World world ) {
+    public InfernalZombilagerEntity( EntityType<? extends ZombieEntity> entityType, World world ) {
         super(entityType, world);
         Registries.VILLAGER_PROFESSION.getRandom(this.random).ifPresent(( profession) -> this.setVillagerData(this.getVillagerData().withProfession((VillagerProfession)profession.value())));
     }

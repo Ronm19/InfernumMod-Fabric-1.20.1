@@ -1288,16 +1288,6 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipe
                 .criterion(hasItem(Blocks.OBSIDIAN), conditionsFromItem(Blocks.OBSIDIAN))
                 .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.ABYSSIUM_STONE_BLOCK)));
 
-        // Flame Staff
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.FLAME_STAFF, 1)
-                .pattern(" A ")
-                .pattern(" A ")
-                .pattern(" S ")
-                .input('S', Items.STICK)
-                .input('A', ModItems.ASH_DUST)
-                .criterion(hasItem(ModItems.ASH_DUST), conditionsFromItem(ModItems.ASH_DUST))
-                .offerTo(exporter, new Identifier(getRecipeName(ModItems.FLAME_STAFF)));
-
         // Infernum Paxel
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.INFERNUM_PAXEL, 1)
                 .pattern("NNN")
@@ -1491,6 +1481,32 @@ public class ModRecipeProvider extends FabricRecipeProvider implements ModRecipe
                 .input('S', Items.STICK)
                 .criterion(hasItem(ModItems.INFERNAL_GEM), conditionsFromItem(ModItems.INFERNAL_GEM))
                 .offerTo(exporter, new Identifier(getRecipeName(ModItems.INFERNUM_SWORD)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.ABYSSAL_BLADE, 1)
+                .pattern(" A ")
+                .pattern(" A ")
+                .pattern(" S ")
+                .input('A', ModBlocks.ABYSSIUM_STONE_BLOCK)
+                .input('S', Items.STICK)
+                .criterion(hasItem(ModBlocks.ABYSSIUM_STONE_BLOCK), conditionsFromItem(ModBlocks.ABYSSIUM_STONE_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.ABYSSAL_BLADE)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.HELL_CROWN, 1)
+                .pattern("A A")
+                .pattern("A A")
+                .pattern("AAA")
+                .input('A', ModBlocks.ABYSSIUM_STONE_BLOCK)
+                .criterion(hasItem(ModBlocks.ABYSSIUM_STONE_BLOCK), conditionsFromItem(ModBlocks.ABYSSIUM_STONE_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.HELL_CROWN)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ROYAL_FIRE_BLOCK, 1)
+                .pattern("III")
+                .pattern("IFI")
+                .pattern("III")
+                .input('I', ModBlocks.INFERNAL_OBSIDIAN_BLOCK)
+                .input('F', ModItems.FIRERITE)
+                .criterion(hasItem(ModBlocks.INFERNAL_OBSIDIAN_BLOCK), conditionsFromItem(ModBlocks.INFERNAL_OBSIDIAN_BLOCK))
+                .offerTo(exporter, new Identifier(getRecipeName(ModBlocks.ROYAL_FIRE_BLOCK)));
     }
 }
 

@@ -15,12 +15,15 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.SlimeEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
+import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
@@ -43,12 +46,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Comparator;
 import java.util.UUID;
 
-public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedAttackMob, Tameable, MountableEntity {
+
+public class PyerlingWyrnEntity extends TameableEntity implements RangedAttackMob {
 
     private static final Logger LOGGER = LogManager.getLogger("InfernumMod:PyerlingWyrn");
 
     private static final TrackedData<Boolean> ATTACKING =
             DataTracker.registerData(PyerlingWyrnEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> TAMED =
+            DataTracker.registerData(PyerlingWyrnEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<String> OWNER_UUID =
+            DataTracker.registerData(PyerlingWyrnEntity.class, TrackedDataHandlerRegistry.STRING);
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
@@ -82,17 +90,20 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(ATTACKING, false);
+        this.dataTracker.startTracking(TAMED, false);
+        this.dataTracker.startTracking(OWNER_UUID, "");
     }
 
     // ---------------- ATTRIBUTES ----------------
     public static DefaultAttributeContainer.Builder createPyerlingWyrnAttributes() {
-        return TameableEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0)
+        return TameableEntity.createLivingAttributes()
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 110.0)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 9.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.19f)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 120.0)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 0.6)
-                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.5);
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.5)
+                .add(EntityAttributes.HORSE_JUMP_STRENGTH, 1.5f);
     }
 
     // ---------------- ANIMATIONS ----------------
@@ -202,12 +213,12 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
         this.goalSelector.add(5, new SwimGoal(this));
         this.goalSelector.add(6, new FollowParentGoal(this, 1D));
         this.goalSelector.add(7, new AnimalMateGoal(this, 1D));
-        this.goalSelector.add(8, new FollowMobGoal(this, PyerlingWyrnEntity.class.getModifiers(), 2.0F, 15.0F));
-        this.goalSelector.add(9, new FollowOwnerGoal(this, 2D, 2, 19, false));
+        this.goalSelector.add(8, new TrackOwnerAttackerGoal(this));
+        this.goalSelector.add(9, new AttackWithOwnerGoal(this));
+        this.goalSelector.add(10, new FollowOwnerGoal(this, 2.0D, 1F, 29F, false));
         this.goalSelector.add(10, new ProtectOwnerGoal(this));
-        this.goalSelector.add(11, new TrackOwnerAttackerGoal(this));
-        this.goalSelector.add(12, new AttackWithOwnerGoal(this));
-        this.goalSelector.add(13, new MeleeAttackGoal(this, 1.2D, false) {
+        this.goalSelector.add(11, new FollowMobGoal(this, PyerlingWyrnEntity.class.getModifiers(), 2.0F, 15.0F));
+        this.goalSelector.add(12, new MeleeAttackGoal(this, 1.2D, false) {
             @Override
             public boolean canStart() {
                 return super.canStart() && PyerlingWyrnEntity.this.getTarget() != null
@@ -262,7 +273,7 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
     }
 
     @Override
-    public boolean damage(DamageSource source, float amount) {
+    public boolean damage( DamageSource source, float amount ) {
         // Rider protection — don't take explosion damage if being ridden
         if (this.hasPassengers()) {
             Entity rider = this.getFirstPassenger();
@@ -283,48 +294,6 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
     }
 
     @Override
-    protected void tickPortal() {
-        // Prevent vanilla dismount logic
-        if (this.hasPassengers()) {
-            Entity rider = this.getFirstPassenger();
-
-            // handle portal cooldowns
-            if (this.portalTime++ >= this.getMaxNetherPortalTime()) {
-                this.portalTime = this.getMaxNetherPortalTime();
-                this.timeUntilRegen = this.getPortalCooldown(); // portal cooldown like vanilla
-
-                if (!this.getWorld().isClient && this.getWorld() instanceof ServerWorld serverWorld) {
-                    ServerWorld destination = serverWorld.getServer()
-                            .getWorld(this.getWorld().getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
-
-                    if (destination != null) {
-                        // transfer both the wyrn and its rider
-                        Entity teleported = this.moveToWorld(destination);
-                        if (teleported instanceof PyerlingWyrnEntity newWyrn) {
-                            if (rider != null && !rider.hasVehicle()) {
-                                Entity newRider = rider.moveToWorld(destination);
-                                if (newRider instanceof PlayerEntity player) {
-                                    player.requestTeleport(
-                                            newWyrn.getX(), newWyrn.getY() + newWyrn.getMountedHeightOffset(), newWyrn.getZ());
-                                    player.startRiding(newWyrn, true);
-                                } else if (newRider != null) {
-                                    newRider.requestTeleport(
-                                            newWyrn.getX(), newWyrn.getY() + newWyrn.getMountedHeightOffset(), newWyrn.getZ());
-                                    newRider.startRiding(newWyrn, true);
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-            }
-        } else {
-            super.tickPortal(); // normal portal behaviour if not ridden
-        }
-    }
-
-    @Override
     public int getPortalCooldown() {
         return this.portalCooldown;
     }
@@ -335,10 +304,8 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
     }
 
 
-
-
     @Override
-    public EntityDimensions getDimensions(EntityPose pose) {
+    public EntityDimensions getDimensions( EntityPose pose ) {
         if (this.hasPassengers()) {
             return super.getDimensions(pose).scaled(0.8F, 0.9F); // 80% width, 90% height
         }
@@ -373,29 +340,49 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
         }
 
         if (isTamed() && hand == Hand.MAIN_HAND && item != itemForTaming) {
-            if (!player.isSneaking()) {
-                setRiding(player);
-            } else {
-                boolean sitting = !isSitting();
-                setSitting(sitting);
-                setInSittingPose(sitting);
-            }
+            boolean sitting = !isSitting();
+            setSitting(sitting);
+            setInSittingPose(sitting);
 
             return ActionResult.SUCCESS;
         }
+
 
         return super.interactMob(player, hand);
     }
 
 
-    @Override
-    public @Nullable UUID getOwnerUuid() {
-        return super.getOwnerUuid();
+    // ✅ Owner tracking
+    public void setOwnerUuid( UUID uuid ) {
+        this.dataTracker.set(OWNER_UUID, uuid.toString());
     }
+
+    public UUID getOwnerUuid() {
+        try {
+            String s = this.dataTracker.get(OWNER_UUID);
+            return s.isEmpty() ? null : UUID.fromString(s);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 
     @Override
     public EntityView method_48926() {
         return this.getWorld();
+    }
+
+    public boolean isOwner( PlayerEntity player ) {
+        UUID ownerUuid = this.getOwnerUuid();
+        return ownerUuid != null && ownerUuid.equals(player.getUuid());
+    }
+
+    public boolean isTame() {
+        return this.dataTracker.get(TAMED);
+    }
+
+    public void setTame( boolean tame ) {
+        this.dataTracker.set(TAMED, tame);
     }
 
     // ---------------- SOUND EVENTS ----------------
@@ -421,7 +408,7 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
 
     // ---------------- RANGED ATTACK ----------------
     @Override
-    public void shootAt(LivingEntity target, float pullProgress) {
+    public void shootAt( LivingEntity target, float pullProgress ) {
         if (!this.getWorld().isClient) {
             double dX = target.getX() - this.getX();
             double dY = target.getBodyY(0.5) - this.getBodyY(0.5);
@@ -443,135 +430,28 @@ public class PyerlingWyrnEntity extends TameableEntity implements Mount, RangedA
         }
     }
 
-    private LivingEntity findNearestHostile(double radius) {
+    private LivingEntity findNearestHostile( double radius ) {
         return this.getWorld()
                 .getEntitiesByClass(HostileEntity.class, this.getBoundingBox().expand(radius), e -> e.isAlive())
                 .stream()
-                .min(Comparator.comparingDouble(this::squaredDistanceTo))
+                .min(Comparator.comparingDouble(this :: squaredDistanceTo))
                 .orElse(null);
     }
 
 
-    // ---------------- RIDING METHODS ----------------
-
-    @Nullable
-    @Override
-    public LivingEntity getControllingPassenger() {
-        Entity first = this.getFirstPassenger();
-        return first instanceof LivingEntity ? (LivingEntity) first : null;
-    }
+    // -------------------------- NBT -------------------------
 
     @Override
-    protected boolean canAddPassenger(Entity passenger) {
-        return this.getPassengerList().isEmpty() && passenger instanceof LivingEntity;
+    public void writeCustomDataToNbt( NbtCompound nbt ) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putBoolean("TamedByPlayer", this.isTame());
+        UUID uuid = this.getOwnerUuid();
+        if (uuid != null) nbt.putString("Owner", uuid.toString());
     }
 
-    private void setRiding(PlayerEntity pPlayer) {
-        this.setInSittingPose(false);
-        // align at mount time; don't keep forcing it afterward
-        pPlayer.setYaw(this.getYaw());
-        pPlayer.setPitch(this.getPitch());
-        pPlayer.startRiding(this);
-    }
-
-    /**
-     * Return an offset in the MOUNT'S LOCAL SPACE (X = right, Y = up from feet,
-     * Z = forward). We'll rotate it by the BODY yaw so head turns don't shift the seat.
-     */
-    // --- tuning knobs (updated) ---
-    private static final double SEAT_SIDE = 0.12; // centered left/right
-    private static final double SEAT_BACK = -0.14; // was 1.05 → move forward (closer to shoulders)
-    private static final double SEAT_HEIGHT = 0.55; // was 0.60 → drop a bit lower
-
-
-    // Seat offset in local space, rotated by BODY yaw (not head)
-    @Override
-    public Vec3d getPassengerAttachmentPoint(Entity passenger, EntityDimensions dims, float tickDelta) {
-        double localX = SEAT_SIDE;
-        double localY = getMountedHeightOffset() + passenger.getRidingOffset(this);
-        double localZ = -SEAT_BACK;
-        float yawRad = (float) Math.toRadians(this.bodyYaw);
-        double rx = localX * Math.cos(yawRad) - localZ * Math.sin(yawRad);
-        double rz = localX * Math.sin(yawRad) + localZ * Math.cos(yawRad);
-        return new Vec3d(rx, localY, rz);
-    }
-
-    // Seat baseline (height)
-    @Override
-    public double getMountedHeightOffset() {
-        return this.getHeight() * SEAT_HEIGHT;
-    }
-
-    @Override
-    protected void updatePassengerPosition(Entity passenger, Entity.PositionUpdater updater) {
-        Vec3d a = getPassengerAttachmentPoint(passenger, passenger.getDimensions(passenger.getPose()), 1.0F);
-        updater.accept(passenger, this.getX() + a.x, this.getY() + a.y, this.getZ() + a.z);
-        if (passenger instanceof LivingEntity living) {
-            living.bodyYaw = this.bodyYaw; // keep torso aligned with spine
-        }
-    }
-
-
-    @Override
-    public void travel(Vec3d input) {
-        LivingEntity ctrl = getControllingPassenger();
-        if (this.hasPassengers() && ctrl instanceof PlayerEntity rider) {
-            // steer by rider
-            this.setYaw(rider.getYaw());
-            this.setPitch(rider.getPitch() * 0.5F);
-            this.bodyYaw = this.getYaw();
-            this.headYaw = this.bodyYaw;
-
-            float strafe = rider.sidewaysSpeed * 0.5F;
-            float forward = rider.forwardSpeed;
-            if (forward <= 0.0F) forward *= 0.25F;
-
-            float baseSpeed = (float) this.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-            this.setMovementSpeed(rider.isSprinting() ? baseSpeed * 2.0F : baseSpeed); // no MinecraftClient here
-
-            super.travel(new Vec3d(strafe, input.y, forward));
-        } else {
-            super.travel(input);
-        }
-
-        BlockPos blockPos = this.getBlockPos().down(); // block below feet
-        FluidState below = this.getWorld().getFluidState(blockPos);
-
-        if (below.isIn(FluidTags.LAVA) && this.canWalkOnFluid(below)) {
-            // Walk *on* lava
-            this.setOnGround(true);
-            this.setVelocity(this.getVelocity().x, 0.0D, this.getVelocity().z);
-
-            // Snap the entity just above the lava surface
-            double lavaSurface = blockPos.getY() + 1.0D; // top of block
-            if (this.getY() < lavaSurface) {
-                this.setPos(this.getX(), lavaSurface, this.getZ());
-            }
-        }
-    }
-
-
-    @Override
-    public Vec3d updatePassengerForDismount( LivingEntity passenger ) {
-        Direction direction = this.getMovementDirection();
-        if (direction.getAxis() == Direction.Axis.Y) {
-            return super.updatePassengerForDismount(passenger);
-        }
-        int[][] is = Dismounting.getDismountOffsets(direction);
-        BlockPos blockPos = this.getBlockPos();
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        for (EntityPose entityPose : passenger.getPoses()) {
-            Box box = passenger.getBoundingBox(entityPose);
-            for (int[] js : is) {
-                mutable.set(blockPos.getX() + js[0], blockPos.getY(), blockPos.getZ() + js[1]);
-                double d = this.getWorld().getDismountHeight(mutable);
-                if (!Dismounting.canDismountInBlock(d)) continue;
-                Vec3d vec3d = Vec3d.ofCenter(mutable, d);
-                if (!Dismounting.canPlaceEntityAt(this.getWorld(), passenger, box.offset(vec3d))) continue;
-                passenger.setPose(entityPose);
-                return vec3d;
-            }
-        }
-        return super.updatePassengerForDismount(passenger);
+    public void readCustomDataFromNbt( NbtCompound nbt ) {
+        super.readCustomDataFromNbt(nbt);
+        if (nbt.contains("TamedByPlayer")) this.setTame(nbt.getBoolean("TamedByPlayer"));
+        if (nbt.contains("Owner")) this.setOwnerUuid(UUID.fromString(nbt.getString("Owner")));
     }
 }

@@ -132,8 +132,7 @@ public class InfernalVexEntity extends VexEntity implements Monster {
     public boolean isInvulnerableTo( DamageSource source ) {
         // Still immune to fire and explosions — but NOT arrows/tridents
         return super.isInvulnerableTo(source)
-                || source.isIn(DamageTypeTags.IS_FIRE)
-                || source.isIn(DamageTypeTags.IS_EXPLOSION);
+                || source.isIn(DamageTypeTags.IS_FIRE);
     }
 
 

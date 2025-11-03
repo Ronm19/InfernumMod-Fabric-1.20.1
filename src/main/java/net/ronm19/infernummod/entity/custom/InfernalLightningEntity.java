@@ -46,9 +46,11 @@ public class InfernalLightningEntity extends LightningEntity {
 
         // ---------------- First Tick: Infernal Strike ----------------
         if (this.age == 1) {
-            // Transform nearby entities (Pig -> Ember Boar, etc.)
-            for (Entity entity : serverWorld.getOtherEntities(this, this.getBoundingBox().expand(3.5))) {
-                InfernalTransformationHandler.onEntityStruckByInfernalLightning(entity, this, serverWorld);
+            // 🔥 Transform nearby non-infernal entities into Infernal variants
+            for (Entity e : serverWorld.getOtherEntities(this, this.getBoundingBox().expand(3.5))) {
+                if (e instanceof LivingEntity living && !living.getType().getTranslationKey().contains("infernal")) {
+                    InfernalTransformationHandler.tryTransform(living, serverWorld);
+                }
             }
 
             // Tag transformed entities to prevent instant re-striking
@@ -56,22 +58,26 @@ public class InfernalLightningEntity extends LightningEntity {
                 if (e instanceof LivingEntity le) le.addCommandTag("infernal_just_transformed");
             });
 
-            // Infernal visual effects
+            // Effects & sound remain unchanged
             serverWorld.spawnParticles(ParticleTypes.FLAME, this.getX(), this.getY(), this.getZ(), 20, 0.5, 0.5, 0.5, 0.02);
             serverWorld.spawnParticles(ParticleTypes.LAVA, this.getX(), this.getY() + 1, this.getZ(), 10, 0.3, 0.3, 0.3, 0.02);
             serverWorld.spawnParticles(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5, this.getZ(), 8, 0.4, 0.3, 0.4, 0.01);
-
-            // Deep infernal sound
             serverWorld.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_BLAZE_SHOOT,
                     SoundCategory.WEATHER, 1.5F, 0.6F + this.random.nextFloat() * 0.2F);
 
-            // Ignite air block below
+            // Fire ignition + vanilla effects
             BlockPos strikePos = this.getBlockPos();
             if (serverWorld.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)
                     && serverWorld.getBlockState(strikePos).isAir()) {
                 serverWorld.setBlockState(strikePos, Blocks.FIRE.getDefaultState());
             }
+
+            this.powerLightningRod();
+            cleanOxidation(this.getWorld(), this.getAffectedBlockPos());
+            this.emitGameEvent(GameEvent.LIGHTNING_STRIKE);
         }
+
+
 
         // ---------------- Vanilla-like Lightning Behavior ----------------
         if (this.ambientTick == 2) {
@@ -131,6 +137,8 @@ public class InfernalLightningEntity extends LightningEntity {
             if (this.channeler != null) Criteria.CHANNELED_LIGHTNING.trigger(this.channeler, list);
         }
     }
+
+
 
     // ------------------------------------------------------------
     //                    FIRE & OXIDATION HELPERS
@@ -205,6 +213,15 @@ public class InfernalLightningEntity extends LightningEntity {
             }
         }
         return Optional.empty();
+    }
+
+    private void powerLightningRod() {
+        BlockPos blockPos = this.getAffectedBlockPos();
+        BlockState blockState = this.getWorld().getBlockState(blockPos);
+        if (blockState.isOf(Blocks.LIGHTNING_ROD)) {
+            ((LightningRodBlock)blockState.getBlock()).setPowered(blockState, this.getWorld(), blockPos);
+        }
+
     }
 
     // ------------------------------------------------------------

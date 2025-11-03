@@ -77,6 +77,6 @@ public class BlazebloomBlock extends PlantBlock {
     }
 
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-        return type == NavigationType.AIR && !this.collidable ? true : super.canPathfindThrough(state, world, pos, type);
+        return type == NavigationType.AIR && !this.collidable || super.canPathfindThrough(state, world, pos, type);
     }
 }

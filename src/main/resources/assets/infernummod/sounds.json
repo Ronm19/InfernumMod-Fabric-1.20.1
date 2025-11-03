@@ -24,9 +24,10 @@
     ]
   },
   "infernal_knight_summon": {
-      "subtitle": "sounds.infernummod.infernal_knight_summon",
-      "sounds": [
-        "infernummod:infernal_knight_summon"
+    "subtitle": "sounds.infernummod.infernal_knight_summon",
+    "sounds": [
+      "infernummod:infernal_knight_summon"
     ]
   }
 }
+

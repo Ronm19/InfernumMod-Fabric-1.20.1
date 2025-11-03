@@ -1,20 +1,12 @@
 package net.ronm19.infernummod.event;
 
-import net.minecraft.client.render.entity.feature.CreeperChargeFeatureRenderer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.ZombieEntity;
-import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.ronm19.infernummod.entity.ModEntities;
 
@@ -60,7 +52,7 @@ public class InfernalTransformationHandler {
         TRANSFORM_MAP.put(ModEntities.EMBER_BOAR, ModEntities.DEMON);
     }
 
-    public static void onEntityStruckByInfernalLightning( Entity entity, Entity infernalLightning, ServerWorld world ) {
+    public static void onEntityStruckByInfernalLightning( Entity entity, ServerWorld world ) {
         if (!(entity instanceof LivingEntity living)) return;
 
 
@@ -75,7 +67,7 @@ public class InfernalTransformationHandler {
     }
 
 
-    private static void transformEntity( LivingEntity oldEntity, EntityType<? extends LivingEntity> newType, ServerWorld world ) {
+   public static void transformEntity( LivingEntity oldEntity, EntityType<? extends LivingEntity> newType, ServerWorld world ) {
         LivingEntity newEntity = newType.create(world);
         if (newEntity == null) return;
 
@@ -93,5 +85,14 @@ public class InfernalTransformationHandler {
 
         oldEntity.discard();
         newEntity.emitGameEvent(GameEvent.ENTITY_PLACE);
+    }
+
+    public static void tryTransform(LivingEntity entity, ServerWorld world) {
+        if (entity == null || world == null) return;
+
+        EntityType<? extends LivingEntity> newType = TRANSFORM_MAP.get(entity.getType());
+        if (newType == null) return; // Not a valid transform target
+
+        transformEntity(entity, newType, world);
     }
 }

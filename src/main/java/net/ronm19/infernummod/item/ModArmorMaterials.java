@@ -6,6 +6,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.ronm19.infernummod.InfernumMod;
+import net.ronm19.infernummod.block.ModBlocks;
 
 import java.util.function.Supplier;
 
@@ -21,7 +22,10 @@ public enum ModArmorMaterials implements ArmorMaterial {
     PYROCLAST("pyroclast", 35, new int[] {10, 13, 11, 10}, 25,
             SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3f, 0.4f, () -> Ingredient.ofItems(ModItems.PYROCLAST)),
     FIRERITE("firerite", 38, new int[] {11, 13, 13, 11}, 26,
-            SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4f, 0.5f, () -> Ingredient.ofItems(ModItems.FIRERITE));
+            SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4f, 0.5f, () -> Ingredient.ofItems(ModItems.FIRERITE)),
+    HELL_CROWN("hell_crown", 38, new int[] {15, 15, 15, 15}, 21,
+            SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4f, 0.5f, () -> Ingredient.ofItems(ModBlocks.ABYSSIUM_STONE_BLOCK));
+
 
 
 

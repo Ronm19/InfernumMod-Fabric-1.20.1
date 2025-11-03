@@ -16,7 +16,7 @@ public class PigEntityMixin {
     @Inject(method = "onStruckByLightning", at = @At("HEAD"), cancellable = true)
     private void onInfernalLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
         if (lightning instanceof InfernalLightningEntity infernal) {
-            InfernalTransformationHandler.onEntityStruckByInfernalLightning((PigEntity)(Object)this, infernal, world);
+            InfernalTransformationHandler.onEntityStruckByInfernalLightning((PigEntity)(Object)this, world);
             ci.cancel(); // stop vanilla zombified piglin conversion
         }
     }

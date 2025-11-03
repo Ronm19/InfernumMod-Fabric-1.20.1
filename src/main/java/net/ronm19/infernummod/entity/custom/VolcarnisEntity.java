@@ -2,6 +2,10 @@ package net.ronm19.infernummod.entity.custom;
 
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FurnaceBlock;
+import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.enums.BedPart;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -11,6 +15,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -34,13 +39,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import net.ronm19.infernummod.entity.ModEntities;
 import net.ronm19.infernummod.entity.ai.goals.volcarnis.VolcarnisAttackGoal;
 import net.ronm19.infernummod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
-public class VolcarnisEntity extends CatEntity {
+import java.util.EnumSet;
+
+public class VolcarnisEntity extends TameableEntity {
     public static final double CROUCHING_SPEED = 0.6;
     public static final double NORMAL_SPEED = 0.8;
     public static final double SPRINTING_SPEED = 1.33;
@@ -72,7 +82,7 @@ public class VolcarnisEntity extends CatEntity {
     private float headDownAnimation;
     private float prevHeadDownAnimation;
 
-    public VolcarnisEntity(EntityType<? extends CatEntity> entityType, World world) {
+    public VolcarnisEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
         this.isFireImmune();
     }
@@ -121,20 +131,6 @@ public class VolcarnisEntity extends CatEntity {
         this.dataTracker.startTracking(COLLAR_COLOR, DyeColor.RED.getId());
         this.dataTracker.startTracking(SITTING, false);
         this.dataTracker.startTracking(ATTACKING, false);
-    }
-
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putByte("CollarColor", (byte) this.getCollarColor().getId());
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("CollarColor", 99)) {
-            this.setCollarColor(DyeColor.byId(nbt.getInt("CollarColor")));
-        }
     }
 
     static {
@@ -297,19 +293,10 @@ public class VolcarnisEntity extends CatEntity {
     }
 
     // ------------------- BREEDING -------------------
-    @Nullable
+
     @Override
-    public VolcarnisEntity createChild(ServerWorld world, PassiveEntity mate) {
-        VolcarnisEntity child = (VolcarnisEntity) this.getType().create(world);
-        if (child != null && mate instanceof VolcarnisEntity other) {
-            child.setVariant(this.random.nextBoolean() ? this.getVariant() : other.getVariant());
-            if (this.isTamed()) {
-                child.setOwnerUuid(this.getOwnerUuid());
-                child.setTamed(true);
-                child.setCollarColor(this.random.nextBoolean() ? this.getCollarColor() : other.getCollarColor());
-            }
-        }
-        return child;
+    public @Nullable PassiveEntity createChild( ServerWorld world, PassiveEntity entity ) {
+        return ModEntities.VOLCARNIS.create(world);
     }
 
     @Override
@@ -359,12 +346,6 @@ public class VolcarnisEntity extends CatEntity {
         if (this.isTamed()) {
             if (this.isOwner(player)) {
                 if (item instanceof DyeItem dye) {
-                    if (dye.getColor() != this.getCollarColor()) {
-                        this.setCollarColor(dye.getColor());
-                        if (!player.getAbilities().creativeMode) stack.decrement(1);
-                        this.setPersistent();
-                        return ActionResult.CONSUME;
-                    }
                 } else if (item.isFood() && this.isBreedingItem(stack) && this.getHealth() < this.getMaxHealth()) {
                     this.eat(player, hand, stack);
                     this.heal(item.getFoodComponent().getHunger());
@@ -457,6 +438,11 @@ public class VolcarnisEntity extends CatEntity {
     @Override
     protected Vector3f getPassengerAttachmentPos(Entity passenger, EntityDimensions dims, float scale) {
         return new Vector3f(0.0F, dims.height - 0.1875F * scale, 0.0F);
+    }
+
+    @Override
+    public EntityView method_48926() {
+        return this.getWorld();
     }
 
     // ------------------- INNER GOALS -------------------
@@ -597,6 +583,91 @@ public class VolcarnisEntity extends CatEntity {
                     }
                 } else {
                     volcarnis.setInSleepingPose(false);
+                }
+            }
+        }
+    }
+
+    static class GoToBedAndSleepGoal extends MoveToTargetPosGoal {
+        private final VolcarnisEntity volcarnis;
+
+        public GoToBedAndSleepGoal(VolcarnisEntity volcarnis, double speed, int range) {
+            super(volcarnis, speed, range, 6);
+            this.volcarnis = volcarnis;
+            this.lowestY = -2;
+            this.setControls(EnumSet.of(Control.JUMP, Control.MOVE));
+        }
+
+        public boolean canStart() {
+            return this.volcarnis.isTamed() && !this.volcarnis.isSitting() && !this.volcarnis.isInSleepingPose() && super.canStart();
+        }
+
+        public void start() {
+            super.start();
+            this.volcarnis.setInSittingPose(false);
+        }
+
+        protected int getInterval( PathAwareEntity mob) {
+            return 40;
+        }
+
+        public void stop() {
+            super.stop();
+            this.volcarnis.setInSleepingPose(false);
+        }
+
+        public void tick() {
+            super.tick();
+            this.volcarnis.setInSittingPose(false);
+            if (!this.hasReached()) {
+                this.volcarnis.setInSleepingPose(false);
+            } else if (!this.volcarnis.isInSleepingPose()) {
+                this.volcarnis.setInSleepingPose(true);
+            }
+
+        }
+
+        protected boolean isTargetPos( WorldView world, BlockPos pos) {
+            return world.isAir(pos.up()) && world.getBlockState(pos).isIn(BlockTags.BEDS);
+        }
+    }
+
+    static class CatSitOnBlockGoal extends MoveToTargetPosGoal {
+        private final VolcarnisEntity volcarnis;
+
+        public CatSitOnBlockGoal(VolcarnisEntity volcarnis, double speed) {
+            super(volcarnis, speed, 8);
+            this.volcarnis = volcarnis;
+        }
+
+        public boolean canStart() {
+            return this.volcarnis.isTamed() && !this.volcarnis.isSitting() && super.canStart();
+        }
+
+        public void start() {
+            super.start();
+            this.volcarnis.setInSittingPose(false);
+        }
+
+        public void stop() {
+            super.stop();
+            this.volcarnis.setInSittingPose(false);
+        }
+
+        public void tick() {
+            super.tick();
+            this.volcarnis.setInSittingPose(this.hasReached());
+        }
+
+        protected boolean isTargetPos(WorldView world, BlockPos pos) {
+            if (!world.isAir(pos.up())) {
+                return false;
+            } else {
+                BlockState blockState = world.getBlockState(pos);
+                if (blockState.isOf(Blocks.CHEST)) {
+                    return ChestBlockEntity.getPlayersLookingInChestCount(world, pos) < 1;
+                } else {
+                    return blockState.isOf(Blocks.FURNACE) && (Boolean) blockState.get(FurnaceBlock.LIT) || blockState.isIn(BlockTags.BEDS, ( state ) -> (Boolean) state.getOrEmpty(BedBlock.PART).map(( part ) -> part != BedPart.HEAD).orElse(true));
                 }
             }
         }

@@ -42,47 +42,47 @@ public class ModPlacedFeatures {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
 
-
-        // Nether Ores
+// 🔥 Nether Ores — a bit more common and rewarding
         register(context, NETHER_RUBY_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.NETHER_RUBY_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(12, // veins per chunk
+                ModOrePlacement.modifiersWithCount(16, // ⬆️ slightly more veins per chunk (12 → 16)
                         HeightRangePlacementModifier.uniform(YOffset.fixed(10), YOffset.fixed(128))));
 
         register(context, DEEPSLATE_NETHER_RUBY_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.DEEPSLATE_NETHER_RUBY_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(5, // rarer
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(10), YOffset.fixed(64)))); // from 10 to 64
+                ModOrePlacement.modifiersWithCount(7, // ⬆️ a bit more common (5 → 7)
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(10), YOffset.fixed(64))));
 
         register(context, NETHER_PYROCLAST_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.NETHER_PYROCLAST_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(8, // mid-rarity
+                ModOrePlacement.modifiersWithCount(10, // ⬆️ slightly increased (8 → 10)
                         HeightRangePlacementModifier.uniform(YOffset.fixed(10), YOffset.fixed(96))));
 
-// Overworld Ores
+
+// 🌍 Overworld Ores — made rarer and more tiered
         register(context, EMBERSTONE_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.EMBERSTONE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(10,
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(64))));
+                ModOrePlacement.modifiersWithCount(6, // ⬇️ from 10 → 6 (rarer)
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(48)))); // ⬇️ tighter range
 
         register(context, STONE_INFERNIUM_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.STONE_INFERNIUM_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(7,
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(-32), YOffset.fixed(48))));
+                ModOrePlacement.modifiersWithCount(4, // ⬇️ from 7 → 4
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(-32), YOffset.fixed(32)))); // ⬇️ range tightened
 
         register(context, DEEPSLATE_CINDERSTONE_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.DEEPSLATE_CINDERSTONE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(5,
+                ModOrePlacement.modifiersWithCount(3, // ⬇️ from 5 → 3 (very rare)
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-16))));
 
         register(context, FIRERITE_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.FIRERITE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(6,
-                        HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(80))));
+                ModOrePlacement.modifiersWithCount(4, // ⬇️ from 6 → 4
+                        HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(64)))); // ⬇️ smaller spread
 
         register(context, DEEPSLATE_FIRERITE_ORE_PLACED_KEY,
                 configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.DEEPSLATE_FIRERITE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(4,
+                ModOrePlacement.modifiersWithCount(2, // ⬇️ from 4 → 2 (very rare, deep)
                         HeightRangePlacementModifier.uniform(YOffset.fixed(-64), YOffset.fixed(-32))));
 
 // Trees

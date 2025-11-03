@@ -25,13 +25,13 @@ public class ModItemGroups {
                         entries.add(ModItems.INFERNUM_BONE);
                         entries.add(ModItems.ASH_DUST);
                         entries.add(ModItems.ASH_EGG);
-                        entries.add(ModItems.FLAME_STAFF);
                         entries.add(ModItems.INFERNUM_STAFF);
                         entries.add(ModItems.INFERNUM_HEROBRINE_RELIC);
                         entries.add(ModItems.INFERNAL_GEM);
                         entries.add(ModItems.EMBER_ASH);
                         entries.add(ModItems.INFERNAL_ROYAL_STAFF);
                         entries.add(ModItems.INFERNUM_SWORD);
+                        entries.add(ModItems.ABYSSAL_BLADE);
 
 
 
@@ -128,6 +128,8 @@ public class ModItemGroups {
                         entries.add(ModItems.PYROCLAST_LEGGINGS);
                         entries.add(ModItems.PYROCLAST_BOOTS);
 
+                        entries.add(ModItems.HELL_CROWN);
+
                         entries.add(ModItems.INFERNO_CHEST_BOAT);
                         entries.add(ModItems.INFERNO_BOAT);
 
@@ -166,6 +168,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SCORCHED_WOOLIE_SPAWN_EGG);
                         entries.add(ModItems.ASH_CHICKEN_SPAWN_EGG);
                         entries.add(ModItems.EMBER_BOAR_SPAWN_EGG);
+                        entries.add(ModItems.MAGMA_BEAR_SPAWN_EGG);
 
                         entries.add(ModItems.LAVA_FISH_SPAWN_EGG);
                         entries.add(ModItems.MAGMA_FISH_SPAWN_EGG);

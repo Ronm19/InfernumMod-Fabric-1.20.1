@@ -110,7 +110,7 @@ public class ModEntities {
 
     public static final EntityType<PyerlingWyrnEntity> PYERLING_WYRN = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(MOD_ID, "pyerling_wyrn"),
-            FabricEntityTypeBuilder.create(CREATURE, PyerlingWyrnEntity ::new).dimensions(EntityDimensions.fixed(1f, 1.5f)).build());
+            FabricEntityTypeBuilder.create(CREATURE, PyerlingWyrnEntity::new).dimensions(EntityDimensions.fixed(1f, 1.5f)).build());
 
     public static final EntityType<InfernalEyeEntity> INFERNAL_EYE = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(MOD_ID, "infernal_eye"),
@@ -156,8 +156,9 @@ public class ModEntities {
             new Identifier(MOD_ID, "infernal_knight"),
             FabricEntityTypeBuilder.create(CREATURE, InfernalKnightEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.0f)).build());
 
-
-
+    public static final EntityType<MagmaBearEntity> MAGMA_BEAR = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(MOD_ID, "magma_bear"),
+            FabricEntityTypeBuilder.create(CREATURE, MagmaBearEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.0f)).build());
 
 
     //* -------------------------------- Water/Lava Entities ------------------------ * //

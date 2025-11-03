@@ -33,7 +33,6 @@
   "item.infernummod.blaze_heart": "Blaze Heart",
   "item.infernummod.infernal_beast_horn": "Infernal Beast Horn",
 
-  "item.infernummod.flame_staff": "Flame Staff",
   "item.infernummod.infernum_staff": "Infernum Staff",
   "item.infernummod.infernum_paxel": "Infernum Paxel",
   "item.infernummod.infernum_herobrine_relic": "Infernum Herobrine Relic",
@@ -44,6 +43,10 @@
   "item.infernummod.infernum_sword": "Infernum Sword",
   "item.infernummod.inferno_fang": "Inferno Fang",
   "item.infernummod.inferno_shield": "Inferno Shield",
+
+  "item.infernummod.abyssal_blade": "Abyssal Blade",
+  "item.infernummod.hell_crown": "Hell Crown",
+
 
   "item.infernummod.inferno_boat": "Inferno Boat",
   "item.infernummod.inferno_chest_boat": "Inferno Chest Boat",
@@ -126,7 +129,7 @@
   "item.infernummod.ember_boar_spawn_egg": "Ember Boar Spawn Egg",
   "item.infernummod.ashbone_horse_spawn_egg": "Ashbone Horse Spawn Egg",
   "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
-  "item.infernummod.ashager_spawn_egg": "Ashager Spawn Egg",
+  "item.infernummod.magma_bear_spawn_egg": "Magma Bear Spawn Egg",
 
 
   "item.infernummod.lava_fish_spawn_egg": "Lava Fish Spawn Egg",
@@ -312,6 +315,9 @@
 
   "sounds.infernummod.infernal_knight_summon": "Infernal Knight Summon",
 
+  "sounds.infernummod.firestorm_start": "Firestorm Start",
+  "sounds.infernummod.firestorm_end": "Firestorm End",
+
 
   "item.minecraft.potion.effect.blazing_heart_potion": "Blazing Heart Potion",
   "item.minecraft.splash_potion.effect.blazing_heart_potion": "Blazing Heart Splash Potion",
@@ -358,7 +364,7 @@
   "entity.infernummod.ashbone_horse": "Ashbone Horse",
   "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
   "entity.infernummod.infernal_phantom": "Infernal Phantom",
-  "entity.infernummod.ashager": "Ashager",
+  "entity.infernummod.magma_bear": "Magma Bear",
 
   "entity.infernummod.lava_fish": "Lava Fish",
   "entity.infernummod.magma_fish": "Magma Fish",

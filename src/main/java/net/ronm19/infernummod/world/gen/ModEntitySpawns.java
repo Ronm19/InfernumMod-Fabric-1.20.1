@@ -113,6 +113,9 @@ public class ModEntitySpawns {
         BiomeModifications.addSpawn( context -> context.getBiomeKey().getValue().getNamespace().equals(InfernumMod.MOD_ID),
                 SpawnGroup.CREATURE, ModEntities.INFERNAL_PHANTOM, 50, 2, 5);
 
+        BiomeModifications.addSpawn( context -> context.getBiomeKey().getValue().getNamespace().equals(InfernumMod.MOD_ID),
+                SpawnGroup.CREATURE, ModEntities.MAGMA_BEAR, 20, 2, 6);
+
 
         BiomeModifications.addSpawn(context -> context.getBiomeKey().getValue().getNamespace().equals(InfernumMod.MOD_ID),
                 SpawnGroup.WATER_AMBIENT, ModEntities.LAVA_FISH, 30, 3, 6);
@@ -160,6 +163,7 @@ public class ModEntitySpawns {
         SpawnRestriction.register(ModEntities.SCORCHED_WOOLIE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canMobSpawn);
         SpawnRestriction.register(ModEntities.ASH_CHICKEN, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canMobSpawn);
         SpawnRestriction.register(ModEntities.EMBER_BOAR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canMobSpawn);
+        SpawnRestriction.register(ModEntities.MAGMA_BEAR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canMobSpawn);
 
 
         SpawnRestriction.register(ModEntities.LAVA_FISH, SpawnRestriction.Location.IN_WATER, Heightmap.Type.OCEAN_FLOOR, SchoolingFishEntity::canMobSpawn);

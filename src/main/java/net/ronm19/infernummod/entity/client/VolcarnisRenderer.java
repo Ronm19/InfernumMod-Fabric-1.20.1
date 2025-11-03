@@ -21,11 +21,11 @@ import net.ronm19.infernummod.entity.custom.VolcarnisEntity;
 import net.ronm19.infernummod.entity.layer.ModModelLayers;
 
 @Environment(EnvType.CLIENT)
-public class VolcarnisRenderer extends MobEntityRenderer<VolcarnisEntity, CatEntityModel<VolcarnisEntity>> {
+public class VolcarnisRenderer extends MobEntityRenderer<VolcarnisEntity, VolcarnisModel<VolcarnisEntity>> {
     private static final Identifier TEXTURE = new Identifier(InfernumMod.MOD_ID, "textures/entity/volcarnis.png");
 
     public VolcarnisRenderer( EntityRendererFactory.Context context ) {
-        super(context, new CatEntityModel<>(context.getPart(EntityModelLayers.CAT)), 0.4F);
+        super(context, new VolcarnisModel<>(context.getPart(ModModelLayers.VOLCARNIS)), 0.4F);
 
     }
 

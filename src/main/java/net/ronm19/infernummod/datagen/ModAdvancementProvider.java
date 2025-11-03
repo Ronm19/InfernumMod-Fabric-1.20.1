@@ -19,7 +19,8 @@ import net.ronm19.infernummod.block.ModBlocks;
 import net.ronm19.infernummod.entity.ModEntities;
 import net.ronm19.infernummod.item.ModItems;
 import net.ronm19.infernummod.potion.ModPotions;
-import net.ronm19.infernummod.world.dimension.ModDimensions;
+import net.ronm19.infernummod.world.biome.ModBiomes;
+import net.minecraft.advancement.criterion.EnterBlockCriterion;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -144,33 +145,18 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .build(consumer, InfernumMod.MOD_ID + ":brew_potion_blazing_heart");
 
 
-
-        // Flame Staff
-        AdvancementEntry theFlameStaff = Advancement.Builder.create()
-                .display(new AdvancementDisplay(
-                        new ItemStack(ModItems.FLAME_STAFF),
-                        Text.literal("The Igniter of Infernal"),
-                        Text.literal("You've found the key to summon the infernal gateway, use it wisely."),
-                        new Identifier("minecraft", "textures/gui/advancements/backgrounds/nether.png"),
-                        AdvancementFrame.GOAL,
-                        true, true, false
-                ))
-                .criterion("has_flame_staff", InventoryChangedCriterion.Conditions.items(ModItems.FLAME_STAFF))
-                .parent(theNetherRubySword)
-                .build(consumer, InfernumMod.MOD_ID + ":flame_staff");
-
-        // Entered Abyssium
+        // Entered Infernal Biome
         AdvancementEntry enteredIntoInfernal = Advancement.Builder.create()
                 .display(new AdvancementDisplay(
                         new ItemStack(ModBlocks.INFERNAL_OBSIDIAN_BLOCK),
                         Text.literal("Entered Into the Infernal"),
                         Text.literal("You have entered into the Soul of Fire! Welcome to Infernal."),
-                        new Identifier("minecraft", "textures/gui/advancements/backgrounds/nether.png"),
+                        new Identifier("minecraft","textures/gui/advancements/backgrounds/nether.png"),
                         AdvancementFrame.CHALLENGE,
                         true, true, false
                 ))
-                .criterion("entered_infernal", ChangedDimensionCriterion.Conditions.to(ModDimensions.INFERNAL_LEVEL_KEY))
-                .parent(theFlameStaff)
+                .criterion("entered_infernal", EnterBlockCriterion.Conditions.block(ModBlocks.INFERNAL_GRASS_BLOCK))
+                .parent(gotBlazingHeart)
                 .rewards(AdvancementRewards.Builder.experience(20))
                 .build(consumer, InfernumMod.MOD_ID + ":entered_infernal");
 

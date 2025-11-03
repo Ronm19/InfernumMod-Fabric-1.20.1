@@ -10,6 +10,7 @@ import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.TameableEntity;
@@ -214,7 +215,7 @@ public class InfernalPhantomEntity extends TameableEntity implements FlyingMobUt
                     if (destination != null) {
                         // transfer both the wyrn and its rider
                         Entity teleported = this.moveToWorld(destination);
-                        if (teleported instanceof PyerlingWyrnEntity newWyrn) {
+                        if (teleported instanceof InfernalPhantomEntity newWyrn) {
                             if (rider != null && !rider.hasVehicle()) {
                                 Entity newRider = rider.moveToWorld(destination);
                                 if (newRider instanceof PlayerEntity player) {

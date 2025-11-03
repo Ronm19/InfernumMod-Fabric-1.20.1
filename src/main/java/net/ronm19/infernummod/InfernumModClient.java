@@ -116,6 +116,7 @@ public class InfernumModClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.INFERNAL_HORSE, InfernalHorseRenderer::new);
         EntityRendererRegistry.register(ModEntities.ASHBONE_HORSE, AshboneHorseRenderer::new);
         EntityRendererRegistry.register(ModEntities.FLAME_HORSE, FlameHorseRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MAGMA_BEAR, MagmaBearRenderer::new);
         EntityRendererRegistry.register(ModEntities.INFERNAL_PHANTOM, InfernalPhantomRenderer::new);
         EntityRendererRegistry.register(ModEntities.EMBER_HUND, EmberHundRenderer::new);
         EntityRendererRegistry.register(ModEntities.VOLCARNIS, VolcarnisRenderer::new);

@@ -164,9 +164,10 @@ public class ModModelProvider extends FabricModelProvider {
         registerGrassBlock(blockStateModelGenerator, ModBlocks.INFERNAL_GRASS_BLOCK, "infernal_grass_top", "infernal_grass_side", "infernal_grass_bottom");
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_DIRT_BLOCK);
 
+        registerGrassBlock(blockStateModelGenerator, ModBlocks.ROYAL_FIRE_BLOCK, "royal_fire_block_top", "royal_fire_block_side", "royal_fire_block_bottom");
+
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_OBSIDIAN_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.INFERNAL_EYE_STATUE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ROYAL_FIRE_BLOCK);
     }
 
 
@@ -233,6 +234,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.INFERNUM_SWORD, Models.HANDHELD);
         itemModelGenerator.register(ModItems.INFERNO_FANG, Models.HANDHELD);
 
+        itemModelGenerator.register(ModItems.ABYSSAL_BLADE, Models.HANDHELD);
+
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_RUBY_HELMET);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_RUBY_CHESTPLATE);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.NETHER_RUBY_LEGGINGS);
@@ -263,11 +266,12 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.registerArmor((ArmorItem) ModItems.FIRERITE_LEGGINGS);
         itemModelGenerator.registerArmor((ArmorItem) ModItems.FIRERITE_BOOTS);
 
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.HELL_CROWN));
+
         itemModelGenerator.register(ModItems.ASH_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.ASH_EGG, Models.GENERATED);
         itemModelGenerator.register(ModItems.EMBER_ASH, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.FLAME_STAFF, Models.HANDHELD);
         itemModelGenerator.register(ModItems.INFERNAL_GEM, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.INFERNUM_STAFF, Models.HANDHELD);
@@ -356,6 +360,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ASH_CHICKEN_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
         itemModelGenerator.register(ModItems.EMBER_BOAR_SPAWN_EGG,
+                new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.MAGMA_BEAR_SPAWN_EGG,
                 new Model(Optional.of(new Identifier("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.LAVA_FISH_SPAWN_EGG,

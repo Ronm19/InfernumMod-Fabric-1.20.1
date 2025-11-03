@@ -33,6 +33,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.ronm19.infernummod.entity.ModEntities;
 import net.ronm19.infernummod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
@@ -294,7 +295,7 @@ public class LavacatorEntity extends VindicatorEntity implements Monster {
     public boolean isTeammate( Entity other ) {
         if (super.isTeammate(other)) {
             return true;
-        } else if (other instanceof LivingEntity && ((LivingEntity) other).getGroup() == EntityGroup.ILLAGER) {
+        } else if (other instanceof LivingEntity living && (living.getGroup() == EntityGroup.ILLAGER || other.getType() == ModEntities.INFERNAL_VEX)) {
             return this.getScoreboardTeam() == null && other.getScoreboardTeam() == null;
         } else {
             return false;

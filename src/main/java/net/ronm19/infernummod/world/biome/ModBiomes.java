@@ -61,8 +61,11 @@ public class ModBiomes {
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.SCORCHED_WOOLIE, 40, 2, 6));
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.ASH_CHICKEN, 40, 2, 6));
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.EMBER_BOAR, 70, 3, 9));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.LAVA_COW, 70, 3, 9));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_RABBIT, 20, 3, 5));
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.INFERNAL_PHANTOM, 50, 2, 6));
         spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_BEAR, 20, 2, 6));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_GOLEM, 20, 2, 6));
 
         spawnBuilder.spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(ModEntities.LAVA_FISH, 50, 2, 6));
         spawnBuilder.spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(ModEntities.MAGMA_FISH, 50, 2, 6));

@@ -15,8 +15,7 @@ import net.ronm19.infernummod.entity.layer.ModModelLayers;
 @Environment(EnvType.CLIENT)
 public class MagmaDolphinRenderer extends MobEntityRenderer<MagmaDolphinEntity, MagmaDolphinModel<MagmaDolphinEntity>> {
 
-    private static final Identifier TEXTURE =
-            new Identifier(InfernumMod.MOD_ID, "textures/entity/magma_dolphin.png");
+    private static final Identifier TEXTURE = new Identifier(InfernumMod.MOD_ID, "textures/entity/magma_dolphin.png");
 
     public MagmaDolphinRenderer( EntityRendererFactory.Context context) {
         super(context, new MagmaDolphinModel<>(context.getPart(ModModelLayers.MAGMA_DOLPHIN)), 0.7F);

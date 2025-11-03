@@ -78,6 +78,7 @@ public class InfernumModClient implements ClientModInitializer {
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.ASH_CHICKEN, AshChickenModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.EMBER_HUND, EmberHundModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.EMBER_BOAR, EmberBoarModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.LAVA_COW, LavaCowModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.VOLCARNIS, VolcarnisModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.SCORCHED_WOOLIE, ScorchedWoolieModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(ModModelLayers.SCORCHED_WOOLIE_FUR, ScorchedWoolieWoolModel::getTexturedModelData);
@@ -122,12 +123,15 @@ public class InfernumModClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.VOLCARNIS, VolcarnisRenderer::new);
         EntityRendererRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnRenderer ::new);
         EntityRendererRegistry.register(ModEntities.SCORCHED_WOOLIE, ScorchedWoolieRenderer::new);
+        EntityRendererRegistry.register(ModEntities.INFERNAL_RABBIT, InfernalRabbitRenderer::new);
         EntityRendererRegistry.register(ModEntities.ASH_CHICKEN, AshChickenRenderer::new);
         EntityRendererRegistry.register(ModEntities.EMBER_BOAR, EmberBoarRenderer::new);
+        EntityRendererRegistry.register(ModEntities.LAVA_COW, LavaCowRenderer::new);
         EntityRendererRegistry.register(ModEntities.LAVA_FISH, LavaFishRenderer::new);
         EntityRendererRegistry.register(ModEntities.MAGMA_FISH, MagmaFishRenderer::new);
         EntityRendererRegistry.register(ModEntities.FIRE_FISH, FireFishRenderer::new);
         EntityRendererRegistry.register(ModEntities.MAGMA_DOLPHIN, MagmaDolphinRenderer::new);
+        EntityRendererRegistry.register(ModEntities.MAGMA_GOLEM, MagmaGolemRenderer::new);
 
 
 

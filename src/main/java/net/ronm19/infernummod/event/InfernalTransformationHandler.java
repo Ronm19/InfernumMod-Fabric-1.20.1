@@ -50,6 +50,9 @@ public class InfernalTransformationHandler {
         TRANSFORM_MAP.put(EntityType.CHICKEN, ModEntities.ASH_CHICKEN);
         TRANSFORM_MAP.put(EntityType.PHANTOM, ModEntities.INFERNAL_PHANTOM);
         TRANSFORM_MAP.put(ModEntities.EMBER_BOAR, ModEntities.DEMON);
+        TRANSFORM_MAP.put(EntityType.POLAR_BEAR, ModEntities.MAGMA_BEAR);
+        TRANSFORM_MAP.put(EntityType.IRON_GOLEM, ModEntities.MAGMA_GOLEM);
+        TRANSFORM_MAP.put(EntityType.COW, ModEntities.LAVA_COW);
     }
 
     public static void onEntityStruckByInfernalLightning( Entity entity, ServerWorld world ) {

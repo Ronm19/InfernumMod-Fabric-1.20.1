@@ -168,7 +168,10 @@ public class ModItemGroups {
                         entries.add(ModItems.SCORCHED_WOOLIE_SPAWN_EGG);
                         entries.add(ModItems.ASH_CHICKEN_SPAWN_EGG);
                         entries.add(ModItems.EMBER_BOAR_SPAWN_EGG);
+                        entries.add(ModItems.LAVA_COW_SPAWN_EGG);
+                        entries.add(ModItems.INFERNAL_RABBIT_SPAWN_EGG);
                         entries.add(ModItems.MAGMA_BEAR_SPAWN_EGG);
+                        entries.add(ModItems.MAGMA_GOLEM_SPAWN_EGG);
 
                         entries.add(ModItems.LAVA_FISH_SPAWN_EGG);
                         entries.add(ModItems.MAGMA_FISH_SPAWN_EGG);

@@ -31,6 +31,9 @@ public class ModModelLayers {
     public static final EntityModelLayer EMBER_BOAR =
             new EntityModelLayer(new Identifier("infernummod", "ember_boar"), "main");
 
+    public static final EntityModelLayer LAVA_COW =
+            new EntityModelLayer(new Identifier("infernummod", "lava_cow"), "main");
+
     public static final EntityModelLayer INFERNAL_KNIGHT =
             new EntityModelLayer(new Identifier("infernummod", "infernal_knight"), "main");
 

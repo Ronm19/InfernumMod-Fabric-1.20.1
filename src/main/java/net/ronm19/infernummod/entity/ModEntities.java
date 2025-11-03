@@ -148,9 +148,17 @@ public class ModEntities {
             new Identifier(MOD_ID, "ash_chicken"),
             FabricEntityTypeBuilder.create(CREATURE, AshChickenEntity::new).dimensions(EntityDimensions.fixed(0.2f, 1.0f)).build());
 
+    public static final EntityType<InfernalRabbitEntity> INFERNAL_RABBIT = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(MOD_ID, "lava_rabbit"),
+            FabricEntityTypeBuilder.create(CREATURE, InfernalRabbitEntity::new).dimensions(EntityDimensions.fixed(0.2f, 1.0f)).build());
+
     public static final EntityType<EmberBoarEntity> EMBER_BOAR = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(MOD_ID, "ember_boar"),
             FabricEntityTypeBuilder.create(CREATURE, EmberBoarEntity::new).dimensions(EntityDimensions.fixed(0.2f, 1.0f)).build());
+
+    public static final EntityType<LavaCowEntity> LAVA_COW = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(MOD_ID, "lava_cow"),
+            FabricEntityTypeBuilder.create(CREATURE, LavaCowEntity::new).dimensions(EntityDimensions.fixed(0.2f, 1.0f)).build());
 
     public static final EntityType<InfernalKnightEntity> INFERNAL_KNIGHT = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(MOD_ID, "infernal_knight"),
@@ -159,6 +167,10 @@ public class ModEntities {
     public static final EntityType<MagmaBearEntity> MAGMA_BEAR = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(MOD_ID, "magma_bear"),
             FabricEntityTypeBuilder.create(CREATURE, MagmaBearEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.0f)).build());
+
+    public static final EntityType<MagmaGolemEntity> MAGMA_GOLEM = Registry.register(Registries.ENTITY_TYPE,
+            new Identifier(MOD_ID, "magma_golem"),
+            FabricEntityTypeBuilder.create(CREATURE, MagmaGolemEntity::new).dimensions(EntityDimensions.fixed(0.5f, 1.0f)).build());
 
 
     //* -------------------------------- Water/Lava Entities ------------------------ * //

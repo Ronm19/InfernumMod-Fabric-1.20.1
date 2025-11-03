@@ -217,12 +217,19 @@ public class ModItems {
             new SpawnEggItem(ModEntities.VOLCARNIS, 0xE25822, 0x8B0000, new FabricItemSettings()));
     public static final Item SCORCHED_WOOLIE_SPAWN_EGG = registerItem("scorched_woolie_spawn_egg",
             new SpawnEggItem(ModEntities.SCORCHED_WOOLIE, 0x4B2A24, 0xD67B5D, new FabricItemSettings()));
+    public static final Item INFERNAL_RABBIT_SPAWN_EGG = registerItem("infernal_rabbit_spawn_egg",
+            new SpawnEggItem(ModEntities.INFERNAL_RABBIT, 0x2B0900, 0xFF3C00, new FabricItemSettings()));
     public static final Item ASH_CHICKEN_SPAWN_EGG = registerItem("ash_chicken_spawn_egg",
             new SpawnEggItem(ModEntities.ASH_CHICKEN, 0x2B1B18, 0xD96500, new FabricItemSettings()));
     public static final Item EMBER_BOAR_SPAWN_EGG = registerItem("ember_boar_spawn_egg",
             new SpawnEggItem(ModEntities.EMBER_BOAR, 0x2A0E00, 0xFF5500, new FabricItemSettings()));
+    public static final Item LAVA_COW_SPAWN_EGG = registerItem("lava_cow_spawn_egg",
+            new SpawnEggItem(ModEntities.LAVA_COW, 0x3A0D00, 0xFF4B00, new FabricItemSettings()));
     public static final Item MAGMA_BEAR_SPAWN_EGG = registerItem("magma_bear_spawn_egg",
             new SpawnEggItem(ModEntities.MAGMA_BEAR, 0xA0211C, 0xF4511E, new FabricItemSettings()));
+    public static final Item MAGMA_GOLEM_SPAWN_EGG = registerItem("magma_golem_spawn_egg",
+            new SpawnEggItem(ModEntities.MAGMA_GOLEM, 0x3C0D04, 0xFF5A00, new FabricItemSettings()));
+
 
 
 

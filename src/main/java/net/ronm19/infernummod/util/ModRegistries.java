@@ -67,9 +67,12 @@ public class ModRegistries {
         FabricDefaultAttributeRegistry.register(ModEntities.SCORCHED_WOOLIE, ScorchedWoolieEntity.createScorchedWoolieAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.ASH_CHICKEN, AshChickenEntity.createAshChickenAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.EMBER_BOAR, EmberBoarEntity.createEmberBoarAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.LAVA_COW, LavaCowEntity.createLavaCowAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_RABBIT, InfernalRabbitEntity.createInfernalRabbitAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.PYERLING_WYRN, PyerlingWyrnEntity.createPyerlingWyrnAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.INFERNAL_PHANTOM, InfernalPhantomEntity.createInfernalPhantomAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.MAGMA_BEAR, MagmaBearEntity.createMagmaBearAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.MAGMA_GOLEM, MagmaGolemEntity.createMagmaGolemAttributes());
 
         FabricDefaultAttributeRegistry.register(ModEntities.LAVA_FISH, LavaFishEntity.createLavaFishAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.MAGMA_FISH, MagmaFishEntity.createMagmaFishAttributes());

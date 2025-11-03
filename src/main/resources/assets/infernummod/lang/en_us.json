@@ -127,9 +127,12 @@
   "item.infernummod.scorched_woolie_spawn_egg": "Scorched Woolie Spawn Egg",
   "item.infernummod.ash_chicken_spawn_egg": "Ash Chicken Spawn Egg",
   "item.infernummod.ember_boar_spawn_egg": "Ember Boar Spawn Egg",
+  "item.infernummod.lava_cow_spawn_egg": "Lava Cow Spawn Egg",
+  "item.infernummod.infernal_rabbit_spawn_egg": "Infernal Rabbit Spawn Egg",
   "item.infernummod.ashbone_horse_spawn_egg": "Ashbone Horse Spawn Egg",
   "item.infernummod.pyerling_wyrn_spawn_egg": "Pyerling Wyrn Spawn Egg",
   "item.infernummod.magma_bear_spawn_egg": "Magma Bear Spawn Egg",
+  "item.infernummod.magma_golem_spawn_egg": "Magma Golem Spawn Egg",
 
 
   "item.infernummod.lava_fish_spawn_egg": "Lava Fish Spawn Egg",
@@ -361,10 +364,13 @@
   "entity.infernummod.scorchedwoolie": "Scorched Woolie",
   "entity.infernummod.ash_chicken": "Ash Chicken",
   "entity.infernummod.ember_boar": "Ember Boar",
+  "entity.infernummod.lava_cow": "Lava Cow",
+  "entity.infernummod.infernal_rabbit": "Infernal Rabbit",
   "entity.infernummod.ashbone_horse": "Ashbone Horse",
   "entity.infernummod.pyerling_wyrn": "Pyerling Wyrn",
   "entity.infernummod.infernal_phantom": "Infernal Phantom",
   "entity.infernummod.magma_bear": "Magma Bear",
+  "entity.infernummod.magma_golem": "Magma Golem",
 
   "entity.infernummod.lava_fish": "Lava Fish",
   "entity.infernummod.magma_fish": "Magma Fish",

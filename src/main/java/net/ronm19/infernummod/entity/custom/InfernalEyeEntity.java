@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.control.FlightMoveControl;
+import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -30,7 +31,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.EntityView;
 import net.minecraft.world.World;
 import net.ronm19.infernummod.entity.ModEntities;
@@ -39,6 +43,7 @@ import net.ronm19.infernummod.entity.ai.goals.ProtectOwnerGoal;
 import net.ronm19.infernummod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.EnumSet;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -61,8 +66,7 @@ public class InfernalEyeEntity extends TameableEntity implements Tameable, Range
 
     public InfernalEyeEntity( EntityType<? extends TameableEntity> type, World world ) {
         super(type, world);
-        this.moveControl = new FlightMoveControl(this, 10, true);
-    }
+        this.moveControl = new InfernalEyeEntity.InfernalEyeMoveControl(this);    }
 
     // ========= ANIMATIONS =========
     private void setupAnimationStates() {
@@ -228,10 +232,12 @@ public class InfernalEyeEntity extends TameableEntity implements Tameable, Range
         this.goalSelector.add(14, new TemptGoal(this, 2.0D, Ingredient.ofItems(ModItems.FIRERITE), false));
         this.goalSelector.add(15, new AnimalMateGoal(this, 2.0D));
         this.goalSelector.add(16, new SitGoal(this));
+        this.goalSelector.add(17, new InfernalEyeEntity.InfernalEyeMoveControl.FlyRandomlyGoal(this));
 
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, HostileEntity.class, false));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, ObsidianGhastEntity.class, false));
+        this.targetSelector.add(3, new InfernalEyeMoveControl.LookAtTargetGoal(this));
         this.targetSelector.add(3, new RevengeGoal(this));
     }
 
@@ -385,6 +391,115 @@ public class InfernalEyeEntity extends TameableEntity implements Tameable, Range
         }
 
         this.updateLimbs(false);
+    }
+
+    static class InfernalEyeMoveControl extends MoveControl {
+        private final InfernalEyeEntity infernalEyeEntity;
+        private int collisionCheckCooldown;
+
+        public InfernalEyeMoveControl( InfernalEyeEntity infernalEyeEntity ) {
+            super(infernalEyeEntity);
+            this.infernalEyeEntity = infernalEyeEntity;
+        }
+
+        public void tick() {
+            if (this.state == State.MOVE_TO) {
+                if (this.collisionCheckCooldown-- <= 0) {
+                    this.collisionCheckCooldown += this.infernalEyeEntity.getRandom().nextInt(5) + 2;
+                    Vec3d vec3d = new Vec3d(this.targetX - this.infernalEyeEntity.getX(), this.targetY - this.infernalEyeEntity.getY(), this.targetZ - this.infernalEyeEntity.getZ());
+                    double d = vec3d.length();
+                    vec3d = vec3d.normalize();
+                    if (this.willCollide(vec3d, MathHelper.ceil(d))) {
+                        this.infernalEyeEntity.setVelocity(this.infernalEyeEntity.getVelocity().add(vec3d.multiply(0.1)));
+                    } else {
+                        this.state = State.WAIT;
+                    }
+                }
+
+            }
+        }
+
+        static class FlyRandomlyGoal extends Goal {
+            private final InfernalEyeEntity infernalEyeEntity;
+
+            public FlyRandomlyGoal(InfernalEyeEntity infernalEyeEntity) {
+                this.infernalEyeEntity = infernalEyeEntity;
+                this.setControls(EnumSet.of(Control.MOVE));
+            }
+
+            public boolean canStart() {
+                MoveControl moveControl = this.infernalEyeEntity.getMoveControl();
+                if (!moveControl.isMoving()) {
+                    return true;
+                } else {
+                    double d = moveControl.getTargetX() - this.infernalEyeEntity.getX();
+                    double e = moveControl.getTargetY() - this.infernalEyeEntity.getY();
+                    double f = moveControl.getTargetZ() - this.infernalEyeEntity.getZ();
+                    double g = d * d + e * e + f * f;
+                    return g < (double)1.0F || g > (double)3600.0F;
+                }
+            }
+
+            public boolean shouldContinue() {
+                return false;
+            }
+
+            public void start() {
+                Random random = this.infernalEyeEntity.getRandom();
+                double d = this.infernalEyeEntity.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double e = this.infernalEyeEntity.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double f = this.infernalEyeEntity.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                this.infernalEyeEntity.getMoveControl().moveTo(d, e, f, (double)1.0F);
+            }
+        }
+
+        static class LookAtTargetGoal extends Goal {
+            private final InfernalEyeEntity infernalEyeEntity;
+
+            public LookAtTargetGoal(InfernalEyeEntity infernalEyeEntity) {
+                this.infernalEyeEntity = infernalEyeEntity;
+                this.setControls(EnumSet.of(Control.LOOK));
+            }
+
+            public boolean canStart() {
+                return true;
+            }
+
+            public boolean shouldRunEveryTick() {
+                return true;
+            }
+
+            public void tick() {
+                if (this.infernalEyeEntity.getTarget() == null) {
+                    Vec3d vec3d = this.infernalEyeEntity.getVelocity();
+                    this.infernalEyeEntity.setYaw(-((float)MathHelper.atan2(vec3d.x, vec3d.z)) * (180F / (float)Math.PI));
+                    this.infernalEyeEntity.bodyYaw = this.infernalEyeEntity.getYaw();
+                } else {
+                    LivingEntity livingEntity = this.infernalEyeEntity.getTarget();
+                    double d = (double)64.0F;
+                    if (livingEntity.squaredDistanceTo(this.infernalEyeEntity) < (double)4096.0F) {
+                        double e = livingEntity.getX() - this.infernalEyeEntity.getX();
+                        double f = livingEntity.getZ() - this.infernalEyeEntity.getZ();
+                        this.infernalEyeEntity.setYaw(-((float)MathHelper.atan2(e, f)) * (180F / (float)Math.PI));
+                        this.infernalEyeEntity.bodyYaw = this.infernalEyeEntity.getYaw();
+                    }
+                }
+
+            }
+        }
+
+        private boolean willCollide( Vec3d direction, int steps ) {
+            Box box = this.infernalEyeEntity.getBoundingBox();
+
+            for (int i = 1; i < steps; ++i) {
+                box = box.offset(direction);
+                if (!this.infernalEyeEntity.getWorld().isSpaceEmpty(this.infernalEyeEntity, box)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
     public boolean isClimbing() {

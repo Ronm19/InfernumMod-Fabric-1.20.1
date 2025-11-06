@@ -59,8 +59,8 @@ public class LavacatorEntity extends VindicatorEntity implements Monster {
         super.initGoals();
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new BreakDoorGoal(this));
-        this.goalSelector.add(2, new IllagerEntity.LongDoorInteractGoal(this));
-        this.goalSelector.add(3, new RaiderEntity.PatrolApproachGoal(this, 10.0F));
+        this.goalSelector.add(2, new LongDoorInteractGoal(this));
+        this.goalSelector.add(3, new PatrolApproachGoal(this, 10.0F));
         this.goalSelector.add(4, new MeleeAttackGoal(this, 1.0D, false));
 
         this.targetSelector.add(1, (new RevengeGoal(this, new Class[]{RaiderEntity.class})).setGroupRevenge(new Class[0]));
@@ -125,7 +125,7 @@ public class LavacatorEntity extends VindicatorEntity implements Monster {
 
     // ---------------------------- STATE --------------------------------------------------------
 
-    public IllagerEntity.State getState() {
+    public State getState() {
         if (this.isAttacking()) {
             return State.ATTACKING;
         } else {
@@ -154,8 +154,8 @@ public class LavacatorEntity extends VindicatorEntity implements Monster {
     //  ---------------------------- SPAWN SETUP --------------------------------------------------------
     @Nullable
     @Override
-    public net.minecraft.entity.EntityData initialize( ServerWorldAccess world, LocalDifficulty difficulty,
-                                                       SpawnReason spawnReason, @Nullable net.minecraft.entity.EntityData entityData,
+    public EntityData initialize( ServerWorldAccess world, LocalDifficulty difficulty,
+                                                       SpawnReason spawnReason, @Nullable EntityData entityData,
                                                        @Nullable NbtCompound entityNbt ) {
         this.initEquipment(world.getRandom(), difficulty);
         return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
@@ -266,9 +266,9 @@ public class LavacatorEntity extends VindicatorEntity implements Monster {
     }
 
     @Override
-    public boolean tryAttack( net.minecraft.entity.Entity target ) {
+    public boolean tryAttack( Entity target ) {
         boolean result = super.tryAttack(target);
-        if (result && target instanceof net.minecraft.entity.LivingEntity living) {
+        if (result && target instanceof LivingEntity living) {
             living.setOnFireFor(4);
         }
         return result;
@@ -304,8 +304,10 @@ public class LavacatorEntity extends VindicatorEntity implements Monster {
 
     @Override
     public boolean canTarget(LivingEntity target) {
-        // Ignore Infernum itself
-        if (target instanceof InfernumEntity) {
+        // Ignore allied Infernum types
+        if (target.getType() == ModEntities.INFERNUM_HEROBRINE
+                || target.getType() == ModEntities.MALFURYX)
+        {
             return false;
         }
 
@@ -316,9 +318,9 @@ public class LavacatorEntity extends VindicatorEntity implements Monster {
             }
         }
 
-        // Otherwise, follow normal targeting rules
         return super.canTarget(target);
     }
+
 
     @Override
     public boolean canLead() { // sometimes be a captain

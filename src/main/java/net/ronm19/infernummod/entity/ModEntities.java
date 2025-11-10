@@ -43,7 +43,7 @@ public class ModEntities {
 
     public static final EntityType<FlameSkeletonEntity> FLAME_SKELETON = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(MOD_ID, "flame_skeleton"),
-            FabricEntityTypeBuilder.create(MONSTER, FlameSkeletonEntity::new).dimensions(EntityDimensions.fixed(1f, 1.5f)).build());
+            FabricEntityTypeBuilder.create(MONSTER, FlameSkeletonEntity::new).dimensions(EntityDimensions.fixed(1f, 1.0f)).build());
 
     public static final EntityType<InfernalVexEntity> INFERNAL_VEX = Registry.register(Registries.ENTITY_TYPE,
             new Identifier(MOD_ID, "infernal_vex"),

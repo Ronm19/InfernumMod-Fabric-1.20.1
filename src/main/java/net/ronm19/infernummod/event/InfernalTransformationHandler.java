@@ -23,7 +23,7 @@ public class InfernalTransformationHandler {
         TRANSFORM_MAP.put(EntityType.ZOMBIE, ModEntities.INFERNO_ZOMBIE);
         TRANSFORM_MAP.put(EntityType.ENDERMAN, ModEntities.INFERNO_ENDERMAN);
         TRANSFORM_MAP.put(EntityType.GHAST, ModEntities.OBSIDIAN_GHAST);
-        TRANSFORM_MAP.put(EntityType.SKELETON, ModEntities.FLAME_HORSE);
+        TRANSFORM_MAP.put(EntityType.SKELETON, ModEntities.FLAME_SKELETON);
         TRANSFORM_MAP.put(EntityType.VEX, ModEntities.INFERNAL_VEX);
         TRANSFORM_MAP.put(EntityType.BLAZE, ModEntities.INFERNAL_WRAITH);
         TRANSFORM_MAP.put(EntityType.EVOKER, ModEntities.INFERNAL_VOKER);

@@ -35,6 +35,12 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG.asItem())
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD.asItem());
 
+        getOrCreateTagBuilder(ItemTags.LOGS)
+                .add(ModBlocks.INFERNO_ESSENCE_LOG.asItem())
+                .add(ModBlocks.INFERNO_ESSENCE_WOOD.asItem())
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG.asItem())
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD.asItem());
+
         getOrCreateTagBuilder(ItemTags.FISHES)
                 .add(ModItems.LAVA_FISH)
                 .add(ModItems.MAGMA_FISH)

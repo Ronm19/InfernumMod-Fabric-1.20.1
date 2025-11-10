@@ -238,6 +238,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG)
                 .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
 
+        getOrCreateTagBuilder(BlockTags.LOGS)
+                .add(ModBlocks.INFERNO_ESSENCE_LOG)
+                .add(ModBlocks.INFERNO_ESSENCE_WOOD)
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_LOG)
+                .add(ModBlocks.STRIPPED_INFERNO_ESSENCE_WOOD);
+
         getOrCreateTagBuilder(BlockTags.DIRT)
                 .add(ModBlocks.INFERNAL_GRASS_BLOCK)
                 .add(ModBlocks.INFERNAL_DIRT_BLOCK);

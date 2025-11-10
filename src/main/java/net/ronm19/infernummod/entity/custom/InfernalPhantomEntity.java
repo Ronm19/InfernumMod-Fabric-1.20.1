@@ -40,10 +40,9 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.UUID;
 
-public class InfernalPhantomEntity extends TameableEntity implements FlyingMobUtil, RangedAttackMob, MountableEntity, Mount {
+public class InfernalPhantomEntity extends TameableEntity implements FlyingMobUtil, RangedAttackMob, Mount {
 
     private int portalTime;
-    private int portalCooldown = 300; // 15 seconds (same as players)
 
 
     public final AnimationState idleAnimationState = new AnimationState();
@@ -184,7 +183,6 @@ public class InfernalPhantomEntity extends TameableEntity implements FlyingMobUt
 
         if (isTamed() && hand == Hand.MAIN_HAND && item != itemForTaming) {
             if (!player.isSneaking()) {
-                setRiding(player);
             } else {
                 boolean sitting = !isSitting();
                 setSitting(sitting);
@@ -198,50 +196,10 @@ public class InfernalPhantomEntity extends TameableEntity implements FlyingMobUt
     }
 
     @Override
-    protected void tickPortal() {
-        // Prevent vanilla dismount logic
-        if (this.hasPassengers()) {
-            Entity rider = this.getFirstPassenger();
-
-            // handle portal cooldowns
-            if (this.portalTime++ >= this.getMaxNetherPortalTime()) {
-                this.portalTime = this.getMaxNetherPortalTime();
-                this.timeUntilRegen = this.getPortalCooldown(); // portal cooldown like vanilla
-
-                if (!this.getWorld().isClient && this.getWorld() instanceof ServerWorld serverWorld) {
-                    ServerWorld destination = serverWorld.getServer()
-                            .getWorld(this.getWorld().getRegistryKey() == World.NETHER ? World.OVERWORLD : World.NETHER);
-
-                    if (destination != null) {
-                        // transfer both the wyrn and its rider
-                        Entity teleported = this.moveToWorld(destination);
-                        if (teleported instanceof InfernalPhantomEntity newWyrn) {
-                            if (rider != null && !rider.hasVehicle()) {
-                                Entity newRider = rider.moveToWorld(destination);
-                                if (newRider instanceof PlayerEntity player) {
-                                    player.requestTeleport(
-                                            newWyrn.getX(), newWyrn.getY() + newWyrn.getMountedHeightOffset(), newWyrn.getZ());
-                                    player.startRiding(newWyrn, true);
-                                } else if (newRider != null) {
-                                    newRider.requestTeleport(
-                                            newWyrn.getX(), newWyrn.getY() + newWyrn.getMountedHeightOffset(), newWyrn.getZ());
-                                    newRider.startRiding(newWyrn, true);
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-            }
-        } else {
-            super.tickPortal(); // normal portal behaviour if not ridden
-        }
-    }
-
-    @Override
     public int getPortalCooldown() {
-        return this.portalCooldown;
+        // 15 seconds (same as players)
+        int portalCooldown = 300;
+        return portalCooldown;
     }
 
     @Override
@@ -326,158 +284,6 @@ public class InfernalPhantomEntity extends TameableEntity implements FlyingMobUt
     @Override
     protected void playStepSound( BlockPos pos, BlockState state ) {
         this.playSound(SoundEvents.BLOCK_BASALT_STEP, 0.4F, 1.2F);
-    }
-
-    // ---------------- RIDING METHODS ----------------
-
-    @Nullable
-    @Override
-    public LivingEntity getControllingPassenger() {
-        Entity first = this.getFirstPassenger();
-        return first instanceof LivingEntity ? (LivingEntity) first : null;
-    }
-
-    @Override
-    protected boolean canAddPassenger(Entity passenger) {
-        return this.getPassengerList().isEmpty() && passenger instanceof LivingEntity;
-    }
-
-    private void setRiding(PlayerEntity pPlayer) {
-        this.setInSittingPose(false);
-        // align at mount time; don't keep forcing it afterward
-        pPlayer.setYaw(this.getYaw());
-        pPlayer.setPitch(this.getPitch());
-        pPlayer.startRiding(this);
-    }
-
-    /**
-     * Return an offset in the MOUNT'S LOCAL SPACE (X = right, Y = up from feet,
-     * Z = forward). We'll rotate it by the BODY yaw so head turns don't shift the seat.
-     */
-    // --- tuning knobs (updated) ---
-    private static final double SEAT_SIDE = 0.06; // centered left/right
-    private static final double SEAT_BACK = -0.08; // was 1.05 → move forward (closer to shoulders)
-    private static final double SEAT_HEIGHT = 0.35; // was 0.60 → drop a bit lower
-
-
-    // Seat offset in local space, rotated by BODY yaw (not head)
-    @Override
-    public Vec3d getPassengerAttachmentPoint( Entity passenger, EntityDimensions dims, float tickDelta) {
-        double localX = SEAT_SIDE;
-        double localY = getMountedHeightOffset() + passenger.getRidingOffset(this);
-        double localZ = -SEAT_BACK;
-        float yawRad = (float) Math.toRadians(this.bodyYaw);
-        double rx = localX * Math.cos(yawRad) - localZ * Math.sin(yawRad);
-        double rz = localX * Math.sin(yawRad) + localZ * Math.cos(yawRad);
-        return new Vec3d(rx, localY, rz);
-    }
-
-    // Seat baseline (height)
-    @Override
-    public double getMountedHeightOffset() {
-        return this.getHeight() * SEAT_HEIGHT;
-    }
-
-    @Override
-    protected void updatePassengerPosition(Entity passenger, Entity.PositionUpdater updater) {
-        Vec3d a = getPassengerAttachmentPoint(passenger, passenger.getDimensions(passenger.getPose()), 1.0F);
-        updater.accept(passenger, this.getX() + a.x, this.getY() + a.y, this.getZ() + a.z);
-        if (passenger instanceof LivingEntity living) {
-            living.bodyYaw = this.bodyYaw; // keep torso aligned with spine
-        }
-    }
-
-    @Override
-    public void travel(Vec3d input) {
-        LivingEntity ctrl = getControllingPassenger();
-        if (this.hasPassengers() && ctrl instanceof PlayerEntity rider) {
-            // --------- Riding logic ---------
-            this.setYaw(rider.getYaw());
-            this.setPitch(rider.getPitch() * 0.5F);
-            this.bodyYaw = this.getYaw();
-            this.headYaw = this.bodyYaw;
-
-            // ----- Horizontal responsiveness -----
-            float strafe  = rider.sidewaysSpeed * 0.8F;   // faster strafing
-            float forward = rider.forwardSpeed * 1.2F;    // faster forward
-            if (forward <= 0.0F) forward *= 0.25F;
-
-            float baseSpeed = (float) this.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-            this.setMovementSpeed(rider.isSprinting() ? baseSpeed * 2.5F : baseSpeed * 1.5F);
-
-            // Vanilla-style horizontal control (no Y input)
-            super.travel(new Vec3d(strafe, 0.0D, forward));
-
-            // --------- Elytra-like Hover Vertical Control ---------
-            double climbRate = 0.20D;
-            double diveRate  = 0.18D;
-            double vyTarget;
-
-            float pitch = rider.getPitch(); // -90 = look up, +90 = look down
-            if (pitch < -10F) {                  // looking up
-                vyTarget = +climbRate;
-            } else if (pitch > 25F) {            // looking down
-                vyTarget = -diveRate;
-            } else {
-                vyTarget = 0.0D;                 // hover flat — no drift
-            }
-
-            Vec3d v = this.getVelocity();
-            double blendedY = v.y * 0.5D + vyTarget;  // smooth out transitions
-            double maxVy = 0.5D;
-            if (blendedY >  maxVy) blendedY =  maxVy;
-            if (blendedY < -maxVy) blendedY = -maxVy;
-
-            // When hovering (neutral pitch), freeze altitude
-            if (vyTarget == 0.0D) blendedY = 0.0D;
-
-            this.setVelocity(v.x, blendedY, v.z);
-        } else {
-            // --------- Free-flying AI movement ---------
-            handleFlyingTravel(this, input, this.getVelocityAffectingPos());
-        }
-
-        // --------- Lava walking logic ---------
-        BlockPos blockPos = this.getBlockPos().down();
-        FluidState below = this.getWorld().getFluidState(blockPos);
-
-        if (below.isIn(FluidTags.LAVA) && this.canWalkOnFluid(below)) {
-            this.setOnGround(true);
-            this.setVelocity(this.getVelocity().x, 0.0D, this.getVelocity().z);
-
-            double lavaSurface = blockPos.getY() + 1.0D;
-            if (this.getY() < lavaSurface) {
-                this.setPos(this.getX(), lavaSurface, this.getZ());
-            }
-
-            this.updateLimbs(false);
-        }
-    }
-
-
-
-    @Override
-    public Vec3d updatePassengerForDismount( LivingEntity passenger ) {
-        Direction direction = this.getMovementDirection();
-        if (direction.getAxis() == Direction.Axis.Y) {
-            return super.updatePassengerForDismount(passenger);
-        }
-        int[][] is = Dismounting.getDismountOffsets(direction);
-        BlockPos blockPos = this.getBlockPos();
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        for (EntityPose entityPose : passenger.getPoses()) {
-            Box box = passenger.getBoundingBox(entityPose);
-            for (int[] js : is) {
-                mutable.set(blockPos.getX() + js[0], blockPos.getY(), blockPos.getZ() + js[1]);
-                double d = this.getWorld().getDismountHeight(mutable);
-                if (!Dismounting.canDismountInBlock(d)) continue;
-                Vec3d vec3d = Vec3d.ofCenter(mutable, d);
-                if (!Dismounting.canPlaceEntityAt(this.getWorld(), passenger, box.offset(vec3d))) continue;
-                passenger.setPose(entityPose);
-                return vec3d;
-            }
-        }
-        return super.updatePassengerForDismount(passenger);
     }
 
     // ---------------- FLYING ----------------- //
